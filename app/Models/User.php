@@ -74,6 +74,9 @@ class User extends Authenticatable
             '1' =>  '正常'
         ],
     ];
+
+
+
     public function getSexNameAttribute()
     {
         $attr = 'sex';

@@ -44,8 +44,8 @@ class ArticleController extends BaseController
             'recommend'=>'nullable',
             'discuss'=>'nullable',
             'template_id'=>'nullable',
-            'author'=>'required',
         ]);
+        $article['author'] = auth()->id();
         //没有传递模板数据,使用模板模板
         $article['template_id'] =  request('template_id',1);
         $article['publish_time'] = date('Y-m-d H:i:s'); //发布时间默认当前时间
@@ -86,7 +86,7 @@ class ArticleController extends BaseController
 
     public function getList(Request $request)
     {
-        $data = $this->filter($this->model::orderBy('publish_time','desc'), $request, 'array');
+        $data = $this->filter($this->model::orderBy('publish_time','desc')->where('author', auth()->id()), $request, 'array');
         //$data['data'] = cmf_url_encrypt_array($data['data']);
         return response()->json($data);
     }
@@ -112,7 +112,6 @@ class ArticleController extends BaseController
             'recommend'=>'nullable',
             'discuss'=>'nullable',
             'template_id'=>'nullable',
-            'author'=>'nullable',
         ]);
         $categoryID = array_pop($filedValue['category']); //前端传递数据处理
         $filedValue['category']  = Categroy::where('id',$categoryID)->first()->name;
@@ -129,29 +128,4 @@ class ArticleController extends BaseController
         }
         return  $this->returnMsg(true);
     }
-
-    /**
-     * 网站地图
-     */
-    public function sitemap()
-    {
-        $url = [];
-        $navs = Nav::all();
-        foreach ($navs as $nav) {
-            if ($nav->link =='/'){
-                continue;
-            }
-            $url[] = url($nav->link).'.html';
-        }
-       $articles =  Article::all()->pluck('id');
-        foreach ($articles as $article) {
-            $url[] = url('read',cmf_url_encrypt($article)).'.html';
-        }
-        $stream = fopen("sitemap.txt", "w+");
-        foreach ($url as $item) {
-            fwrite($stream, "{$item}\r\n");
-        }
-        fclose($stream);
-    }
-
 }

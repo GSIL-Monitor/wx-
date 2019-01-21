@@ -89,7 +89,18 @@
                     {
                         prop: 'author',
                         label: '文章作者',
-                        width: '180'
+                        width: '180',
+                        render: {
+                            props: {
+                                row: Object         // 接受当前行参数
+                            },
+                            render: function (createElement) {
+                                // 参考链接 https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM
+                                return createElement('div', [
+                                    createElement('span', {}, this.row.author_name),
+                                ])
+                            }
+                        }
                     },
                     {
                         prop: 'category',

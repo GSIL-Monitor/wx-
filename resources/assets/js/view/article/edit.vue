@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="width: 70%" class="left">
+        <div style="width: 65%" class="left">
             <el-form ref="articleForm" :model="articleForm" :rules="rules"  label-width="100px" class="demo-ruleForm">
                 <el-form-item label="文章标题" prop="title">
                     <el-input v-model="articleForm.title"></el-input>
@@ -8,15 +8,7 @@
                 <el-form-item label="文章内容" prop="content">
                     <vue-ueditor-wrap :config="Ueconfig" v-model="articleForm.content"></vue-ueditor-wrap>
                 </el-form-item>
-                <el-form-item label="文章描述" prop="description">
-                    <el-input v-model="articleForm.description"></el-input>
-                </el-form-item>
-                <el-form-item label="文章关键字" prop="keywords">
-                    <el-input v-model="articleForm.keywords"></el-input>
-                </el-form-item>
-                <el-form-item label="文章作者" prop="author">
-                    <el-input v-model="articleForm.author"></el-input>
-                </el-form-item>
+
                 <el-form-item label="文章分类" prop="category">
                     <el-cascader
                             :options="options"
@@ -77,21 +69,17 @@
             return {
                 articleForm: {
                     title: '',
-                    description: '',
                     content: '',
                     photo: '',
-                    keywords: '',
                     category: [],
                     top:'0',
                     recommend:'0',
                     discuss:'1',
                     template_id:'',
-                    author:''
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
                     content: [{required: true, message: '文章内容为必填项目', trigger: 'blur'}],
-                    author: [{required: true, message: '文章作者必选填写', trigger: 'blur'}],
                 },
                 options: [],
                 Ueconfig:{
@@ -144,10 +132,10 @@
 <style>
     .left{
         float: left;
-        width: 75%;
+        width: 65%;
     }
     .right{
-        width: 25%;
+        width: 30%;
         float: right;
     }
     .edui-editor{

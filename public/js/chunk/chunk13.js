@@ -1256,7 +1256,7 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.left{\n    float: left;\n    width: 75%;\n}\n.right{\n    width: 25%;\n    float: right;\n}\n.edui-editor{\n    width: 100%!important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n", ""]);
+exports.push([module.i, "\n.left{\n    float: left;\n    width: 65%;\n}\n.right{\n    width: 30%;\n    float: right;\n}\n.edui-editor{\n    width: 100%!important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n", ""]);
 
 // exports
 
@@ -1333,14 +1333,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1355,21 +1347,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             articleForm: {
                 title: '',
-                description: '',
                 content: '',
                 photo: '',
-                keywords: '',
                 category: [],
                 top: '0',
                 recommend: '0',
                 discuss: '1',
-                template_id: '',
-                author: ''
+                template_id: ''
             },
             rules: {
                 title: [{ required: true, message: '文章标题为必填项目', trigger: 'blur' }],
-                content: [{ required: true, message: '文章内容为必填项目', trigger: 'blur' }],
-                author: [{ required: true, message: '文章作者必选填写', trigger: 'blur' }]
+                content: [{ required: true, message: '文章内容为必填项目', trigger: 'blur' }]
             },
             options: [],
             Ueconfig: {
@@ -1434,7 +1422,7 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "left", staticStyle: { width: "70%" } },
+      { staticClass: "left", staticStyle: { width: "65%" } },
       [
         _c(
           "el-form",
@@ -1477,57 +1465,6 @@ var render = function() {
                       _vm.$set(_vm.articleForm, "content", $$v)
                     },
                     expression: "articleForm.content"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-form-item",
-              { attrs: { label: "文章描述", prop: "description" } },
-              [
-                _c("el-input", {
-                  model: {
-                    value: _vm.articleForm.description,
-                    callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "description", $$v)
-                    },
-                    expression: "articleForm.description"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-form-item",
-              { attrs: { label: "文章关键字", prop: "keywords" } },
-              [
-                _c("el-input", {
-                  model: {
-                    value: _vm.articleForm.keywords,
-                    callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "keywords", $$v)
-                    },
-                    expression: "articleForm.keywords"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-form-item",
-              { attrs: { label: "文章作者", prop: "author" } },
-              [
-                _c("el-input", {
-                  model: {
-                    value: _vm.articleForm.author,
-                    callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "author", $$v)
-                    },
-                    expression: "articleForm.author"
                   }
                 })
               ],

@@ -59,7 +59,17 @@ class Article extends Model
      * 
      * @var array 
      */
-    protected $appends = ['status','other','url'];
+    protected $appends = ['status','other','url', 'author_name'];
+
+    /**
+     * author别名
+     *
+     * @return mixed
+     */
+    public function getAuthorNameAttribute()
+    {
+        return auth()->user()->username;
+    }
 
     /**
      * 文章关联到的文章模板

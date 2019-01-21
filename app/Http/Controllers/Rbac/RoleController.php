@@ -9,6 +9,7 @@ use App\Models\RoleAndMenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class RoleController
@@ -135,12 +136,14 @@ class RoleController extends BaseController
     }
 
     // 获取角色权限
-    public function GetRoleHasAuth($role){
+    public function GetRoleHasAuth($role)
+    {
         $auth = RoleAndAuth::with('Auth')
             ->where(['role_id'=>$role,'state'=>1])
             ->select('auth_id','extented','page')
             ->get();
         $menu = $auth->map(function ($value){
+            Log::channel('record')->info($value->toArray());
             $result = [];
             $result['page'] =  '/'.$value->page;
             $result['menu_id'] =  $value->auth[0]->menu_id;

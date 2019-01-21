@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="width: 70%" class="left">
+        <div style="width: 65%" class="left">
             <el-form ref="articleForm" :model="articleForm" :rules="rules"  label-width="100px" class="demo-ruleForm">
                 <el-form-item label="文章标题" prop="title">
                     <el-input v-model="articleForm.title"></el-input>
@@ -9,13 +9,10 @@
                     <vue-ueditor-wrap :config="Ueconfig" v-model="articleForm.content"></vue-ueditor-wrap>
                 </el-form-item>
                 <el-form-item label="文章描述" prop="description">
-                    <el-input v-model="articleForm.description"></el-input>
+                    <el-input v-model="articleForm.description" placeholder="文章描述"></el-input>
                 </el-form-item>
-                <el-form-item label="文章关键字" prop="keywords">
-                    <el-input v-model="articleForm.keywords"></el-input>
-                </el-form-item>
-                <el-form-item label="文章作者" prop="author">
-                    <el-input v-model="articleForm.author"></el-input>
+                <el-form-item label="访问链接" prop="url">
+                    <el-input v-model="articleForm.url" placeholder="当前文章的访问URL地址必选"></el-input>
                 </el-form-item>
                 <el-form-item label="文章分类" prop="category">
                     <el-cascader
@@ -40,24 +37,25 @@
                     <span>其他选项</span>
                 </div>
                 <p>
-                    <el-checkbox label="加入推荐" true-label="1" false-label="0" v-model="articleForm.recommend" ></el-checkbox>
+                    <el-input v-model="articleForm.appid" placeholder="微信appId"></el-input>
                 </p>
                 <p>
-                    <el-checkbox label="开放评论" true-label="1" false-label="0"  v-model="articleForm.discuss"></el-checkbox>
+                    <el-input v-model="articleForm.key" placeholder="微信密匙"></el-input>
                 </p>
                 <p>
-                    <el-checkbox label="文章置顶" true-label="1" false-label="0"  v-model="articleForm.top"></el-checkbox>
+                    <el-input v-model="articleForm.cnzz" placeholder="第三方流量统计"></el-input>
                 </p>
                 <p>
-                    选择模板:&nbsp;
-                    <el-select v-model="articleForm.template_id" clearable  placeholder="请选择,不选择为默认">
-                        <el-option
-                            v-for="item in template"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                    </el-option>
-                    </el-select>
+                    <el-input v-model="articleForm.music" placeholder="背景音乐"></el-input>
+                </p>
+                <p>
+                    <el-input v-model="articleForm.right_now" placeholder="文章立即跳转到指定地址"></el-input>
+                </p>
+                <p>
+                    <el-input v-model="articleForm.arrow" placeholder="点击文章箭头返回"></el-input>
+                </p>
+                <p>
+                    <el-input v-model="articleForm.physics" placeholder="物理按键点击返回"></el-input>
                 </p>
             </el-card>
         </div>
@@ -80,19 +78,21 @@
                     title: '',
                     description: '',
                     content: '',
+                    arrow: '', //点击箭头返回
+                    physics: '', //物理按键点击返回
                     photo: '',
-                    keywords: '',
+                    url: '',
                     category: [],
-                    top:'0',
-                    recommend:'0',
-                    discuss:'1',
-                    template_id:1,
-                    author:""
+                    music:"", //背景地址
+                    appid:"", //微信Id
+                    key:"", //微信密匙
+                    right_now:"",//网站立即跳转到指定地址
+                    cnzz:"",//文章流量统计
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
                     content: [{required: true, message: '文章内容为必填项目', trigger: 'blur'}],
-                    author: [{required: true, message: '文章作者必选填写', trigger: 'blur'}],
+                    url: [{required: true, message: '文章访问链接必选填写', trigger: 'blur'}],
                 },
                 options: [],
                 Ueconfig:{
@@ -134,10 +134,10 @@
 <style>
     .left{
         float: left;
-        width: 75%;
+        width: 65%;
     }
     .right{
-        width: 25%;
+        width: 30%;
         float: right;
     }
     .edui-editor{

@@ -1256,7 +1256,7 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.left{\n    float: left;\n    width: 75%;\n}\n.right{\n    width: 25%;\n    float: right;\n}\n.edui-editor{\n    width: 100%!important;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n", ""]);
+exports.push([module.i, "\n.left{\n    float: left;\n    width: 65%;\n}\n.right{\n    width: 30%;\n    float: right;\n}\n.edui-editor{\n    width: 100%!important;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n", ""]);
 
 // exports
 
@@ -1340,8 +1340,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -1358,19 +1356,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: '',
                 description: '',
                 content: '',
+                arrow: '', //点击箭头返回
+                physics: '', //物理按键点击返回
                 photo: '',
-                keywords: '',
+                url: '',
                 category: [],
-                top: '0',
-                recommend: '0',
-                discuss: '1',
-                template_id: 1,
-                author: ""
+                music: "", //背景地址
+                appid: "", //微信Id
+                key: "", //微信密匙
+                right_now: "", //网站立即跳转到指定地址
+                cnzz: "" //文章流量统计
             },
             rules: {
                 title: [{ required: true, message: '文章标题为必填项目', trigger: 'blur' }],
                 content: [{ required: true, message: '文章内容为必填项目', trigger: 'blur' }],
-                author: [{ required: true, message: '文章作者必选填写', trigger: 'blur' }]
+                url: [{ required: true, message: '文章访问链接必选填写', trigger: 'blur' }]
             },
             options: [],
             Ueconfig: {
@@ -1424,7 +1424,7 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "left", staticStyle: { width: "70%" } },
+      { staticClass: "left", staticStyle: { width: "65%" } },
       [
         _c(
           "el-form",
@@ -1478,6 +1478,7 @@ var render = function() {
               { attrs: { label: "文章描述", prop: "description" } },
               [
                 _c("el-input", {
+                  attrs: { placeholder: "文章描述" },
                   model: {
                     value: _vm.articleForm.description,
                     callback: function($$v) {
@@ -1492,32 +1493,16 @@ var render = function() {
             _vm._v(" "),
             _c(
               "el-form-item",
-              { attrs: { label: "文章关键字", prop: "keywords" } },
+              { attrs: { label: "访问链接", prop: "url" } },
               [
                 _c("el-input", {
+                  attrs: { placeholder: "当前文章的访问URL地址必选" },
                   model: {
-                    value: _vm.articleForm.keywords,
+                    value: _vm.articleForm.url,
                     callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "keywords", $$v)
+                      _vm.$set(_vm.articleForm, "url", $$v)
                     },
-                    expression: "articleForm.keywords"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-form-item",
-              { attrs: { label: "文章作者", prop: "author" } },
-              [
-                _c("el-input", {
-                  model: {
-                    value: _vm.articleForm.author,
-                    callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "author", $$v)
-                    },
-                    expression: "articleForm.author"
+                    expression: "articleForm.url"
                   }
                 })
               ],
@@ -1603,18 +1588,14 @@ var render = function() {
           _c(
             "p",
             [
-              _c("el-checkbox", {
-                attrs: {
-                  label: "加入推荐",
-                  "true-label": "1",
-                  "false-label": "0"
-                },
+              _c("el-input", {
+                attrs: { placeholder: "微信appId" },
                 model: {
-                  value: _vm.articleForm.recommend,
+                  value: _vm.articleForm.appid,
                   callback: function($$v) {
-                    _vm.$set(_vm.articleForm, "recommend", $$v)
+                    _vm.$set(_vm.articleForm, "appid", $$v)
                   },
-                  expression: "articleForm.recommend"
+                  expression: "articleForm.appid"
                 }
               })
             ],
@@ -1624,18 +1605,14 @@ var render = function() {
           _c(
             "p",
             [
-              _c("el-checkbox", {
-                attrs: {
-                  label: "开放评论",
-                  "true-label": "1",
-                  "false-label": "0"
-                },
+              _c("el-input", {
+                attrs: { placeholder: "微信密匙" },
                 model: {
-                  value: _vm.articleForm.discuss,
+                  value: _vm.articleForm.key,
                   callback: function($$v) {
-                    _vm.$set(_vm.articleForm, "discuss", $$v)
+                    _vm.$set(_vm.articleForm, "key", $$v)
                   },
-                  expression: "articleForm.discuss"
+                  expression: "articleForm.key"
                 }
               })
             ],
@@ -1645,18 +1622,14 @@ var render = function() {
           _c(
             "p",
             [
-              _c("el-checkbox", {
-                attrs: {
-                  label: "文章置顶",
-                  "true-label": "1",
-                  "false-label": "0"
-                },
+              _c("el-input", {
+                attrs: { placeholder: "第三方流量统计" },
                 model: {
-                  value: _vm.articleForm.top,
+                  value: _vm.articleForm.cnzz,
                   callback: function($$v) {
-                    _vm.$set(_vm.articleForm, "top", $$v)
+                    _vm.$set(_vm.articleForm, "cnzz", $$v)
                   },
-                  expression: "articleForm.top"
+                  expression: "articleForm.cnzz"
                 }
               })
             ],
@@ -1666,26 +1639,67 @@ var render = function() {
           _c(
             "p",
             [
-              _vm._v("\n                选择模板: \n                "),
-              _c(
-                "el-select",
-                {
-                  attrs: { clearable: "", placeholder: "请选择,不选择为默认" },
-                  model: {
-                    value: _vm.articleForm.template_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "template_id", $$v)
-                    },
-                    expression: "articleForm.template_id"
-                  }
-                },
-                _vm._l(_vm.template, function(item) {
-                  return _c("el-option", {
-                    key: item.value,
-                    attrs: { label: item.label, value: item.value }
-                  })
-                })
-              )
+              _c("el-input", {
+                attrs: { placeholder: "背景音乐" },
+                model: {
+                  value: _vm.articleForm.music,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "music", $$v)
+                  },
+                  expression: "articleForm.music"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("el-input", {
+                attrs: { placeholder: "文章立即跳转到指定地址" },
+                model: {
+                  value: _vm.articleForm.right_now,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "right_now", $$v)
+                  },
+                  expression: "articleForm.right_now"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("el-input", {
+                attrs: { placeholder: "点击文章箭头返回" },
+                model: {
+                  value: _vm.articleForm.arrow,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "arrow", $$v)
+                  },
+                  expression: "articleForm.arrow"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("el-input", {
+                attrs: { placeholder: "物理按键点击返回" },
+                model: {
+                  value: _vm.articleForm.physics,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "physics", $$v)
+                  },
+                  expression: "articleForm.physics"
+                }
+              })
             ],
             1
           )
