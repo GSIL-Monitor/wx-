@@ -6,6 +6,7 @@ import nav from './system/nav'
 import article from './article/article'
 import contact from './contact/contact'
 import company from './company/company'
+import order from './order/order'
 
 export default [
     {
@@ -22,6 +23,7 @@ export default [
             ...seo,
             ...nav,
             ...company,
+            ...order,
         ]
     },
     {

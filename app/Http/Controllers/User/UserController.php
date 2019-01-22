@@ -8,7 +8,6 @@ use App\Models\RoleAndAuth;
 use App\Models\User;
 use App\Models\UserAndRole;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 

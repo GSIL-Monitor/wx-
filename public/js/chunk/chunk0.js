@@ -2040,7 +2040,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     result[item] = conf[item];
                 }
             });
-            return result;
+            return conf;
         }
     }
 });

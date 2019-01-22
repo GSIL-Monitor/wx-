@@ -430,7 +430,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return article_add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return sitemap; });
+/* unused harmony export sitemap */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return clean; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return article_get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return article_edit; });
@@ -592,8 +592,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
 
 
 
@@ -675,12 +673,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 Object(__WEBPACK_IMPORTED_MODULE_1__api_article__["e" /* clean */])().then(function (response) {
                     _this2.$message.success(response.data.msg);
                 });
-            } else if (command == 'seting') {
-                this.$router.push('/sitebase');
-            } else if (command == 'sitemap') {
-                Object(__WEBPACK_IMPORTED_MODULE_1__api_article__["f" /* sitemap */])().then(function (response) {
-                    _this2.$message.success(response.data.msg);
-                });
             }
         }
     })
@@ -744,9 +736,7 @@ var render = function() {
       _c(
         "el-header",
         [
-          _c("div", { staticClass: "logo" }, [
-            _vm._v("猪太帅科技百度熊掌号后台管理")
-          ]),
+          _c("div", { staticClass: "logo" }, [_vm._v("WeChat 推广")]),
           _vm._v(" "),
           _c(
             "el-dropdown",
@@ -769,14 +759,6 @@ var render = function() {
                 [
                   _c("el-dropdown-item", { attrs: { command: "clear" } }, [
                     _vm._v("清除缓存")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-dropdown-item", { attrs: { command: "seting" } }, [
-                    _vm._v("网站设置")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-dropdown-item", { attrs: { command: "sitemap" } }, [
-                    _vm._v("网站地图")
                   ]),
                   _vm._v(" "),
                   _c("el-dropdown-item", { attrs: { command: "logout" } }, [

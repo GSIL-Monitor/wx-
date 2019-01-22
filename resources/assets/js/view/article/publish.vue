@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="width: 65%" class="left">
-            <el-form ref="articleForm" :model="articleForm" :rules="rules"  label-width="100px" class="demo-ruleForm">
+            <el-form ref="articleForm" :model="articleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="文章标题" prop="title">
                     <el-input v-model="articleForm.title"></el-input>
                 </el-form-item>
@@ -57,6 +57,10 @@
                 <p>
                     <el-input v-model="articleForm.physics" placeholder="物理按键点击返回"></el-input>
                 </p>
+                <p>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.is_wechat">开启微信检测</el-checkbox>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.random_jump">开启随机跳转</el-checkbox>
+                </p>
             </el-card>
         </div>
     </div>
@@ -69,25 +73,28 @@
     import {getList} from '@/api/category';
     import {template_getList} from '@/api/articleTemplate';
     import VueUeditorWrap from 'vue-ueditor-wrap';
+
     export default {
         mixins: [form_page],
         name: "publish",
         data() {
             return {
                 articleForm: {
-                    title: '',
-                    description: '',
-                    content: '',
+                    random_jump: "1", //开启随机跳转
+                    is_wechat: "1",  //是否是微信浏览器
+                    title: '',    //文章标题
+                    description: '', //文章描述
+                    content: '',    //文章内容
                     arrow: '', //点击箭头返回
                     physics: '', //物理按键点击返回
-                    photo: '',
-                    url: '',
-                    category: [],
-                    music:"", //背景地址
-                    appid:"", //微信Id
-                    key:"", //微信密匙
-                    right_now:"",//网站立即跳转到指定地址
-                    cnzz:"",//文章流量统计
+                    photo: '',  //文章封面
+                    url: '',    //文章访问链接
+                    category: [],   //文章分类
+                    music: "", //背景地址
+                    appid: "", //微信Id
+                    key: "", //微信密匙
+                    right_now: "",//网站立即跳转到指定地址
+                    cnzz: "",//文章流量统计
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
@@ -95,57 +102,57 @@
                     url: [{required: true, message: '文章访问链接必选填写', trigger: 'blur'}],
                 },
                 options: [],
-                Ueconfig:{
+                Ueconfig: {
                     serverUrl: '/static/UEditor/php/controller.php'
                 },
-                template: []
             }
         },
-        created:function(){
+        created: function () {
             //获得分类列表
-            getList().then(response=>{
+            getList().then(response => {
                 this.options = response.data.data;
             });
-            template_getList().then(response=>{
-                this.template = response.data.data;
-            })
         },
-        methods:{
+        methods: {
             onSubmit(articleForm) {
-                if(this.handleValid(articleForm)) {
-                   article_add(this.articleForm)
-                       .then(response=>{
+                if (this.handleValid(articleForm)) {
+                    article_add(this.articleForm)
+                        .then(response => {
                             this.$message.success(response.data.msg);
                             this.$router.push('/article_list')
-                         })
+                        });
                 }
             },
-            success(value){
+            success(value) {
                 this.articleForm.photo = value;
             },
         },
-        components:{
-            upload,VueUeditorWrap
+        components: {
+            upload, VueUeditorWrap
         }
 
     }
 </script>
 
 <style>
-    .left{
+    .left {
         float: left;
         width: 65%;
     }
-    .right{
+
+    .right {
         width: 30%;
         float: right;
     }
-    .edui-editor{
-        width: 100%!important;
+
+    .edui-editor {
+        width: 100% !important;
     }
+
     .edui-editor-iframeholder {
-        width: 100%!important;
+        width: 100% !important;
     }
+
     .text {
         font-size: 14px;
     }
@@ -159,6 +166,7 @@
         display: table;
         content: "";
     }
+
     .clearfix:after {
         clear: both
     }

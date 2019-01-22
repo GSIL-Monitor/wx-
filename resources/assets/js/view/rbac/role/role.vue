@@ -242,8 +242,9 @@
                     if (item in conf) {
                         result[item] = conf[item];
                     }
+
                 });
-                return result;
+                return conf;
             }
         }
     }

@@ -1,7 +1,7 @@
 <template>
     <el-container style="height: 100%;">
         <el-header>
-            <div class="logo">猪太帅科技百度熊掌号后台管理</div>
+            <div class="logo">WeChat 推广</div>
             <!--<el-switch v-model="isCollapse"></el-switch>-->
             <el-dropdown trigger="hover" style="float: right;color: #fff;" @command="handleCommand">
                 <span class="el-dropdown-link">
@@ -9,8 +9,6 @@
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="clear">清除缓存</el-dropdown-item>
-                    <el-dropdown-item command="seting">网站设置</el-dropdown-item>
-                    <el-dropdown-item command="sitemap">网站地图</el-dropdown-item>
                     <el-dropdown-item command="logout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
@@ -134,22 +132,14 @@
             ]),
             handleCommand(command){
                 // 退出登录
-                if(command == 'logout'){
+                if(command == 'logout') {
                     this.handleLogOut();
                     this.$router.push('login')
                 } else if(command == 'clear') {
                     clean().then(response=>{
                         this.$message.success(response.data.msg);
                     })
-                }else if(command == 'seting') {
-                    this.$router.push('/sitebase');
-                }else if(command == 'sitemap') {
-                    sitemap().then(response=>{
-                        this.$message.success(response.data.msg);
-                    });
                 }
-
-
             },
         }
     }

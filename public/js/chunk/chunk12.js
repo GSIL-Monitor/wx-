@@ -630,7 +630,7 @@ var category_edit = function category_edit(data, id) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return template_add; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return template_get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return template_edit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return template_getList; });
+/* unused harmony export template_getList */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
 
 
@@ -847,7 +847,7 @@ if (false) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return article_add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return sitemap; });
+/* unused harmony export sitemap */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return clean; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return article_get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return article_edit; });
@@ -1256,7 +1256,7 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.left{\n    float: left;\n    width: 65%;\n}\n.right{\n    width: 30%;\n    float: right;\n}\n.edui-editor{\n    width: 100%!important;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n", ""]);
+exports.push([module.i, "\n.left {\n    float: left;\n    width: 65%;\n}\n.right {\n    width: 30%;\n    float: right;\n}\n.edui-editor {\n    width: 100% !important;\n}\n.edui-editor-iframeholder {\n    width: 100% !important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n", ""]);
 
 // exports
 
@@ -1340,6 +1340,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -1353,14 +1358,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             articleForm: {
-                title: '',
-                description: '',
-                content: '',
+                random_jump: "1", //开启随机跳转
+                is_wechat: "1", //是否是微信浏览器
+                title: '', //文章标题
+                description: '', //文章描述
+                content: '', //文章内容
                 arrow: '', //点击箭头返回
                 physics: '', //物理按键点击返回
-                photo: '',
-                url: '',
-                category: [],
+                photo: '', //文章封面
+                url: '', //文章访问链接
+                category: [], //文章分类
                 music: "", //背景地址
                 appid: "", //微信Id
                 key: "", //微信密匙
@@ -1375,8 +1382,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             options: [],
             Ueconfig: {
                 serverUrl: '/static/UEditor/php/controller.php'
-            },
-            template: []
+            }
         };
     },
 
@@ -1386,9 +1392,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //获得分类列表
         Object(__WEBPACK_IMPORTED_MODULE_3__api_category__["d" /* getList */])().then(function (response) {
             _this.options = response.data.data;
-        });
-        Object(__WEBPACK_IMPORTED_MODULE_4__api_articleTemplate__["e" /* template_getList */])().then(function (response) {
-            _this.template = response.data.data;
         });
     },
     methods: {
@@ -1700,6 +1703,42 @@ var render = function() {
                   expression: "articleForm.physics"
                 }
               })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c(
+                "el-checkbox",
+                {
+                  attrs: { "true-label": "1", "false-label": "0" },
+                  model: {
+                    value: _vm.articleForm.is_wechat,
+                    callback: function($$v) {
+                      _vm.$set(_vm.articleForm, "is_wechat", $$v)
+                    },
+                    expression: "articleForm.is_wechat"
+                  }
+                },
+                [_vm._v("开启微信检测")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-checkbox",
+                {
+                  attrs: { "true-label": "1", "false-label": "0" },
+                  model: {
+                    value: _vm.articleForm.random_jump,
+                    callback: function($$v) {
+                      _vm.$set(_vm.articleForm, "random_jump", $$v)
+                    },
+                    expression: "articleForm.random_jump"
+                  }
+                },
+                [_vm._v("开启随机跳转")]
+              )
             ],
             1
           )

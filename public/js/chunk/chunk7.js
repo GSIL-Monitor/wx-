@@ -1565,7 +1565,7 @@ var list_page = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return template_add; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return template_get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return template_edit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return template_getList; });
+/* unused harmony export template_getList */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
 
 

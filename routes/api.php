@@ -34,6 +34,9 @@ Route::group(['middleware'=>['auth:api','auth.check']],function (){
 
     require_once base_path('routes/api/nav.php');
 
+    //商品相关的操作
+    require_once base_path('routes/api/goods.php');
+
     /**
      * 网站留言
      */

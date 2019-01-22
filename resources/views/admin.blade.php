@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>OA</title>
+    <title>WeChat 推广</title>
     <style>
         body{
             margin: 0;

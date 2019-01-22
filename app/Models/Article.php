@@ -27,6 +27,7 @@ class Article extends Model
     protected $table = 'articles';
 
     const NOTALLOW = 0;
+
     const ALLOW = 1;
 
     /**
@@ -49,9 +50,8 @@ class Article extends Model
      * @var array
      */
     protected $casts = [
-        'top' => 'string',
-        'recommend' => 'string',
-        'discuss' => 'string',
+        'is_wechat' => 'string',
+        'random_jump' => 'string',
     ];
 
     /**
@@ -59,27 +59,8 @@ class Article extends Model
      * 
      * @var array 
      */
-    protected $appends = ['status','other','url', 'author_name'];
+    protected $appends = ['status','other','url_home'];
 
-    /**
-     * author别名
-     *
-     * @return mixed
-     */
-    public function getAuthorNameAttribute()
-    {
-        return auth()->user()->username;
-    }
-
-    /**
-     * 文章关联到的文章模板
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function HasTemplate()
-    {
-        return $this->hasOne(ArticleTemplate::class,'id','template_id');
-    }
     /**
      * 状态访问器针对各个关键字段设置√×,节省前端页面空间
      *
@@ -89,20 +70,20 @@ class Article extends Model
      */
     public function getStatusAttribute($value)
     {
-        if (empty($this->description)){
-            $value['desc'] = ['status'=>'×','color'=>'red'];
+        if (empty($this->appid)){
+            $value['appid'] = ['status'=>'×','color'=>'red'];
         }else{
-            $value['desc'] = ['status'=>'√','color'=>'green'];
+            $value['appid'] = ['status'=>'√','color'=>'green'];
         }
         if (empty($this->photo)){
             $value['photo'] = ['status'=>'×','color'=>'red'];
         }else{
             $value['photo'] =  ['status'=>'√','color'=>'green'];
         }
-        if (empty($this->keywords)){
-            $value['keywords'] = ['status'=>'×','color'=>'red'];
+        if (empty($this->music)){
+            $value['music'] = ['status'=>'×','color'=>'red'];
         }else{
-            $value['keywords'] = ['status'=>'√','color'=>'green'];
+            $value['music'] = ['status'=>'√','color'=>'green'];
         }
         return $value;
     }
@@ -116,20 +97,20 @@ class Article extends Model
      */
     public function getOtherAttribute($value)
     {
-        if ($this->top != self::ALLOW){
-            $value['top'] = ['status'=>'×','color'=>'red'];
+        if (empty($this->arrow)){
+            $value['arrow'] = ['status'=>'×','color'=>'red'];
         }else{
-            $value['top'] = ['status'=>'√','color'=>'green'];
+            $value['arrow'] = ['status'=>'√','color'=>'green'];
         }
-        if ($this->discuss != self::ALLOW){
-            $value['discuss'] = ['status'=>'×','color'=>'red'];
+        if (empty($this->right_now)){
+            $value['right_now'] = ['status'=>'×','color'=>'red'];
         }else{
-            $value['discuss'] = ['status'=>'√','color'=>'green'];
+            $value['right_now'] = ['status'=>'√','color'=>'green'];
         }
-        if ($this->recommend != self::ALLOW){
-            $value['recommend'] = ['status'=>'×','color'=>'red'];
+        if (empty($this->physics)){
+            $value['physics'] = ['status'=>'×','color'=>'red'];
         }else{
-            $value['recommend'] =  ['status'=>'√','color'=>'green'];
+            $value['physics'] =  ['status'=>'√','color'=>'green'];
         }
         return $value;
     }
@@ -141,11 +122,10 @@ class Article extends Model
      *
      * @return mixed
      */
-    public function getUrlAttribute()
+    public function getUrlHomeAttribute()
     {
 
-        $url =  url('read',cmf_url_encrypt($this->id)).'.html';
-        return $url;
+        return url('read',$this->id).'.html';
     }
 
     public function getPublishTimeAttribute($value)

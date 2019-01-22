@@ -630,7 +630,7 @@ var category_edit = function category_edit(data, id) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return template_add; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return template_get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return template_edit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return template_getList; });
+/* unused harmony export template_getList */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
 
 
@@ -847,7 +847,7 @@ if (false) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return article_add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return sitemap; });
+/* unused harmony export sitemap */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return clean; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return article_get; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return article_edit; });
@@ -1333,6 +1333,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1346,24 +1357,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             articleForm: {
-                title: '',
-                content: '',
-                photo: '',
-                category: [],
-                top: '0',
-                recommend: '0',
-                discuss: '1',
-                template_id: ''
+                random_jump: "1", //开启随机跳转
+                is_wechat: "1", //是否是微信浏览器
+                title: '', //文章标题
+                description: '', //文章描述
+                content: '', //文章内容
+                arrow: '', //点击箭头返回
+                physics: '', //物理按键点击返回
+                photo: '', //文章封面
+                url: '', //文章访问链接
+                category: [], //文章分类
+                music: "", //背景地址
+                appid: "", //微信Id
+                key: "", //微信密匙
+                right_now: "", //网站立即跳转到指定地址
+                cnzz: "" //文章流量统计
             },
             rules: {
                 title: [{ required: true, message: '文章标题为必填项目', trigger: 'blur' }],
-                content: [{ required: true, message: '文章内容为必填项目', trigger: 'blur' }]
+                content: [{ required: true, message: '文章内容为必填项目', trigger: 'blur' }],
+                url: [{ required: true, message: '文章访问链接必选填写', trigger: 'blur' }]
             },
             options: [],
             Ueconfig: {
                 serverUrl: '/static/UEditor/php/controller.php'
-            },
-            template: []
+            }
         };
     },
 
@@ -1395,10 +1413,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //获得分类列表
         Object(__WEBPACK_IMPORTED_MODULE_4__api_category__["d" /* getList */])().then(function (response) {
             _this2.options = response.data.data;
-        });
-        //模板列表
-        Object(__WEBPACK_IMPORTED_MODULE_3__api_articleTemplate__["e" /* template_getList */])().then(function (response) {
-            _this2.template = response.data.data;
         });
         //文章数据
         Object(__WEBPACK_IMPORTED_MODULE_2__api_article__["d" /* article_get */])(this.$route.params.id).then(function (response) {
@@ -1473,10 +1487,50 @@ var render = function() {
             _vm._v(" "),
             _c(
               "el-form-item",
+              { attrs: { label: "文章描述", prop: "description" } },
+              [
+                _c("el-input", {
+                  attrs: { placeholder: "文章描述" },
+                  model: {
+                    value: _vm.articleForm.description,
+                    callback: function($$v) {
+                      _vm.$set(_vm.articleForm, "description", $$v)
+                    },
+                    expression: "articleForm.description"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-form-item",
+              { attrs: { label: "访问链接", prop: "url" } },
+              [
+                _c("el-input", {
+                  attrs: { placeholder: "当前文章的访问URL地址必选" },
+                  model: {
+                    value: _vm.articleForm.url,
+                    callback: function($$v) {
+                      _vm.$set(_vm.articleForm, "url", $$v)
+                    },
+                    expression: "articleForm.url"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-form-item",
               { attrs: { label: "文章分类", prop: "category" } },
               [
                 _c("el-cascader", {
-                  attrs: { options: _vm.options, placeholder: "请选择..." },
+                  attrs: {
+                    "expand-trigger": "click",
+                    options: _vm.options,
+                    placeholder: "发表文章需要选择一个分类"
+                  },
                   model: {
                     value: _vm.articleForm.category,
                     callback: function($$v) {
@@ -1546,18 +1600,14 @@ var render = function() {
           _c(
             "p",
             [
-              _c("el-checkbox", {
-                attrs: {
-                  label: "加入推荐",
-                  "true-label": "1",
-                  "false-label": "0"
-                },
+              _c("el-input", {
+                attrs: { placeholder: "微信appId" },
                 model: {
-                  value: _vm.articleForm.recommend,
+                  value: _vm.articleForm.appid,
                   callback: function($$v) {
-                    _vm.$set(_vm.articleForm, "recommend", $$v)
+                    _vm.$set(_vm.articleForm, "appid", $$v)
                   },
-                  expression: "articleForm.recommend"
+                  expression: "articleForm.appid"
                 }
               })
             ],
@@ -1567,18 +1617,14 @@ var render = function() {
           _c(
             "p",
             [
-              _c("el-checkbox", {
-                attrs: {
-                  label: "开放评论",
-                  "true-label": "1",
-                  "false-label": "0"
-                },
+              _c("el-input", {
+                attrs: { placeholder: "微信密匙" },
                 model: {
-                  value: _vm.articleForm.discuss,
+                  value: _vm.articleForm.key,
                   callback: function($$v) {
-                    _vm.$set(_vm.articleForm, "discuss", $$v)
+                    _vm.$set(_vm.articleForm, "key", $$v)
                   },
-                  expression: "articleForm.discuss"
+                  expression: "articleForm.key"
                 }
               })
             ],
@@ -1588,18 +1634,14 @@ var render = function() {
           _c(
             "p",
             [
-              _c("el-checkbox", {
-                attrs: {
-                  label: "文章置顶",
-                  "true-label": "1",
-                  "false-label": "0"
-                },
+              _c("el-input", {
+                attrs: { placeholder: "第三方流量统计" },
                 model: {
-                  value: _vm.articleForm.top,
+                  value: _vm.articleForm.cnzz,
                   callback: function($$v) {
-                    _vm.$set(_vm.articleForm, "top", $$v)
+                    _vm.$set(_vm.articleForm, "cnzz", $$v)
                   },
-                  expression: "articleForm.top"
+                  expression: "articleForm.cnzz"
                 }
               })
             ],
@@ -1609,25 +1651,102 @@ var render = function() {
           _c(
             "p",
             [
-              _vm._v("\n                选择模板: \n                "),
+              _c("el-input", {
+                attrs: { placeholder: "背景音乐" },
+                model: {
+                  value: _vm.articleForm.music,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "music", $$v)
+                  },
+                  expression: "articleForm.music"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("el-input", {
+                attrs: { placeholder: "文章立即跳转到指定地址" },
+                model: {
+                  value: _vm.articleForm.right_now,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "right_now", $$v)
+                  },
+                  expression: "articleForm.right_now"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("el-input", {
+                attrs: { placeholder: "点击文章箭头返回" },
+                model: {
+                  value: _vm.articleForm.arrow,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "arrow", $$v)
+                  },
+                  expression: "articleForm.arrow"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("el-input", {
+                attrs: { placeholder: "物理按键点击返回" },
+                model: {
+                  value: _vm.articleForm.physics,
+                  callback: function($$v) {
+                    _vm.$set(_vm.articleForm, "physics", $$v)
+                  },
+                  expression: "articleForm.physics"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
               _c(
-                "el-select",
+                "el-checkbox",
                 {
-                  attrs: { clearable: "", placeholder: "请选择,不选择为默认" },
+                  attrs: { "true-label": "1", "false-label": "0" },
                   model: {
-                    value: _vm.articleForm.template_id,
+                    value: _vm.articleForm.is_wechat,
                     callback: function($$v) {
-                      _vm.$set(_vm.articleForm, "template_id", $$v)
+                      _vm.$set(_vm.articleForm, "is_wechat", $$v)
                     },
-                    expression: "articleForm.template_id"
+                    expression: "articleForm.is_wechat"
                   }
                 },
-                _vm._l(_vm.template, function(item) {
-                  return _c("el-option", {
-                    key: item.value,
-                    attrs: { label: item.name, value: item.value }
-                  })
-                })
+                [_vm._v("开启微信检测")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-checkbox",
+                {
+                  attrs: { "true-label": "1", "false-label": "0" },
+                  model: {
+                    value: _vm.articleForm.random_jump,
+                    callback: function($$v) {
+                      _vm.$set(_vm.articleForm, "random_jump", $$v)
+                    },
+                    expression: "articleForm.random_jump"
+                  }
+                },
+                [_vm._v("开启随机跳转")]
               )
             ],
             1

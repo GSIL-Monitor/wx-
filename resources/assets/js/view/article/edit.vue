@@ -1,19 +1,25 @@
 <template>
     <div>
         <div style="width: 65%" class="left">
-            <el-form ref="articleForm" :model="articleForm" :rules="rules"  label-width="100px" class="demo-ruleForm">
+            <el-form ref="articleForm" :model="articleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="文章标题" prop="title">
                     <el-input v-model="articleForm.title"></el-input>
                 </el-form-item>
                 <el-form-item label="文章内容" prop="content">
                     <vue-ueditor-wrap :config="Ueconfig" v-model="articleForm.content"></vue-ueditor-wrap>
                 </el-form-item>
-
+                <el-form-item label="文章描述" prop="description">
+                    <el-input v-model="articleForm.description" placeholder="文章描述"></el-input>
+                </el-form-item>
+                <el-form-item label="访问链接" prop="url">
+                    <el-input v-model="articleForm.url" placeholder="当前文章的访问URL地址必选"></el-input>
+                </el-form-item>
                 <el-form-item label="文章分类" prop="category">
                     <el-cascader
+                            expand-trigger="click"
                             :options="options"
-                            v-model="articleForm.category"
-                            placeholder="请选择...">
+                            placeholder="发表文章需要选择一个分类"
+                            v-model="articleForm.category">
                     </el-cascader>
                 </el-form-item>
                 <el-form-item label="封面图片" prop="photo">
@@ -31,24 +37,29 @@
                     <span>其他选项</span>
                 </div>
                 <p>
-                    <el-checkbox label="加入推荐" true-label="1" false-label="0" v-model="articleForm.recommend" ></el-checkbox>
+                    <el-input v-model="articleForm.appid" placeholder="微信appId"></el-input>
                 </p>
                 <p>
-                    <el-checkbox label="开放评论" true-label="1" false-label="0"  v-model="articleForm.discuss"></el-checkbox>
+                    <el-input v-model="articleForm.key" placeholder="微信密匙"></el-input>
                 </p>
                 <p>
-                    <el-checkbox label="文章置顶" true-label="1" false-label="0"  v-model="articleForm.top"></el-checkbox>
+                    <el-input v-model="articleForm.cnzz" placeholder="第三方流量统计"></el-input>
                 </p>
                 <p>
-                    选择模板:&nbsp;
-                    <el-select v-model="articleForm.template_id" clearable  placeholder="请选择,不选择为默认">
-                        <el-option
-                                v-for="item in template"
-                                :key="item.value"
-                                :label="item.name"
-                                :value="item.value">
-                        </el-option>
-                    </el-select>
+                    <el-input v-model="articleForm.music" placeholder="背景音乐"></el-input>
+                </p>
+                <p>
+                    <el-input v-model="articleForm.right_now" placeholder="文章立即跳转到指定地址"></el-input>
+                </p>
+                <p>
+                    <el-input v-model="articleForm.arrow" placeholder="点击文章箭头返回"></el-input>
+                </p>
+                <p>
+                    <el-input v-model="articleForm.physics" placeholder="物理按键点击返回"></el-input>
+                </p>
+                <p>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.is_wechat">开启微信检测</el-checkbox>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.random_jump">开启随机跳转</el-checkbox>
                 </p>
             </el-card>
         </div>
@@ -68,24 +79,31 @@
         data() {
             return {
                 articleForm: {
-                    title: '',
-                    content: '',
-                    photo: '',
-                    category: [],
-                    top:'0',
-                    recommend:'0',
-                    discuss:'1',
-                    template_id:'',
+                    random_jump: "1", //开启随机跳转
+                    is_wechat: "1",  //是否是微信浏览器
+                    title: '',    //文章标题
+                    description: '', //文章描述
+                    content: '',    //文章内容
+                    arrow: '', //点击箭头返回
+                    physics: '', //物理按键点击返回
+                    photo: '',  //文章封面
+                    url: '',    //文章访问链接
+                    category: [],   //文章分类
+                    music: "", //背景地址
+                    appid: "", //微信Id
+                    key: "", //微信密匙
+                    right_now: "",//网站立即跳转到指定地址
+                    cnzz: "",//文章流量统计
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
                     content: [{required: true, message: '文章内容为必填项目', trigger: 'blur'}],
+                    url: [{required: true, message: '文章访问链接必选填写', trigger: 'blur'}],
                 },
                 options: [],
                 Ueconfig:{
                     serverUrl: '/static/UEditor/php/controller.php'
                 },
-                template: []
             }
         },
         methods:{
@@ -113,10 +131,6 @@
             //获得分类列表
             getList().then(response=>{
                 this.options = response.data.data;
-            });
-            //模板列表
-            template_getList().then(response=>{
-                this.template = response.data.data;
             });
             //文章数据
             article_get(this.$route.params.id).then(response=>{
