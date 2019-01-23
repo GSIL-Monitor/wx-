@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\BaseController;
 use App\Models\Source;
+use App\Models\SourceUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -70,5 +71,17 @@ class SourceController extends BaseController
             ->whereIn('id', $source['id'])
             ->delete();
         return $this->returnMsg($res);
+    }
+
+    /**
+     * 返回指定Id商品的推广链接的列表
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function extensionURL(Request $request)
+    {
+        return $this->filter(SourceUrl::query()->where('goods_id', $request->get('goods_id')), $request);
     }
 }

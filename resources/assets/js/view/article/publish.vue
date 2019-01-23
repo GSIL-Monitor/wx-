@@ -27,7 +27,6 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit('articleForm')">立即发表</el-button>
-                    <el-button @click="close">取消</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -58,7 +57,8 @@
                     <el-input v-model="articleForm.physics" placeholder="物理按键点击返回"></el-input>
                 </p>
                 <p>
-                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.is_wechat">开启微信检测</el-checkbox>
+                    <el-radio v-model="articleForm.is_wechat" label="1">开启微信检测</el-radio>
+                    <el-radio v-model="articleForm.is_wechat" label="0" style="margin-right: 25px">浏览器打开</el-radio>
                     <el-checkbox true-label="1" false-label="0" v-model="articleForm.random_jump">开启随机跳转</el-checkbox>
                 </p>
             </el-card>
