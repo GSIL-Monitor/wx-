@@ -1,24 +1,24 @@
 webpackJsonp([7],{
 
-/***/ 216:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(312)
+  __webpack_require__(477)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(314)
+var __vue_script__ = __webpack_require__(479)
 /* template */
-var __vue_template__ = __webpack_require__(325)
+var __vue_template__ = __webpack_require__(490)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-563b7a9e"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/system/FriendLink/FriendLink.vue"
+Component.options.__file = "resources/assets/js/view/order/source/source_manage.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-75ba2512", Component.options)
+    hotAPI.createRecord("data-v-563b7a9e", Component.options)
   } else {
-    hotAPI.reload("data-v-75ba2512", Component.options)
+    hotAPI.reload("data-v-563b7a9e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 243:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(244)
+var listToStyles = __webpack_require__(246)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 246:
 /***/ (function(module, exports) {
 
 /**
@@ -425,7 +425,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -530,19 +530,19 @@ var form_page = {
 
 /***/ }),
 
-/***/ 246:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(247)
+  __webpack_require__(250)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(249)
+var __vue_script__ = __webpack_require__(252)
 /* template */
-var __vue_template__ = __webpack_require__(260)
+var __vue_template__ = __webpack_require__(263)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -582,17 +582,175 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 247:
+/***/ 249:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * 列表页公共属性及方法
+ */
+
+var list_page = {
+    data: function data() {
+        return {
+            search: {},
+            edit_id: null,
+            tools_id: null,
+            select_ids: null
+        };
+    },
+    created: function created() {
+        //console.log('mixin-list_page')
+    },
+
+    methods: {
+        /**
+         * 点击搜索按钮
+         */
+        handleSearch: function handleSearch() {
+            this.handleSetFilter('search', this.search);
+            this.handleRenderTable();
+        },
+
+
+        /**
+         * 返回所选数据
+         * @param field 要返回的字段名，为null则全部返回
+         * @returns {*}
+         */
+        handleGetSelection: function handleGetSelection() {
+            var field = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            var data = this.$refs.table.selection;
+            if (data === null) {
+                data = [];
+            }
+            if (field == null) {
+                return data;
+            } else if (typeof field == 'string') {
+                var value = [];
+                data.forEach(function (item) {
+                    if (field in item) {
+                        value.push(item[field]);
+                    }
+                });
+                return value;
+            } else {
+                console.error('handleGetSelection 参数错误');
+            }
+            return this.$refs.table.selection;
+        },
+
+
+        /**
+         * 设置表格筛选参数
+         * @param key   键
+         * @param value 值
+         */
+        handleSetFilter: function handleSetFilter(key, value) {
+            this.$refs.table.filterValue[key] = value;
+        },
+
+
+        /**
+         * 获取表格筛选参数
+         * @param key   键
+         * @returns {*}
+         */
+        handleGetFilter: function handleGetFilter(key) {
+            return this.$refs.table.filterValue[key];
+        },
+
+
+        /**
+         * 重新渲染表格
+         */
+        handleRenderTable: function handleRenderTable() {
+            this.$refs.table.renderTable();
+        },
+
+
+        /**
+         * 移除表格中某行数据
+         * @param index 下标
+         */
+        handleDeleteRow: function handleDeleteRow(index) {
+            this.$refs.table.deleteRow(index);
+        },
+
+
+        /**
+         * 删除数据
+         * @param callback  删除操作
+         * @param index     下标
+         */
+        handleDel: function handleDel(callback, index) {
+            var _this = this;
+
+            var loading = this.$loading({
+                lock: true,
+                text: '删除数据中...',
+                spinner: 'el-icon-loading'
+            });
+            callback.then(function (res) {
+                _this.loading = false;
+                if (res['msg'] == 0) {
+                    _this.$message.success('删除成功');
+                    _this.handleDeleteRow(index);
+                } else {
+                    _this.$message.success('删除成功');
+                }
+                loading.close();
+            }).catch(function (error) {
+                _this.loading = false;
+                _this.$message.error('删除失败');
+                loading.close();
+                console.log(error);
+            });
+        },
+
+
+        /**
+         * 设置子集数据，treeTable
+         * @param row
+         * @param children
+         */
+        handleSetChild: function handleSetChild(row, children) {
+            this.$refs.table.SetChildren(row, children);
+        },
+
+        /**
+         * 开启表格loading
+         */
+        handleOpenTableLoding: function handleOpenTableLoding() {
+            this.$refs.table.loading = true;
+        },
+
+
+        /**
+         * 关闭表格loading
+         */
+        handleCloseTableLoding: function handleCloseTableLoding() {
+            this.$refs.table.loading = false;
+        }
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (list_page);
+
+/***/ }),
+
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(248);
+var content = __webpack_require__(251);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("ff2b3c24", content, false, {});
+var update = __webpack_require__(245)("ff2b3c24", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -609,7 +767,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 248:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -624,14 +782,14 @@ exports.push([module.i, "\n.el-pagination[data-v-2eb7ba3f]{\n    float: right;\n
 
 /***/ }),
 
-/***/ 249:
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tools__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__fold__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libs_axios__ = __webpack_require__(26);
 //
@@ -871,19 +1029,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 250:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(251)
+  __webpack_require__(254)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(253)
+var __vue_script__ = __webpack_require__(256)
 /* template */
-var __vue_template__ = __webpack_require__(254)
+var __vue_template__ = __webpack_require__(257)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -923,17 +1081,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 251:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(252);
+var content = __webpack_require__(255);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("50b6e68c", content, false, {});
+var update = __webpack_require__(245)("50b6e68c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -950,7 +1108,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 252:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -965,7 +1123,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 253:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1010,7 +1168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 254:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1079,19 +1237,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 255:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(256)
+  __webpack_require__(259)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(258)
+var __vue_script__ = __webpack_require__(261)
 /* template */
-var __vue_template__ = __webpack_require__(259)
+var __vue_template__ = __webpack_require__(262)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1131,17 +1289,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 256:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(257);
+var content = __webpack_require__(260);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("328aaa3a", content, false, {});
+var update = __webpack_require__(245)("328aaa3a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1158,7 +1316,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 257:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1173,7 +1331,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 258:
+/***/ 261:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1223,7 +1381,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 259:
+/***/ 262:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1248,7 +1406,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 260:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1399,221 +1557,279 @@ if (false) {
 
 /***/ }),
 
-/***/ 261:
+/***/ 265:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/**
- * 列表页公共属性及方法
- */
-
-var list_page = {
-    data: function data() {
-        return {
-            search: {},
-            edit_id: null,
-            tools_id: null,
-            select_ids: null
-        };
-    },
-    created: function created() {
-        //console.log('mixin-list_page')
-    },
-
-    methods: {
-        /**
-         * 点击搜索按钮
-         */
-        handleSearch: function handleSearch() {
-            this.handleSetFilter('search', this.search);
-            this.handleRenderTable();
-        },
-
-
-        /**
-         * 返回所选数据
-         * @param field 要返回的字段名，为null则全部返回
-         * @returns {*}
-         */
-        handleGetSelection: function handleGetSelection() {
-            var field = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            var data = this.$refs.table.selection;
-            if (data === null) {
-                data = [];
-            }
-            if (field == null) {
-                return data;
-            } else if (typeof field == 'string') {
-                var value = [];
-                data.forEach(function (item) {
-                    if (field in item) {
-                        value.push(item[field]);
-                    }
-                });
-                return value;
-            } else {
-                console.error('handleGetSelection 参数错误');
-            }
-            return this.$refs.table.selection;
-        },
-
-
-        /**
-         * 设置表格筛选参数
-         * @param key   键
-         * @param value 值
-         */
-        handleSetFilter: function handleSetFilter(key, value) {
-            this.$refs.table.filterValue[key] = value;
-        },
-
-
-        /**
-         * 获取表格筛选参数
-         * @param key   键
-         * @returns {*}
-         */
-        handleGetFilter: function handleGetFilter(key) {
-            return this.$refs.table.filterValue[key];
-        },
-
-
-        /**
-         * 重新渲染表格
-         */
-        handleRenderTable: function handleRenderTable() {
-            this.$refs.table.renderTable();
-        },
-
-
-        /**
-         * 移除表格中某行数据
-         * @param index 下标
-         */
-        handleDeleteRow: function handleDeleteRow(index) {
-            this.$refs.table.deleteRow(index);
-        },
-
-
-        /**
-         * 删除数据
-         * @param callback  删除操作
-         * @param index     下标
-         */
-        handleDel: function handleDel(callback, index) {
-            var _this = this;
-
-            var loading = this.$loading({
-                lock: true,
-                text: '删除数据中...',
-                spinner: 'el-icon-loading'
-            });
-            callback.then(function (res) {
-                _this.loading = false;
-                if (res['msg'] == 0) {
-                    _this.$message.success('删除成功');
-                    _this.handleDeleteRow(index);
-                } else {
-                    _this.$message.success('删除成功');
-                }
-                loading.close();
-            }).catch(function (error) {
-                _this.loading = false;
-                _this.$message.error('删除失败');
-                loading.close();
-                console.log(error);
-            });
-        },
-
-
-        /**
-         * 设置子集数据，treeTable
-         * @param row
-         * @param children
-         */
-        handleSetChild: function handleSetChild(row, children) {
-            this.$refs.table.SetChildren(row, children);
-        },
-
-        /**
-         * 开启表格loading
-         */
-        handleOpenTableLoding: function handleOpenTableLoding() {
-            this.$refs.table.loading = true;
-        },
-
-
-        /**
-         * 关闭表格loading
-         */
-        handleCloseTableLoding: function handleCloseTableLoding() {
-            this.$refs.table.loading = false;
-        }
-    }
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (list_page);
-
-/***/ }),
-
-/***/ 284:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return friend_add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return friend_edit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return friend_get; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return friend_del; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return sourceDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return sourceAdd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return sourceIdGetName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return sourceIdUpdateName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return sourceBatchIdDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return setMealBatchIdDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return setMealIdDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return setMealAdd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return setMealIdGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return setMealIdUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return goodsTemplate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return sizeAdd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return sizeIdGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return sizeIdUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return sizeIdDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return sizeBatchIdDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return goodsAdd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return goodsIdUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return goodsIdGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return goodsIdDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return goodsBatchDelete; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
 
 
-var friend_add = function friend_add(data) {
+/**
+ * 删除来源
+ * @param id
+ * @returns {*}
+ */
+var sourceDelete = function sourceDelete(id) {
     return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/friend_link/add',
+        url: '/source/' + id,
+        method: 'delete'
+    });
+};
+/**
+ * 添加来源
+ * @returns {*}
+ */
+var sourceAdd = function sourceAdd(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/source',
         data: data,
         method: 'post'
     });
 };
-var friend_edit = function friend_edit(id, data) {
+
+/**
+ * 根据Id获得名称
+ * @returns {*}
+ */
+var sourceIdGetName = function sourceIdGetName(id) {
     return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/friend_link/edit/' + id,
+        url: '/source/' + id,
+        method: 'get'
+    });
+};
+
+/**
+ * 根据Id修改名称
+ *
+ * @param id
+ * @param data
+ * @returns {*}
+ */
+var sourceIdUpdateName = function sourceIdUpdateName(id, data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/source/' + id,
+        data: data,
+        method: 'put'
+    });
+};
+
+/**
+ * 根据Id批量删除来源信息
+ *
+ * @param data
+ * @returns {*}
+ */
+var sourceBatchIdDelete = function sourceBatchIdDelete(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/source/batchIdDelete',
         data: data,
         method: 'post'
     });
 };
-var friend_get = function friend_get(id) {
+/**
+ * 根据Id批量删除套餐信息
+ *
+ * @param data
+ * @returns {*}
+ */
+var setMealBatchIdDelete = function setMealBatchIdDelete(data) {
     return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/friend_link/' + id,
+        url: '/meal/batchIdDelete',
+        data: data,
+        method: 'post'
+    });
+};
+/**
+ * 根据Id删除套餐信息
+ *
+ * @param id
+ * @returns {*}
+ */
+var setMealIdDelete = function setMealIdDelete(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/meal/' + id,
+        method: 'delete'
+    });
+};
+/**
+ * 添加套餐信息
+ *
+ * @param data
+ * @returns {*}
+ */
+var setMealAdd = function setMealAdd(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/meal',
+        data: data,
+        method: 'post'
+    });
+};
+/**
+ * 添加套餐信息
+ *
+ * @param id
+ * @returns {*}
+ */
+var setMealIdGet = function setMealIdGet(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/meal/' + id,
         method: 'get'
     });
 };
-var friend_del = function friend_del(id) {
+/**
+ * 根据Id修改套餐信息
+ * @param id
+ * @param data
+ * @returns {*}
+ */
+var setMealIdUpdate = function setMealIdUpdate(id, data) {
     return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/friend_link/del/' + id,
+        url: '/meal/' + id,
+        data: data,
+        method: 'put'
+    });
+};
+/**
+ * 获取商品展示模板
+ *
+ * @returns {*}
+ */
+var goodsTemplate = function goodsTemplate() {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'template/list',
         method: 'get'
+    });
+};
+
+/**
+ * 添加产品尺码信息
+ *
+ * @param data
+ * @returns {*}
+ */
+var sizeAdd = function sizeAdd(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'size',
+        data: data,
+        method: 'post'
+    });
+};
+/**
+ * 添加产品尺码信息
+ *
+ * @returns {*}
+ */
+var sizeIdGet = function sizeIdGet(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'size/' + id,
+        method: 'get'
+    });
+};
+/**
+ * 根据ID修改信息
+ *
+ * @returns {*}
+ */
+var sizeIdUpdate = function sizeIdUpdate(id, data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'size/' + id,
+        data: data,
+        method: 'put'
+    });
+};
+/**
+ * 根据ID删除信息
+ *
+ * @returns {*}
+ */
+var sizeIdDelete = function sizeIdDelete(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'size/' + id,
+        method: 'delete'
+    });
+};
+var sizeBatchIdDelete = function sizeBatchIdDelete(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'size/batchIdDelete',
+        data: data,
+        method: 'post'
+    });
+};
+var goodsAdd = function goodsAdd(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'goods',
+        data: data,
+        method: 'post'
+    });
+};
+var goodsIdUpdate = function goodsIdUpdate(id, data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'goods/' + id,
+        data: data,
+        method: 'put'
+    });
+};
+
+var goodsIdGet = function goodsIdGet(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'goods/' + id,
+        method: 'get'
+    });
+};
+var goodsIdDelete = function goodsIdDelete(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'goods/' + id,
+        method: 'delete'
+    });
+};
+var goodsBatchDelete = function goodsBatchDelete(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: 'goods/batchDelete',
+        data: data,
+        method: 'post'
     });
 };
 
 /***/ }),
 
-/***/ 312:
+/***/ 477:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(313);
+var content = __webpack_require__(478);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("3536a7a6", content, false, {});
+var update = __webpack_require__(245)("1279a8e0", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-75ba2512\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FriendLink.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-75ba2512\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FriendLink.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-563b7a9e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./source_manage.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-563b7a9e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./source_manage.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -1624,7 +1840,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 313:
+/***/ 478:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1632,27 +1848,26 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.el-input__inner {\n    height: 35px;\n}\n", ""]);
+exports.push([module.i, "\n.chart-left[data-v-563b7a9e] .el-pagination {\r\n    float: left!important;\n}\r\n\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 314:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table__ = __webpack_require__(246);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_public_table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_list_page__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_friendLink__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__add__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit__ = __webpack_require__(320);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__edit__);
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__add__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__add___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__add__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__edit__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__edit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_public_table__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_public_table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_public_table__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_list_page__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_goods__ = __webpack_require__(265);
 //
 //
 //
@@ -1693,80 +1908,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { Table: __WEBPACK_IMPORTED_MODULE_0__components_public_table___default.a, Add: __WEBPACK_IMPORTED_MODULE_3__add___default.a, Edit: __WEBPACK_IMPORTED_MODULE_4__edit___default.a },
-    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_list_page__["a" /* default */]],
+    name: "source_manage",
+    components: { Table: __WEBPACK_IMPORTED_MODULE_2__components_public_table___default.a, Add: __WEBPACK_IMPORTED_MODULE_0__add___default.a, Edit: __WEBPACK_IMPORTED_MODULE_1__edit___default.a },
+    mixins: [__WEBPACK_IMPORTED_MODULE_3__mixins_list_page__["a" /* default */]],
     data: function data() {
         return {
-            page_name: '模板',
-            url: 'friend_link/list',
+            url: 'source',
             addFormVisible: false,
             editFormVisible: false,
+            edit_id: "",
             columns: [{
                 prop: 'id',
                 label: 'ID',
-                sort: true,
                 width: '80'
             }, {
                 prop: 'name',
-                label: '友链名称',
-                search: true
-            }, {
-                prop: 'url',
-                label: '友链地址'
+                label: '来源名称',
+                width: "200"
             }, {
                 label: '操作',
-                width: '200',
                 tools: this.handleGetBtn()
-            }],
-            friendLinkAuth: [{
-                add: false
-            }],
-            options: [],
-            selectedOptions: []
+            }]
         };
     },
 
-    created: function created() {
-        var _this = this;
-
-        var friendLink_Auth = this.$store.state.user.auth.friendlink;
-        friendLink_Auth.forEach(function (value) {
-            if (value === 'add') {
-                _this.friendLinkAuth.add = true;
-                return true;
-            }
-        });
-    },
     methods: {
-        // 工具栏事件处理 type值为columns中tools的键值
-        handleTools: function handleTools(type, index, row) {
-            var _this2 = this;
-
-            if (type == 'edit') {
-                //编辑数据
-                this.edit_id = row.id;
-                //展示编辑弹窗
-                this.editFormVisible = true;
-            } else if (type == 'delete') {
-                //删除数据
-                Object(__WEBPACK_IMPORTED_MODULE_2__api_friendLink__["b" /* friend_del */])(row.id).then(function (response) {
-                    if (response.data.code == -1) {
-                        //提示信息
-                        return _this2.$message.error(response.data.msg);
-                    }
-                    //成功响应动态移除表格项
-                    _this2.handleDeleteRow(index);
-                    //提示信息
-                    _this2.$message.success(response.data.msg);
-                });
-            } else {
-                console.error('Tools Event:' + type + ' Not found');
-            }
-        },
-        handleAdd: function handleAdd() {
-            this.addFormVisible = true;
-        },
-
         //tool栏按钮权限控制
         handleGetBtn: function handleGetBtn() {
             var conf = {
@@ -1779,38 +1945,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     icon: 'el-icon-delete'
                 }
             };
-            var result = {};
-            this.$store.state.user.auth.friendlink.forEach(function (item) {
-                if (item in conf) {
-                    result[item] = conf[item];
-                }
+            return conf;
+        },
+
+        // 工具栏事件处理 type值为columns中tools的键值
+        handleTools: function handleTools(type, index, row) {
+            var _this = this;
+
+            if (type == 'edit') {
+                //编辑数据
+                this.edit_id = row.id;
+                //展示编辑弹窗
+                this.editFormVisible = true;
+            } else if (type == 'delete') {
+                //删除数据
+                Object(__WEBPACK_IMPORTED_MODULE_4__api_goods__["s" /* sourceDelete */])(row.id).then(function (response) {
+                    if (response.data.code == -1) {
+                        //提示信息
+                        return _this.$message.error(response.data.msg);
+                    }
+                    //成功响应动态移除表格项
+                    _this.handleDeleteRow(index);
+                    //提示信息
+                    _this.$message.success(response.data.msg);
+                });
+            } else {
+                console.error('Tools Event:' + type + ' Not found');
+            }
+        },
+
+        //添加来源
+        handleAdd: function handleAdd() {
+            this.addFormVisible = true;
+        },
+
+        //删除来源
+        handleDel: function handleDel() {
+            var _this2 = this;
+
+            var ids = this.handleGetSelection('id');
+            Object(__WEBPACK_IMPORTED_MODULE_4__api_goods__["r" /* sourceBatchIdDelete */])({ id: ids }).then(function (response) {
+                _this2.$message.success('成功删除');
+                _this2.handleRenderTable();
             });
-            return result;
         }
     }
 });
 
 /***/ }),
 
-/***/ 315:
+/***/ 480:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(316)
+  __webpack_require__(481)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(318)
+var __vue_script__ = __webpack_require__(483)
 /* template */
-var __vue_template__ = __webpack_require__(319)
+var __vue_template__ = __webpack_require__(484)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-0df83cdc"
+var __vue_scopeId__ = "data-v-85bafd14"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -1821,7 +2023,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/system/FriendLink/add.vue"
+Component.options.__file = "resources/assets/js/view/order/source/add.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1830,9 +2032,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0df83cdc", Component.options)
+    hotAPI.createRecord("data-v-85bafd14", Component.options)
   } else {
-    hotAPI.reload("data-v-0df83cdc", Component.options)
+    hotAPI.reload("data-v-85bafd14", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1844,23 +2046,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 316:
+/***/ 481:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(317);
+var content = __webpack_require__(482);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("1b6d1cce", content, false, {});
+var update = __webpack_require__(245)("00099b57", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df83cdc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./add.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df83cdc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./add.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-85bafd14\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./add.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-85bafd14\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./add.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -1871,7 +2073,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 317:
+/***/ 482:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1879,20 +2081,20 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 318:
+/***/ 483:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_page__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_friendLink__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_goods__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_page__ = __webpack_require__(247);
 //
 //
 //
@@ -1900,50 +2102,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "add",
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_page__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_form_page__["a" /* default */]],
     data: function data() {
         return {
-            form: {
-                name: '',
-                url: ''
-            },
-            rules: {
-                name: [{ required: true, message: '友情链接名称必须填写', trigger: 'blur' }],
-                url: [{ required: true, message: '友情链接地址必须填写', trigger: 'blur' }]
-            }
+            name: ""
         };
     },
 
     methods: {
-        onSubmit: function onSubmit() {
-            if (this.handleValid()) {
-                this.handleSubmit(Object(__WEBPACK_IMPORTED_MODULE_1__api_friendLink__["a" /* friend_add */])(this.form));
+        add: function add() {
+            if (this.name == '') {
+                this.$message.error('名称未填写');
+                return false;
             }
+            this.handleSubmit(Object(__WEBPACK_IMPORTED_MODULE_0__api_goods__["q" /* sourceAdd */])({ name: this.name }));
         }
     }
 });
 
 /***/ }),
 
-/***/ 319:
+/***/ 484:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1951,69 +2135,23 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-form",
-    {
-      directives: [
-        {
-          name: "loading",
-          rawName: "v-loading",
-          value: _vm.loading,
-          expression: "loading"
-        }
-      ],
-      ref: "form",
-      attrs: { rules: _vm.rules, model: _vm.form, "label-width": "80px" }
-    },
+    "div",
     [
-      _c(
-        "el-form-item",
-        { attrs: { label: "友链名称", prop: "name" } },
-        [
-          _c("el-input", {
-            model: {
-              value: _vm.form.name,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "name", $$v)
-              },
-              expression: "form.name"
-            }
-          })
-        ],
-        1
-      ),
+      _c("el-input", {
+        staticStyle: { width: "70%" },
+        attrs: { placeholder: "请输入来源信息" },
+        model: {
+          value: _vm.name,
+          callback: function($$v) {
+            _vm.name = $$v
+          },
+          expression: "name"
+        }
+      }),
       _vm._v(" "),
-      _c(
-        "el-form-item",
-        { attrs: { label: "友链地址", prop: "url" } },
-        [
-          _c("el-input", {
-            model: {
-              value: _vm.form.url,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "url", $$v)
-              },
-              expression: "form.url"
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v("链接请加上http://")])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-form-item",
-        [
-          _c(
-            "el-button",
-            { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-            [_vm._v("立即创建")]
-          ),
-          _vm._v(" "),
-          _c("el-button", { on: { click: _vm.close } }, [_vm._v("取消")])
-        ],
-        1
-      )
+      _c("el-button", { attrs: { type: "success" }, on: { click: _vm.add } }, [
+        _vm._v("添加来源")
+      ])
     ],
     1
   )
@@ -2024,31 +2162,31 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0df83cdc", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-85bafd14", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 320:
+/***/ 485:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(321)
+  __webpack_require__(486)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(323)
+var __vue_script__ = __webpack_require__(488)
 /* template */
-var __vue_template__ = __webpack_require__(324)
+var __vue_template__ = __webpack_require__(489)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-5982102e"
+var __vue_scopeId__ = "data-v-da1756f6"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -2059,7 +2197,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/system/FriendLink/edit.vue"
+Component.options.__file = "resources/assets/js/view/order/source/edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -2068,9 +2206,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5982102e", Component.options)
+    hotAPI.createRecord("data-v-da1756f6", Component.options)
   } else {
-    hotAPI.reload("data-v-5982102e", Component.options)
+    hotAPI.reload("data-v-da1756f6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -2082,23 +2220,23 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 321:
+/***/ 486:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(322);
+var content = __webpack_require__(487);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("f78aded0", content, false, {});
+var update = __webpack_require__(245)("445f45cc", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5982102e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./edit.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5982102e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./edit.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-da1756f6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./edit.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-da1756f6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./edit.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -2109,7 +2247,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 322:
+/***/ 487:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -2117,20 +2255,20 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 323:
+/***/ 488:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_page__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_friendLink__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_goods__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_page__ = __webpack_require__(247);
 //
 //
 //
@@ -2138,55 +2276,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "add",
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_page__["a" /* default */]],
     props: ['id'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_form_page__["a" /* default */]],
     data: function data() {
         return {
-            form: {
-                name: '',
-                url: ''
-            },
-            rules: {
-                name: [{ required: true, message: '友情链接名称必须填写', trigger: 'blur' }],
-                url: [{ required: true, message: '友情链接地址必须填写', trigger: 'blur' }]
-            }
+            name: ""
         };
     },
 
+    methods: {
+        edit: function edit() {
+            if (this.name == '') {
+                this.$message.error('名称未填写');
+                return false;
+            }
+            this.handleSubmit(Object(__WEBPACK_IMPORTED_MODULE_0__api_goods__["u" /* sourceIdUpdateName */])(this.id, { name: this.name }));
+        }
+    },
     created: function created() {
         var _this = this;
 
-        Object(__WEBPACK_IMPORTED_MODULE_1__api_friendLink__["d" /* friend_get */])(this.id).then(function (response) {
-            _this.form = response.data.data;
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_goods__["t" /* sourceIdGetName */])(this.id).then(function (response) {
+            _this.name = response.data.data.name;
         });
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            if (this.handleValid()) {
-                this.handleSubmit(Object(__WEBPACK_IMPORTED_MODULE_1__api_friendLink__["c" /* friend_edit */])(this.id, this.form));
-            }
-        }
     }
 });
 
 /***/ }),
 
-/***/ 324:
+/***/ 489:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2194,69 +2317,23 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-form",
-    {
-      directives: [
-        {
-          name: "loading",
-          rawName: "v-loading",
-          value: _vm.loading,
-          expression: "loading"
-        }
-      ],
-      ref: "form",
-      attrs: { rules: _vm.rules, model: _vm.form, "label-width": "80px" }
-    },
+    "div",
     [
-      _c(
-        "el-form-item",
-        { attrs: { label: "模板名称", prop: "name" } },
-        [
-          _c("el-input", {
-            model: {
-              value: _vm.form.name,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "name", $$v)
-              },
-              expression: "form.name"
-            }
-          })
-        ],
-        1
-      ),
+      _c("el-input", {
+        staticStyle: { width: "70%" },
+        attrs: { placeholder: "请输入来源信息" },
+        model: {
+          value: _vm.name,
+          callback: function($$v) {
+            _vm.name = $$v
+          },
+          expression: "name"
+        }
+      }),
       _vm._v(" "),
-      _c(
-        "el-form-item",
-        { attrs: { label: "模板路径", prop: "url" } },
-        [
-          _c("el-input", {
-            model: {
-              value: _vm.form.url,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "url", $$v)
-              },
-              expression: "form.url"
-            }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v("链接请加上http://")])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-form-item",
-        [
-          _c(
-            "el-button",
-            { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-            [_vm._v("立即创建")]
-          ),
-          _vm._v(" "),
-          _c("el-button", { on: { click: _vm.close } }, [_vm._v("取消")])
-        ],
-        1
-      )
+      _c("el-button", { attrs: { type: "success" }, on: { click: _vm.edit } }, [
+        _vm._v("修改来源")
+      ])
     ],
     1
   )
@@ -2267,13 +2344,13 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5982102e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-da1756f6", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 325:
+/***/ 490:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2294,86 +2371,30 @@ var render = function() {
                 "el-col",
                 { attrs: { span: 14 } },
                 [
-                  this.friendLinkAuth.add
-                    ? [
-                        _c(
-                          "el-button",
-                          {
-                            attrs: {
-                              type: "primary",
-                              size: "small",
-                              icon: "el-icon-plus"
-                            },
-                            on: { click: _vm.handleAdd }
-                          },
-                          [_vm._v("添加" + _vm._s(_vm.page_name))]
-                        )
-                      ]
-                    : _vm._e()
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "el-col",
-                { attrs: { span: 10 } },
-                [
                   _c(
-                    "el-input",
+                    "el-button",
                     {
-                      staticClass: "input-with-select",
                       attrs: {
-                        placeholder: "请输入要搜索的内容...",
-                        size: "small"
+                        type: "primary",
+                        size: "small",
+                        icon: "el-icon-plus"
                       },
-                      model: {
-                        value: _vm.search.value,
-                        callback: function($$v) {
-                          _vm.$set(_vm.search, "value", $$v)
-                        },
-                        expression: "search.value"
-                      }
+                      on: { click: _vm.handleAdd }
                     },
-                    [
-                      _c(
-                        "el-select",
-                        {
-                          staticStyle: { width: "110px" },
-                          attrs: {
-                            slot: "prepend",
-                            size: "small",
-                            placeholder: "请选择"
-                          },
-                          slot: "prepend",
-                          model: {
-                            value: _vm.search.field,
-                            callback: function($$v) {
-                              _vm.$set(_vm.search, "field", $$v)
-                            },
-                            expression: "search.field"
-                          }
-                        },
-                        _vm._l(_vm.columns, function(item) {
-                          return item.search
-                            ? _c("el-option", {
-                                key: item.prop,
-                                attrs: { label: item.label, value: item.prop }
-                              })
-                            : _vm._e()
-                        })
-                      ),
-                      _vm._v(" "),
-                      _c("el-button", {
-                        attrs: {
-                          slot: "append",
-                          size: "small",
-                          icon: "el-icon-search"
-                        },
-                        on: { click: _vm.handleSearch },
-                        slot: "append"
-                      })
-                    ],
-                    1
+                    [_vm._v("添加来源")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-button",
+                    {
+                      attrs: {
+                        type: "danger",
+                        size: "small",
+                        icon: "el-icon-plus"
+                      },
+                      on: { click: _vm.handleDel }
+                    },
+                    [_vm._v("删除来源")]
                   )
                 ],
                 1
@@ -2385,16 +2406,23 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("Table", {
-        ref: "table",
-        attrs: { url: _vm.url, columns: _vm.columns, checkbox: false },
-        on: { tools: _vm.handleTools }
-      }),
+      _c(
+        "div",
+        { staticClass: "chart-left" },
+        [
+          _c("Table", {
+            ref: "table",
+            attrs: { url: _vm.url, columns: _vm.columns },
+            on: { tools: _vm.handleTools }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "el-dialog",
         {
-          attrs: { title: "添加" + _vm.page_name, visible: _vm.addFormVisible },
+          attrs: { title: "添加来源", visible: _vm.addFormVisible },
           on: {
             "update:visible": function($event) {
               _vm.addFormVisible = $event
@@ -2420,10 +2448,7 @@ var render = function() {
       _c(
         "el-dialog",
         {
-          attrs: {
-            title: "编辑" + _vm.page_name,
-            visible: _vm.editFormVisible
-          },
+          attrs: { title: "编辑来源", visible: _vm.editFormVisible },
           on: {
             "update:visible": function($event) {
               _vm.editFormVisible = $event
@@ -2456,7 +2481,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-75ba2512", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-563b7a9e", module.exports)
   }
 }
 

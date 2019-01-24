@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 
+Route::post('/buyGoods','Home\GoodsController@orderAdd');
+
 Route::namespace('User')->group(function () {
     Route::post('login', 'LoginController@login');
     Route::post('register', 'RegisterController@register');

@@ -6,13 +6,13 @@ webpackJsonp([12],{
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(463)
+  __webpack_require__(465)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(465)
+var __vue_script__ = __webpack_require__(467)
 /* template */
-var __vue_template__ = __webpack_require__(466)
+var __vue_template__ = __webpack_require__(468)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 243:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(244)
+var listToStyles = __webpack_require__(246)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 246:
 /***/ (function(module, exports) {
 
 /**
@@ -425,19 +425,19 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 246:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(247)
+  __webpack_require__(250)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(249)
+var __vue_script__ = __webpack_require__(252)
 /* template */
-var __vue_template__ = __webpack_require__(260)
+var __vue_template__ = __webpack_require__(263)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -477,17 +477,175 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 247:
+/***/ 249:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * 列表页公共属性及方法
+ */
+
+var list_page = {
+    data: function data() {
+        return {
+            search: {},
+            edit_id: null,
+            tools_id: null,
+            select_ids: null
+        };
+    },
+    created: function created() {
+        //console.log('mixin-list_page')
+    },
+
+    methods: {
+        /**
+         * 点击搜索按钮
+         */
+        handleSearch: function handleSearch() {
+            this.handleSetFilter('search', this.search);
+            this.handleRenderTable();
+        },
+
+
+        /**
+         * 返回所选数据
+         * @param field 要返回的字段名，为null则全部返回
+         * @returns {*}
+         */
+        handleGetSelection: function handleGetSelection() {
+            var field = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            var data = this.$refs.table.selection;
+            if (data === null) {
+                data = [];
+            }
+            if (field == null) {
+                return data;
+            } else if (typeof field == 'string') {
+                var value = [];
+                data.forEach(function (item) {
+                    if (field in item) {
+                        value.push(item[field]);
+                    }
+                });
+                return value;
+            } else {
+                console.error('handleGetSelection 参数错误');
+            }
+            return this.$refs.table.selection;
+        },
+
+
+        /**
+         * 设置表格筛选参数
+         * @param key   键
+         * @param value 值
+         */
+        handleSetFilter: function handleSetFilter(key, value) {
+            this.$refs.table.filterValue[key] = value;
+        },
+
+
+        /**
+         * 获取表格筛选参数
+         * @param key   键
+         * @returns {*}
+         */
+        handleGetFilter: function handleGetFilter(key) {
+            return this.$refs.table.filterValue[key];
+        },
+
+
+        /**
+         * 重新渲染表格
+         */
+        handleRenderTable: function handleRenderTable() {
+            this.$refs.table.renderTable();
+        },
+
+
+        /**
+         * 移除表格中某行数据
+         * @param index 下标
+         */
+        handleDeleteRow: function handleDeleteRow(index) {
+            this.$refs.table.deleteRow(index);
+        },
+
+
+        /**
+         * 删除数据
+         * @param callback  删除操作
+         * @param index     下标
+         */
+        handleDel: function handleDel(callback, index) {
+            var _this = this;
+
+            var loading = this.$loading({
+                lock: true,
+                text: '删除数据中...',
+                spinner: 'el-icon-loading'
+            });
+            callback.then(function (res) {
+                _this.loading = false;
+                if (res['msg'] == 0) {
+                    _this.$message.success('删除成功');
+                    _this.handleDeleteRow(index);
+                } else {
+                    _this.$message.success('删除成功');
+                }
+                loading.close();
+            }).catch(function (error) {
+                _this.loading = false;
+                _this.$message.error('删除失败');
+                loading.close();
+                console.log(error);
+            });
+        },
+
+
+        /**
+         * 设置子集数据，treeTable
+         * @param row
+         * @param children
+         */
+        handleSetChild: function handleSetChild(row, children) {
+            this.$refs.table.SetChildren(row, children);
+        },
+
+        /**
+         * 开启表格loading
+         */
+        handleOpenTableLoding: function handleOpenTableLoding() {
+            this.$refs.table.loading = true;
+        },
+
+
+        /**
+         * 关闭表格loading
+         */
+        handleCloseTableLoding: function handleCloseTableLoding() {
+            this.$refs.table.loading = false;
+        }
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (list_page);
+
+/***/ }),
+
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(248);
+var content = __webpack_require__(251);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("ff2b3c24", content, false, {});
+var update = __webpack_require__(245)("ff2b3c24", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -504,7 +662,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 248:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -519,14 +677,14 @@ exports.push([module.i, "\n.el-pagination[data-v-2eb7ba3f]{\n    float: right;\n
 
 /***/ }),
 
-/***/ 249:
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tools__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__fold__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libs_axios__ = __webpack_require__(26);
 //
@@ -766,19 +924,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 250:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(251)
+  __webpack_require__(254)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(253)
+var __vue_script__ = __webpack_require__(256)
 /* template */
-var __vue_template__ = __webpack_require__(254)
+var __vue_template__ = __webpack_require__(257)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -818,17 +976,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 251:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(252);
+var content = __webpack_require__(255);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("50b6e68c", content, false, {});
+var update = __webpack_require__(245)("50b6e68c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -845,7 +1003,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 252:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -860,7 +1018,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 253:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -905,7 +1063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 254:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -974,19 +1132,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 255:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(256)
+  __webpack_require__(259)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(258)
+var __vue_script__ = __webpack_require__(261)
 /* template */
-var __vue_template__ = __webpack_require__(259)
+var __vue_template__ = __webpack_require__(262)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1026,17 +1184,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 256:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(257);
+var content = __webpack_require__(260);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("328aaa3a", content, false, {});
+var update = __webpack_require__(245)("328aaa3a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1053,7 +1211,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 257:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1068,7 +1226,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 258:
+/***/ 261:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1118,7 +1276,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 259:
+/***/ 262:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1143,7 +1301,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 260:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1294,165 +1452,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 261:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * 列表页公共属性及方法
- */
-
-var list_page = {
-    data: function data() {
-        return {
-            search: {},
-            edit_id: null,
-            tools_id: null,
-            select_ids: null
-        };
-    },
-    created: function created() {
-        //console.log('mixin-list_page')
-    },
-
-    methods: {
-        /**
-         * 点击搜索按钮
-         */
-        handleSearch: function handleSearch() {
-            this.handleSetFilter('search', this.search);
-            this.handleRenderTable();
-        },
-
-
-        /**
-         * 返回所选数据
-         * @param field 要返回的字段名，为null则全部返回
-         * @returns {*}
-         */
-        handleGetSelection: function handleGetSelection() {
-            var field = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            var data = this.$refs.table.selection;
-            if (data === null) {
-                data = [];
-            }
-            if (field == null) {
-                return data;
-            } else if (typeof field == 'string') {
-                var value = [];
-                data.forEach(function (item) {
-                    if (field in item) {
-                        value.push(item[field]);
-                    }
-                });
-                return value;
-            } else {
-                console.error('handleGetSelection 参数错误');
-            }
-            return this.$refs.table.selection;
-        },
-
-
-        /**
-         * 设置表格筛选参数
-         * @param key   键
-         * @param value 值
-         */
-        handleSetFilter: function handleSetFilter(key, value) {
-            this.$refs.table.filterValue[key] = value;
-        },
-
-
-        /**
-         * 获取表格筛选参数
-         * @param key   键
-         * @returns {*}
-         */
-        handleGetFilter: function handleGetFilter(key) {
-            return this.$refs.table.filterValue[key];
-        },
-
-
-        /**
-         * 重新渲染表格
-         */
-        handleRenderTable: function handleRenderTable() {
-            this.$refs.table.renderTable();
-        },
-
-
-        /**
-         * 移除表格中某行数据
-         * @param index 下标
-         */
-        handleDeleteRow: function handleDeleteRow(index) {
-            this.$refs.table.deleteRow(index);
-        },
-
-
-        /**
-         * 删除数据
-         * @param callback  删除操作
-         * @param index     下标
-         */
-        handleDel: function handleDel(callback, index) {
-            var _this = this;
-
-            var loading = this.$loading({
-                lock: true,
-                text: '删除数据中...',
-                spinner: 'el-icon-loading'
-            });
-            callback.then(function (res) {
-                _this.loading = false;
-                if (res['msg'] == 0) {
-                    _this.$message.success('删除成功');
-                    _this.handleDeleteRow(index);
-                } else {
-                    _this.$message.success('删除成功');
-                }
-                loading.close();
-            }).catch(function (error) {
-                _this.loading = false;
-                _this.$message.error('删除失败');
-                loading.close();
-                console.log(error);
-            });
-        },
-
-
-        /**
-         * 设置子集数据，treeTable
-         * @param row
-         * @param children
-         */
-        handleSetChild: function handleSetChild(row, children) {
-            this.$refs.table.SetChildren(row, children);
-        },
-
-        /**
-         * 开启表格loading
-         */
-        handleOpenTableLoding: function handleOpenTableLoding() {
-            this.$refs.table.loading = true;
-        },
-
-
-        /**
-         * 关闭表格loading
-         */
-        handleCloseTableLoding: function handleCloseTableLoding() {
-            this.$refs.table.loading = false;
-        }
-    }
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (list_page);
-
-/***/ }),
-
-/***/ 293:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1479,17 +1479,17 @@ var contactEdit = function contactEdit(id, data) {
 
 /***/ }),
 
-/***/ 463:
+/***/ 465:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(464);
+var content = __webpack_require__(466);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("1253a024", content, false, {});
+var update = __webpack_require__(245)("1253a024", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1506,7 +1506,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 464:
+/***/ 466:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1521,15 +1521,15 @@ exports.push([module.i, "\n.el-input__inner {\n    height: 35px;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 465:
+/***/ 467:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_public_table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_list_page__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_contact__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_list_page__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_contact__ = __webpack_require__(296);
 //
 //
 //
@@ -1705,7 +1705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 466:
+/***/ 468:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

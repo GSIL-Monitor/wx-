@@ -1,18 +1,18 @@
 webpackJsonp([15],{
 
-/***/ 214:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(289)
+  __webpack_require__(288)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(291)
+var __vue_script__ = __webpack_require__(290)
 /* template */
-var __vue_template__ = __webpack_require__(292)
+var __vue_template__ = __webpack_require__(291)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/article/edit.vue"
+Component.options.__file = "resources/assets/js/view/article/publish.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-cc46872a", Component.options)
+    hotAPI.createRecord("data-v-c98e4284", Component.options)
   } else {
-    hotAPI.reload("data-v-cc46872a", Component.options)
+    hotAPI.reload("data-v-c98e4284", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 243:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(244)
+var listToStyles = __webpack_require__(246)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 246:
 /***/ (function(module, exports) {
 
 /**
@@ -425,7 +425,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -530,19 +530,19 @@ var form_page = {
 
 /***/ }),
 
-/***/ 262:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(265)
+  __webpack_require__(268)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(267)
+var __vue_script__ = __webpack_require__(270)
 /* template */
-var __vue_template__ = __webpack_require__(268)
+var __vue_template__ = __webpack_require__(271)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -582,24 +582,24 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 263:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports=__webpack_require__(270)
+module.exports=__webpack_require__(272)
 
 /***/ }),
 
-/***/ 265:
+/***/ 268:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(266);
+var content = __webpack_require__(269);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("5a247739", content, false, {});
+var update = __webpack_require__(245)("5a247739", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -616,7 +616,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 266:
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -631,7 +631,7 @@ exports.push([module.i, "\n.avatar-uploader .el-upload {\n    border: 1px dashed
 
 /***/ }),
 
-/***/ 267:
+/***/ 270:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -717,7 +717,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 268:
+/***/ 271:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -755,55 +755,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 269:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return category_del; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return category_add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return category_edit; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
-
-
-var getList = function getList() {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/list',
-        method: 'get'
-    });
-};
-var category_del = function category_del(id) {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/del/' + id,
-        method: 'get'
-    });
-};
-var category_add = function category_add(data) {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/add',
-        data: data,
-        method: 'post'
-    });
-};
-var category_edit = function category_edit(data, id) {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/edit/' + id,
-        data: data,
-        method: 'post'
-    });
-};
-
-/***/ }),
-
-/***/ 270:
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(271)
+var __vue_script__ = __webpack_require__(273)
 /* template */
-var __vue_template__ = __webpack_require__(272)
+var __vue_template__ = __webpack_require__(274)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -843,7 +803,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 271:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1095,7 +1055,7 @@ var LoadEvent = function () {
 
 /***/ }),
 
-/***/ 272:
+/***/ 274:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1118,7 +1078,47 @@ if (false) {
 
 /***/ }),
 
-/***/ 273:
+/***/ 275:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return category_del; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return category_add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return category_edit; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
+
+
+var getList = function getList() {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/list',
+        method: 'get'
+    });
+};
+var category_del = function category_del(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/del/' + id,
+        method: 'get'
+    });
+};
+var category_add = function category_add(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/add',
+        data: data,
+        method: 'post'
+    });
+};
+var category_edit = function category_edit(data, id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/edit/' + id,
+        data: data,
+        method: 'post'
+    });
+};
+
+/***/ }),
+
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1165,7 +1165,7 @@ var template_getList = function template_getList() {
 
 /***/ }),
 
-/***/ 274:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1221,23 +1221,23 @@ var article_del = function article_del(id) {
 
 /***/ }),
 
-/***/ 289:
+/***/ 288:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(290);
+var content = __webpack_require__(289);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("0bdf0b41", content, false, {});
+var update = __webpack_require__(245)("e0edb748", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cc46872a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./edit.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cc46872a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./edit.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c98e4284\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./publish.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c98e4284\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./publish.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -1248,7 +1248,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 290:
+/***/ 289:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1256,25 +1256,25 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.left{\n    float: left;\n    width: 65%;\n}\n.right{\n    width: 30%;\n    float: right;\n}\n.edui-editor{\n    width: 100%!important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n", ""]);
+exports.push([module.i, "\n.left {\n    float: left;\n    width: 65%;\n}\n.right {\n    width: 30%;\n    float: right;\n}\n.edui-editor {\n    width: 100% !important;\n}\n.edui-editor-iframeholder {\n    width: 100% !important;\n}\n.text {\n    font-size: 14px;\n}\n.item {\n    margin-bottom: 18px;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.box-card {\n    width: 480px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 291:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_page__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_public_upload__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_page__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_public_upload__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_public_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_public_upload__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_article__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_articleTemplate__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_category__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_ueditor_wrap__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_article__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_category__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_articleTemplate__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_ueditor_wrap__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_ueditor_wrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_ueditor_wrap__);
 //
 //
@@ -1351,6 +1351,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_page__["a" /* default */]],
     name: "publish",
@@ -1385,48 +1386,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    created: function created() {
+        var _this = this;
+
+        //获得分类列表
+        Object(__WEBPACK_IMPORTED_MODULE_3__api_category__["d" /* getList */])().then(function (response) {
+            _this.options = response.data.data;
+        });
+    },
     methods: {
-        //提交数据
         onSubmit: function onSubmit(articleForm) {
-            var _this = this;
+            var _this2 = this;
 
             if (this.handleValid(articleForm)) {
-                Object(__WEBPACK_IMPORTED_MODULE_2__api_article__["c" /* article_edit */])(this.$route.params.id, this.articleForm).then(function (response) {
-                    //响应成功消息
-                    _this.$message.success(response.data.msg);
-                    //跳转到文章列表页面
-                    _this.$router.push('/article_list');
+                Object(__WEBPACK_IMPORTED_MODULE_2__api_article__["a" /* article_add */])(this.articleForm).then(function (response) {
+                    _this2.$message.success(response.data.msg);
+                    _this2.$router.push('/article_list');
                 });
             }
         },
         success: function success(value) {
-            //图片上传成功 和form表单的元素做一个绑定 回显图片数据
             this.articleForm.photo = value;
         }
     },
     components: {
         upload: __WEBPACK_IMPORTED_MODULE_1__components_public_upload___default.a, VueUeditorWrap: __WEBPACK_IMPORTED_MODULE_5_vue_ueditor_wrap___default.a
-    },
-    created: function created() {
-        var _this2 = this;
-
-        //获得分类列表
-        Object(__WEBPACK_IMPORTED_MODULE_4__api_category__["d" /* getList */])().then(function (response) {
-            _this2.options = response.data.data;
-        });
-        //文章数据
-        Object(__WEBPACK_IMPORTED_MODULE_2__api_article__["d" /* article_get */])(this.$route.params.id).then(function (response) {
-            _this2.articleForm = response.data.data;
-            _this2.articleForm.template_id = response.data.data.template_id;
-            _this2.articleForm.category = response.data.data.category_id;
-        });
     }
 
 });
 
 /***/ }),
 
-/***/ 292:
+/***/ 291:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1777,7 +1768,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-cc46872a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c98e4284", module.exports)
   }
 }
 

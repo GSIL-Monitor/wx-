@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2019-01-23 20:56:43
+Date: 2019-01-24 21:05:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -207,6 +207,48 @@ INSERT INTO `goods` VALUES ('2', '123', '123', '123', '<p>123</p>', null, 'http:
 INSERT INTO `goods` VALUES ('8', '123', '45345', '13534', '<p>234234</p>', '[\"http:\\/\\/www.wx.com\\/storage\\/G2UPeWEfPU8kp3tvRqrtIywzdvI298PVEvpoOubX.jpeg\",\"http:\\/\\/www.wx.com\\/storage\\/5dQvl2T9uT1jAcXZJfT3WfZWKWz61SxKV45gB5gl.jpeg\"]', 'http://www.wx.com/storage/ohR0Wen0eYVti6lbjpfB3XMEftVgdWa0cCELdLIR.jpeg', '34234.00', '1', '1', '2019-01-23 09:32:26', '2019-01-23 09:45:31');
 
 -- ----------------------------
+-- Table structure for goods_orders
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_orders`;
+CREATE TABLE `goods_orders` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `status` tinyint(4) DEFAULT NULL COMMENT '订单处理状态',
+  `meal_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '套餐名称',
+  `num` int(11) NOT NULL COMMENT '购买数量',
+  `order_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '订单数量',
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '购买人联系电话',
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '购买人联系地址',
+  `message` text COLLATE utf8mb4_unicode_ci COMMENT '留言',
+  `source` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '订单来源',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '购买人姓名',
+  `order_total_price` decimal(8,2) NOT NULL COMMENT '订单总价',
+  `size_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '尺码信息',
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ip信息',
+  `goods_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '商品名称',
+  `paytype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '付款方法',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of goods_orders
+-- ----------------------------
+INSERT INTO `goods_orders` VALUES ('3', '0', '3套餐', '1', '136868400812019012408503985254', '13686840081', '北京市-市辖区-东城区-东区大道168号', '尽快发货', 'ALG', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 08:50:39', '2019-01-24 08:50:39');
+INSERT INTO `goods_orders` VALUES ('4', '0', '3套餐', '1', '136868400812019012408590430374', '13686840081', '天津市-市辖区-和平区-123', '阿萨德', 'ALG', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 08:59:04', '2019-01-24 08:59:04');
+INSERT INTO `goods_orders` VALUES ('5', '0', '3套餐', '1', '136868400812019012408593170210', '13686840081', '天津市---123', '阿萨德', 'ALG', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 08:59:31', '2019-01-24 08:59:31');
+INSERT INTO `goods_orders` VALUES ('6', '0', '3套餐', '2', '136848412342019012409011773136', '13684841234', '河北省-石家庄市-市辖区-阿萨德', '阿萨德', '新浪微博', '真搞笑', '176.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:01:17', '2019-01-24 09:01:17');
+INSERT INTO `goods_orders` VALUES ('7', '0', '5235', '4', '136868400812019012409025169353', '13686840081', '北京市-市辖区-东城区-阿萨德', '阿萨德', '新浪微博', '真搞笑', '138136.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:02:51', '2019-01-24 09:02:51');
+INSERT INTO `goods_orders` VALUES ('8', '0', '3套餐', '4', '136868400812019012409031421770', '13686840081', '北京市---阿萨德', '阿萨德', '新浪微博', '真搞笑', '352.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:03:14', '2019-01-24 09:03:14');
+INSERT INTO `goods_orders` VALUES ('9', '0', '123', '3', '136868400832019012409061046770', '13686840083', '黑龙江省-哈尔滨市-市辖区-胜多负少', '阿萨德', 'ALG', '真搞笑', '369.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:06:10', '2019-01-24 09:06:10');
+INSERT INTO `goods_orders` VALUES ('10', '0', '3套餐', '3', '136868400832019012409063337614', '13686840083', '黑龙江省---胜多负少', '阿萨德', 'ALG', '真搞笑', '264.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:06:33', '2019-01-24 09:06:33');
+INSERT INTO `goods_orders` VALUES ('11', '0', '123', '6', '136868400812019012409070587960', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:05', '2019-01-24 09:07:05');
+INSERT INTO `goods_orders` VALUES ('12', '0', '123', '6', '136868400812019012409074090965', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:40', '2019-01-24 09:07:40');
+INSERT INTO `goods_orders` VALUES ('13', '0', '123', '6', '136868400812019012409074640597', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:46', '2019-01-24 09:07:46');
+INSERT INTO `goods_orders` VALUES ('14', '0', '123', '3', '136868400812019012409080691921', '13686840081', '天津市-市辖区-和平区-阿萨德', '阿萨德', '新浪微博', '真搞笑', '369.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:08:06', '2019-01-24 09:08:06');
+INSERT INTO `goods_orders` VALUES ('15', '0', '3套餐', '1', '136868400812019012409101881214', '13686840081', '天津市-市辖区-和平区-13686840081', '阿萨德', '新浪微博', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:10:18', '2019-01-24 09:10:18');
+
+-- ----------------------------
 -- Table structure for html_templates
 -- ----------------------------
 DROP TABLE IF EXISTS `html_templates`;
@@ -220,7 +262,7 @@ CREATE TABLE `html_templates` (
 -- ----------------------------
 -- Records of html_templates
 -- ----------------------------
-INSERT INTO `html_templates` VALUES ('1', '默认模板', 'news/read');
+INSERT INTO `html_templates` VALUES ('1', '默认模板', 'goods/default/view');
 INSERT INTO `html_templates` VALUES ('2', '嘻嘻嘻', '嘻嘻嘻');
 
 -- ----------------------------
@@ -239,9 +281,9 @@ CREATE TABLE `meals` (
 -- ----------------------------
 -- Records of meals
 -- ----------------------------
-INSERT INTO `meals` VALUES ('1', '3套餐', '88.00', '99', '2');
-INSERT INTO `meals` VALUES ('5', '123', '123.00', '99999', '2');
-INSERT INTO `meals` VALUES ('6', '5235', '34534.00', '99999', '1');
+INSERT INTO `meals` VALUES ('1', '3套餐', '88.00', '99', '8');
+INSERT INTO `meals` VALUES ('5', '123', '123.00', '99999', '8');
+INSERT INTO `meals` VALUES ('6', '5235', '34534.00', '99999', '8');
 
 -- ----------------------------
 -- Table structure for menus
@@ -298,7 +340,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of migrations
@@ -331,6 +373,7 @@ INSERT INTO `migrations` VALUES ('26', '2019_01_23_011235_create_meals_table', '
 INSERT INTO `migrations` VALUES ('27', '2019_01_23_035128_create_sizes_table', '13');
 INSERT INTO `migrations` VALUES ('28', '2019_01_23_055519_create_source_urls_table', '14');
 INSERT INTO `migrations` VALUES ('29', '2019_01_23_061532_create_goods_table', '15');
+INSERT INTO `migrations` VALUES ('30', '2019_01_24_080311_create_goods_orders_table', '16');
 
 -- ----------------------------
 -- Table structure for navs
@@ -461,6 +504,7 @@ INSERT INTO `oauth_access_tokens` VALUES ('b31393041c502cfef1c323f46b0085dcc3f51
 INSERT INTO `oauth_access_tokens` VALUES ('b9cb85bdd021fd41b25d6590c5cf219e2fe4d48346b775a42687d34f6098fa070b084637e719896b', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:56:21', '2018-11-21 02:56:21', '2019-11-21 02:56:21');
 INSERT INTO `oauth_access_tokens` VALUES ('bdb08836d1e705c8a0584347a9c7b18ba2db2937c1fb567f9c139e2c23900317162de7e7b9d9dff7', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 09:24:12', '2018-11-21 09:24:12', '2019-11-21 09:24:12');
 INSERT INTO `oauth_access_tokens` VALUES ('bf295884f95026a8a4ebc0dddef60f84d10a838b08f41606660e0e78e953020345be9d9726b4c392', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:09:02', '2018-11-21 02:09:02', '2019-11-21 02:09:02');
+INSERT INTO `oauth_access_tokens` VALUES ('c1cbeba263624f7d52b7754b1cc508a54b795239e479938a2928f0a697d6c726f1a3cd3c193d6b29', '1', '1', 'JzrXZH', '[]', '0', '2019-01-24 12:55:20', '2019-01-24 12:55:20', '2020-01-24 12:55:20');
 INSERT INTO `oauth_access_tokens` VALUES ('cb05004e6b3544733cb596a0307c7fe9e82fbd52369b6e0c7f478ca11041eef177fb8af61f18c9f0', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:45:48', '2018-11-21 02:45:48', '2019-11-21 02:45:48');
 INSERT INTO `oauth_access_tokens` VALUES ('cd13d73ba89417d6db635bafe9a62b6ed23c2b51c38f98d17def8f973ea3327d82458dd04375e50b', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 09:09:01', '2018-11-21 09:09:01', '2019-11-21 09:09:01');
 INSERT INTO `oauth_access_tokens` VALUES ('d0f592ad724d68a338b57b298e272c1fabae093414bb79b1c8469ba62324cd69539460f0df8de3b0', '1', '1', 'JzrXZH', '[]', '0', '2018-12-05 07:56:31', '2018-12-05 07:56:31', '2019-12-05 07:56:31');
@@ -734,7 +778,8 @@ CREATE TABLE `sizes` (
 -- ----------------------------
 -- Records of sizes
 -- ----------------------------
-INSERT INTO `sizes` VALUES ('3', '45778', '1');
+INSERT INTO `sizes` VALUES ('3', '45778', '8');
+INSERT INTO `sizes` VALUES ('4', '45645', '8');
 
 -- ----------------------------
 -- Table structure for sources

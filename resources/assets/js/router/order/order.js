@@ -12,6 +12,10 @@ export default [
     {
         path: '/edit_goods',name:'edit_goods', component:resolve=>require(['@/view/order/publish_goods/edit_goods'],resolve)
     },
+    {
+        path: '/goods_order',name:'goods_order', component:resolve=>require(['@/view/order/order/list'],resolve)
+    },
+
 
 
 ]

@@ -44,4 +44,7 @@ Route::group(['namespace'=>'Order'],function () {
         Route::delete('/{id}','GoodsController@delete');
         Route::post('/batchDelete','GoodsController@batchDelete');
     });
+    Route::prefix('goodsOrder')->group(function() {
+        Route::get('/','OrderController@getList');
+    });
 });

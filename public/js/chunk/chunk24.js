@@ -1,18 +1,18 @@
 webpackJsonp([24],{
 
-/***/ 238:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(506)
+  __webpack_require__(330)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(244)
 /* script */
-var __vue_script__ = __webpack_require__(508)
+var __vue_script__ = __webpack_require__(332)
 /* template */
-var __vue_template__ = __webpack_require__(509)
+var __vue_template__ = __webpack_require__(334)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/register.vue"
+Component.options.__file = "resources/assets/js/view/product/product.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5272278b", Component.options)
+    hotAPI.createRecord("data-v-59da1dd2", Component.options)
   } else {
-    hotAPI.reload("data-v-5272278b", Component.options)
+    hotAPI.reload("data-v-59da1dd2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 243:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(244)
+var listToStyles = __webpack_require__(246)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 246:
 /***/ (function(module, exports) {
 
 /**
@@ -425,23 +425,23 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 506:
+/***/ 330:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(507);
+var content = __webpack_require__(331);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("6e0a1f2b", content, false, {});
+var update = __webpack_require__(245)("0d537d60", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5272278b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./register.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5272278b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./register.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-59da1dd2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./product.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-59da1dd2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./product.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -452,7 +452,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 507:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -460,19 +460,32 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.login{\n    width: 450px;\n    height: 300px;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n}\n", ""]);
+exports.push([module.i, "\n.custom-tree-node {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    font-size: 14px;\n    padding-right: 8px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 508:
+/***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_user__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_product__ = __webpack_require__(333);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -494,32 +507,182 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+
+var id = 1000;
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            form: {
-                username: null,
-                password: null,
-                mobile: null,
-                state: 0
-            }
+            product: [{
+                id: 0,
+                label: '产品信息介绍',
+                children: []
+            }],
+            title: '添加信息',
+            dialog: false,
+            content: null,
+            itemData: null,
+            isEdit: false,
+            productAuth: [{
+                add: true,
+                edit: true,
+                delete: true
+            }]
         };
     },
 
+    created: function created() {
+        var _this = this;
+
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_product__["a" /* getList */])().then(function (response) {
+            _this.product[0].children = response.data.data;
+        });
+        // let product_Auth = this.$store.state.user.auth.article_product;
+        // product_Auth.forEach((value) => {
+        //     if (value === 'add') {
+        //         this.productAuth.add = true;
+        //         return true;
+        //     }
+        //     if (value === 'edit') {
+        //         this.productAuth.edit = true;
+        //         return true;
+        //     }
+        //     if (value === 'delete') {
+        //         this.productAuth.delete = true;
+        //         return true;
+        //     }
+        // });
+    },
     methods: {
-        onSubmit: function onSubmit() {
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_user__["s" /* register */])(this.form);
-            this.$router.push('/login');
+        append: function append(data) {
+            this.title = '添加信息';
+            //先清空对话框里面的输入框的值
+            this.content = '';
+            //判断一下是否超过了3级
+            if (data.lv >= 3) {
+                this.$message.error('当前层不允许在添加分类了!');
+                return false;
+            }
+            //  this.itemData =  JSON.parse(JSON.stringify(data));
+            this.itemData = data;
+            this.dialog = true;
         },
-        handleLogin: function handleLogin() {
-            this.$router.push('/login');
+        ok: function ok() {
+            if (this.isEdit) {
+                return this.handelEdit();
+            } else {
+                return this.handleAdd();
+            }
+        },
+        handleAdd: function handleAdd() {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_product__["b" /* product_add */])({ content: this.content, pid: this.itemData.id, lv: this.itemData.lv }).then(function (response) {
+                if (response.data.code === 0) {
+                    //关闭对话框
+                    _this2.dialog = false;
+                    var newChild = response.data.data;
+                    if (!_this2.itemData.children) {
+                        _this2.$set(_this2.itemData, 'children', []);
+                    }
+                    _this2.itemData.children.push(newChild);
+                    _this2.$message.success('添加成功');
+                } else {
+                    _this2.$message.error('添加失败');
+                }
+            });
+        },
+        handelEdit: function handelEdit() {
+            var _this3 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_product__["d" /* product_edit */])({ content: this.content }, this.itemData.id).then(function (response) {
+                if (response.data.code === 0) {
+                    //关闭对话框
+                    _this3.dialog = false;
+                    _this3.isEdit = false; //结束编辑状态
+                    _this3.itemData.content = _this3.content;
+                    _this3.itemData.label = _this3.content;
+                    _this3.$message.success('修改成功');
+                } else {
+                    _this3.$message.error('修改失败');
+                }
+            });
+        },
+        edit: function edit(node, data) {
+            this.title = '修改信息';
+            //先清空对话框里面的输入框的值
+            this.content = '';
+            this.isEdit = true; //当前是修改状态
+            this.content = data.content; //吧数据挂载到全局方便其他函数调用
+            this.itemData = data; //吧数据挂载到全局方便其他函数调用
+            this.dialog = true; //显示对话框
+        },
+        remove: function remove(node, data) {
+            var _this4 = this;
+
+            if (data.id == 0) {
+                return false;
+            }
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_product__["c" /* product_del */])(data.id).then(function (response) {
+                if (response.data.code === 0) {
+                    _this4.$message.success(response.data.msg);
+                    var parent = node.parent;
+                    var children = parent.data.children || parent.data;
+                    var index = children.findIndex(function (d) {
+                        return d.id === data.id;
+                    });
+                    children.splice(index, 1);
+                } else {
+                    _this4.$message.error(response.data.msg);
+                    return false;
+                }
+            });
         }
     }
 });
 
 /***/ }),
 
-/***/ 509:
+/***/ 333:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return product_del; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return product_add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return product_edit; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
+
+
+var getList = function getList() {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/product/list',
+        method: 'get'
+    });
+};
+var product_del = function product_del(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/product/del/' + id,
+        method: 'get'
+    });
+};
+var product_add = function product_add(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/product/add',
+        data: data,
+        method: 'post'
+    });
+};
+var product_edit = function product_edit(data, id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/product/edit/' + id,
+        data: data,
+        method: 'post'
+    });
+};
+
+/***/ }),
+
+/***/ 334:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -528,77 +691,112 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "login" },
     [
       _c(
-        "el-form",
-        { ref: "form", attrs: { model: _vm.form, "label-width": "80px" } },
+        "div",
+        { staticStyle: { width: "70%" } },
         [
-          _c(
-            "el-form-item",
-            { attrs: { label: "用户名" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.username,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "username", $$v)
-                  },
-                  expression: "form.username"
+          _c("el-tree", {
+            attrs: {
+              data: _vm.product,
+              "node-key": "id",
+              "default-expand-all": "",
+              "expand-on-click-node": false
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var node = ref.node
+                  var data = ref.data
+                  return _c("span", { staticClass: "custom-tree-node" }, [
+                    _c("span", [_vm._v(_vm._s(node.label))]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      [
+                        _c(
+                          "el-button",
+                          {
+                            attrs: { type: "text", size: "mini" },
+                            on: {
+                              click: function() {
+                                return _vm.append(data)
+                              }
+                            }
+                          },
+                          [_vm._v("添加内容")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-button",
+                          {
+                            attrs: { type: "text", size: "mini" },
+                            on: {
+                              click: function() {
+                                return _vm.edit(node, data)
+                              }
+                            }
+                          },
+                          [_vm._v("修改内容")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-button",
+                          {
+                            attrs: { type: "text", size: "mini" },
+                            on: {
+                              click: function() {
+                                return _vm.remove(node, data)
+                              }
+                            }
+                          },
+                          [_vm._v("删除内容")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 }
-              })
-            ],
-            1
-          ),
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: _vm.title,
+            visible: _vm.dialog,
+            width: "50%",
+            center: ""
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialog = $event
+            }
+          }
+        },
+        [
+          _c("el-input", {
+            staticStyle: { width: "70%" },
+            attrs: { placeholder: "输入分类名称" },
+            model: {
+              value: _vm.content,
+              callback: function($$v) {
+                _vm.content = $$v
+              },
+              expression: "content"
+            }
+          }),
           _vm._v(" "),
           _c(
-            "el-form-item",
-            { attrs: { label: "手机号码" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.mobile,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "mobile", $$v)
-                  },
-                  expression: "form.mobile"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "密码" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "password", $$v)
-                  },
-                  expression: "form.password"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
-              _c(
-                "el-button",
-                { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-                [_vm._v("立即注册")]
-              ),
-              _vm._v(" "),
-              _c("el-button", { on: { click: _vm.handleLogin } }, [
-                _vm._v("返回登陆")
-              ])
-            ],
-            1
+            "el-button",
+            { attrs: { type: "primary" }, on: { click: _vm.ok } },
+            [_vm._v("确 定")]
           )
         ],
         1
@@ -613,7 +811,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5272278b", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-59da1dd2", module.exports)
   }
 }
 

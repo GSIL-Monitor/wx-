@@ -62,4 +62,25 @@ class Goods extends Model
     {
       return  ArticleTemplate::query()->find($this->template_id)->name;
     }
+
+    /**
+     * 商品关联到套餐信息
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function meals()
+    {
+        return $this->hasMany(Meals::class, 'goods_id', 'id');
+    }
+
+    /**
+     * 商品关联到尺寸
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function size()
+    {
+        return $this->hasMany(Size::class, 'goods_id', 'id');
+    }
+
 }
