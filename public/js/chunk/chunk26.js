@@ -1,18 +1,18 @@
 webpackJsonp([26],{
 
-/***/ 240:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(543)
+  __webpack_require__(444)
 }
-var normalizeComponent = __webpack_require__(244)
+var normalizeComponent = __webpack_require__(245)
 /* script */
-var __vue_script__ = __webpack_require__(545)
+var __vue_script__ = __webpack_require__(446)
 /* template */
-var __vue_template__ = __webpack_require__(546)
+var __vue_template__ = __webpack_require__(447)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/register.vue"
+Component.options.__file = "resources/assets/js/view/article/category.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5272278b", Component.options)
+    hotAPI.createRecord("data-v-56ffe4df", Component.options)
   } else {
-    hotAPI.reload("data-v-5272278b", Component.options)
+    hotAPI.reload("data-v-56ffe4df", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(246)
+var listToStyles = __webpack_require__(247)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 246:
+/***/ 247:
 /***/ (function(module, exports) {
 
 /**
@@ -425,23 +425,63 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 543:
+/***/ 276:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return category_del; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return category_add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return category_edit; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
+
+
+var getList = function getList() {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/list',
+        method: 'get'
+    });
+};
+var category_del = function category_del(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/del/' + id,
+        method: 'get'
+    });
+};
+var category_add = function category_add(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/add',
+        data: data,
+        method: 'post'
+    });
+};
+var category_edit = function category_edit(data, id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/edit/' + id,
+        data: data,
+        method: 'post'
+    });
+};
+
+/***/ }),
+
+/***/ 444:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(544);
+var content = __webpack_require__(445);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(245)("6e0a1f2b", content, false, {});
+var update = __webpack_require__(246)("5a56e6b2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5272278b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./register.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5272278b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./register.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-56ffe4df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./category.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-56ffe4df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./category.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -452,7 +492,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 544:
+/***/ 445:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -460,19 +500,47 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.login{\n    width: 450px;\n    height: 300px;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n}\n", ""]);
+exports.push([module.i, "\n.custom-tree-node {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    font-size: 14px;\n    padding-right: 8px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 545:
+/***/ 446:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_user__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_category__ = __webpack_require__(276);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -494,32 +562,140 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+var id = 1000;
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            form: {
-                username: null,
-                password: null,
-                mobile: null,
-                state: 0
-            }
+            category: [{
+                id: 0,
+                label: '文章分类管理',
+                children: []
+            }],
+            title: '添加分类',
+            dialog: false,
+            name: null,
+            itemData: null,
+            isEdit: false,
+            categoryAuth: [{
+                add: false,
+                edit: false,
+                delete: false
+            }]
         };
     },
 
+    created: function created() {
+        var _this = this;
+
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["d" /* getList */])().then(function (response) {
+            _this.category[0].children = response.data.data;
+        });
+        var category_Auth = this.$store.state.user.auth.article_category;
+        category_Auth.forEach(function (value) {
+            if (value === 'add') {
+                _this.categoryAuth.add = true;
+                return true;
+            }
+            if (value === 'edit') {
+                _this.categoryAuth.edit = true;
+                return true;
+            }
+            if (value === 'delete') {
+                _this.categoryAuth.delete = true;
+                return true;
+            }
+        });
+    },
     methods: {
-        onSubmit: function onSubmit() {
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_user__["s" /* register */])(this.form);
-            this.$router.push('/login');
+        append: function append(data) {
+            this.title = '添加分类';
+            //先清空对话框里面的输入框的值
+            this.name = '';
+            //判断一下是否超过了2级
+            if (data.pid > 0) {
+                this.$message.error('当前层不允许在添加分类了!');
+                return false;
+            }
+            this.itemData = data;
+            this.dialog = true;
         },
-        handleLogin: function handleLogin() {
-            this.$router.push('/login');
+        ok: function ok() {
+            if (this.isEdit) {
+                return this.handelEdit();
+            } else {
+                return this.handleAdd();
+            }
+        },
+        handleAdd: function handleAdd() {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["a" /* category_add */])({ name: this.name, pid: this.itemData.id }).then(function (response) {
+                if (response.data.code === 0) {
+                    //关闭对话框
+                    _this2.dialog = false;
+                    var newChild = response.data.data;
+                    if (!_this2.itemData.children) {
+                        _this2.$set(_this2.itemData, 'children', []);
+                    }
+                    _this2.itemData.children.push(newChild);
+                    _this2.$message.success('添加成功');
+                } else {
+                    _this2.$message.error('添加失败');
+                }
+            });
+        },
+        handelEdit: function handelEdit() {
+            var _this3 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["c" /* category_edit */])({ name: this.name }, this.itemData.id).then(function (response) {
+                if (response.data.code === 0) {
+                    //关闭对话框
+                    _this3.dialog = false;
+                    _this3.isEdit = false; //结束编辑状态
+                    _this3.itemData.name = _this3.name;
+                    _this3.itemData.label = _this3.name;
+                    _this3.$message.success('修改成功');
+                } else {
+                    _this3.$message.error('修改失败');
+                }
+            });
+        },
+        edit: function edit(node, data) {
+            this.title = '修改分类名称';
+            //先清空对话框里面的输入框的值
+            this.name = '';
+            this.isEdit = true; //当前是修改状态
+            this.name = data.name; //吧数据挂载到全局方便其他函数调用
+            this.itemData = data; //吧数据挂载到全局方便其他函数调用
+            this.dialog = true; //显示对话框
+        },
+        remove: function remove(node, data) {
+            var _this4 = this;
+
+            if (data.id == 0) {
+                return false;
+            }
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["b" /* category_del */])(data.id).then(function (response) {
+                if (response.data.code === 0) {
+                    _this4.$message.success(response.data.msg);
+                    var parent = node.parent;
+                    var children = parent.data.children || parent.data;
+                    var index = children.findIndex(function (d) {
+                        return d.id === data.id;
+                    });
+                    children.splice(index, 1);
+                } else {
+                    _this4.$message.error(response.data.msg);
+                    return false;
+                }
+            });
         }
     }
 });
 
 /***/ }),
 
-/***/ 546:
+/***/ 447:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -528,77 +704,136 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "login" },
     [
       _c(
-        "el-form",
-        { ref: "form", attrs: { model: _vm.form, "label-width": "80px" } },
+        "div",
+        { staticStyle: { width: "40%" } },
         [
-          _c(
-            "el-form-item",
-            { attrs: { label: "用户名" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.username,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "username", $$v)
-                  },
-                  expression: "form.username"
+          _c("el-tree", {
+            attrs: {
+              data: _vm.category,
+              "node-key": "id",
+              "default-expand-all": "",
+              "expand-on-click-node": false
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var node = ref.node
+                  var data = ref.data
+                  return _c("span", { staticClass: "custom-tree-node" }, [
+                    _c("span", [_vm._v(_vm._s(node.label))]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      [
+                        _vm.categoryAuth.add
+                          ? [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "text", size: "mini" },
+                                  on: {
+                                    click: function() {
+                                      return _vm.append(data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                添加分类\n              "
+                                  )
+                                ]
+                              )
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.categoryAuth.edit
+                          ? [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "text", size: "mini" },
+                                  on: {
+                                    click: function() {
+                                      return _vm.edit(node, data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                修改名称\n            "
+                                  )
+                                ]
+                              )
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.categoryAuth.delete
+                          ? [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "text", size: "mini" },
+                                  on: {
+                                    click: function() {
+                                      return _vm.remove(node, data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                删除分类\n            "
+                                  )
+                                ]
+                              )
+                            ]
+                          : _vm._e()
+                      ],
+                      2
+                    )
+                  ])
                 }
-              })
-            ],
-            1
-          ),
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: _vm.title,
+            visible: _vm.dialog,
+            width: "20%",
+            center: ""
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialog = $event
+            }
+          }
+        },
+        [
+          _c("el-input", {
+            staticStyle: { width: "70%" },
+            attrs: { placeholder: "输入分类名称" },
+            model: {
+              value: _vm.name,
+              callback: function($$v) {
+                _vm.name = $$v
+              },
+              expression: "name"
+            }
+          }),
           _vm._v(" "),
           _c(
-            "el-form-item",
-            { attrs: { label: "手机号码" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.mobile,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "mobile", $$v)
-                  },
-                  expression: "form.mobile"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "密码" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "password", $$v)
-                  },
-                  expression: "form.password"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
-              _c(
-                "el-button",
-                { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-                [_vm._v("立即注册")]
-              ),
-              _vm._v(" "),
-              _c("el-button", { on: { click: _vm.handleLogin } }, [
-                _vm._v("返回登陆")
-              ])
-            ],
-            1
+            "el-button",
+            { attrs: { type: "primary" }, on: { click: _vm.ok } },
+            [_vm._v("确 定")]
           )
         ],
         1
@@ -613,7 +848,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5272278b", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-56ffe4df", module.exports)
   }
 }
 

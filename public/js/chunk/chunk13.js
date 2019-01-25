@@ -1,18 +1,18 @@
 webpackJsonp([13],{
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(461)
+  __webpack_require__(466)
 }
-var normalizeComponent = __webpack_require__(244)
+var normalizeComponent = __webpack_require__(245)
 /* script */
-var __vue_script__ = __webpack_require__(463)
+var __vue_script__ = __webpack_require__(468)
 /* template */
-var __vue_template__ = __webpack_require__(464)
+var __vue_template__ = __webpack_require__(469)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/contact/contact.vue"
+Component.options.__file = "resources/assets/js/view/contact/order.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-325e5d79", Component.options)
+    hotAPI.createRecord("data-v-296035e7", Component.options)
   } else {
-    hotAPI.reload("data-v-325e5d79", Component.options)
+    hotAPI.reload("data-v-296035e7", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(246)
+var listToStyles = __webpack_require__(247)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 246:
+/***/ 247:
 /***/ (function(module, exports) {
 
 /**
@@ -425,19 +425,19 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(250)
+  __webpack_require__(251)
 }
-var normalizeComponent = __webpack_require__(244)
+var normalizeComponent = __webpack_require__(245)
 /* script */
-var __vue_script__ = __webpack_require__(252)
+var __vue_script__ = __webpack_require__(253)
 /* template */
-var __vue_template__ = __webpack_require__(263)
+var __vue_template__ = __webpack_require__(264)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -477,7 +477,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 249:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -635,17 +635,17 @@ var list_page = {
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(251);
+var content = __webpack_require__(252);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(245)("ff2b3c24", content, false, {});
+var update = __webpack_require__(246)("ff2b3c24", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -662,7 +662,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -677,14 +677,14 @@ exports.push([module.i, "\n.el-pagination[data-v-2eb7ba3f]{\n    float: right;\n
 
 /***/ }),
 
-/***/ 252:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tools___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tools__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fold___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__fold__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libs_axios__ = __webpack_require__(26);
 //
@@ -924,19 +924,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 253:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(254)
+  __webpack_require__(255)
 }
-var normalizeComponent = __webpack_require__(244)
+var normalizeComponent = __webpack_require__(245)
 /* script */
-var __vue_script__ = __webpack_require__(256)
+var __vue_script__ = __webpack_require__(257)
 /* template */
-var __vue_template__ = __webpack_require__(257)
+var __vue_template__ = __webpack_require__(258)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -976,17 +976,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(255);
+var content = __webpack_require__(256);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(245)("50b6e68c", content, false, {});
+var update = __webpack_require__(246)("50b6e68c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1003,7 +1003,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 255:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1018,7 +1018,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 256:
+/***/ 257:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1063,7 +1063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 257:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1132,19 +1132,19 @@ if (false) {
 
 /***/ }),
 
-/***/ 258:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(259)
+  __webpack_require__(260)
 }
-var normalizeComponent = __webpack_require__(244)
+var normalizeComponent = __webpack_require__(245)
 /* script */
-var __vue_script__ = __webpack_require__(261)
+var __vue_script__ = __webpack_require__(262)
 /* template */
-var __vue_template__ = __webpack_require__(262)
+var __vue_template__ = __webpack_require__(263)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1184,17 +1184,17 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 259:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(260);
+var content = __webpack_require__(261);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(245)("328aaa3a", content, false, {});
+var update = __webpack_require__(246)("328aaa3a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1211,7 +1211,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 260:
+/***/ 261:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1226,7 +1226,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
-/***/ 261:
+/***/ 262:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1276,7 +1276,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 262:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1301,7 +1301,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 263:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1452,7 +1452,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 296:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1479,23 +1479,23 @@ var contactEdit = function contactEdit(id, data) {
 
 /***/ }),
 
-/***/ 461:
+/***/ 466:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(462);
+var content = __webpack_require__(467);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(245)("3070767a", content, false, {});
+var update = __webpack_require__(246)("1253a024", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-325e5d79\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./contact.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-325e5d79\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./contact.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-296035e7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./order.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-296035e7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./order.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -1506,7 +1506,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 462:
+/***/ 467:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -1521,23 +1521,15 @@ exports.push([module.i, "\n.el-input__inner {\n    height: 35px;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 463:
+/***/ 468:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_public_table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_public_table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_list_page__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_contact__ = __webpack_require__(296);
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_list_page__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_contact__ = __webpack_require__(297);
 //
 //
 //
@@ -1583,9 +1575,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             page_name: '预约',
-            url: 'contact',
-            centerDialogVisible: false,
-            content: null,
+            url: 'order',
+            dialog: false,
             columns: [{
                 prop: 'id',
                 label: 'ID',
@@ -1598,38 +1589,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, {
                 prop: 'name',
                 label: '联系人',
-                search: true,
-                width: 100
+                search: true
             }, {
                 prop: 'phone',
                 label: '联系电话',
                 search: true,
                 width: 100
             }, {
-                prop: 'qq',
-                label: 'QQ号码',
-                search: true,
-                width: 100
-            }, {
-                prop: 'remark',
-                label: '备注'
-            }, {
                 prop: 'status',
                 label: '处理状态',
                 width: '160',
                 filter: { // 是否可筛选,不需要筛选则不填此属性
                     multiple: false, // 是否可多选，默认为true
-                    data: [{
-                        value: '0',
+                    data: [{ value: '0',
                         text: '未处理'
-                    }, {
-                        value: '1',
+                    }, { value: '1',
                         text: '处理中'
-                    }, {
-                        value: '2',
+                    }, { value: '2',
                         text: '已处理'
-                    }, {
-                        value: '3',
+                    }, { value: '3',
                         text: '无效信息'
                     }] // 下拉数据数组,filter存在则必选，getConfigArray('sex') 函数参考 config/sys_config.js
                 },
@@ -1649,12 +1627,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             on: {
                                 'change': function change(event) {
                                     _this.row.status = event;
-                                    Object(__WEBPACK_IMPORTED_MODULE_2__api_contact__["a" /* contactEdit */])(_this.row.id, { status: event });
+                                    Object(__WEBPACK_IMPORTED_MODULE_2__api_contact__["b" /* orderEdit */])(_this.row.id, { status: event });
                                 }
                             }
                         }, [h('el-option', { props: { value: 0, label: '未处理' } }), h('el-option', { props: { value: 1, label: '处理中' } }), h('el-option', { props: { value: 2, label: '已处理' } }), h('el-option', { props: { value: 3, label: '无效信息' } })]);
                     }
                 }
+            }, {
+                prop: 'remark',
+                label: '备注信息',
+                search: true
             }, {
                 prop: 'created_at',
                 label: '留言日期',
@@ -1663,11 +1645,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 label: '操作',
                 width: '200',
                 tools: {
-                    details: {
-                        type: 'primary',
-                        icon: 'el-icon-document',
-                        text: '查看反馈'
-                    },
                     edit: {
                         type: 'primary',
                         icon: 'el-icon-edit',
@@ -1675,9 +1652,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             }],
-            remark: '',
-            id: '',
-            dialog: false,
             options: [{ value: '0',
                 label: '未处理'
             }, { value: '1',
@@ -1689,7 +1663,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, { value: '4',
                 label: '全部信息'
             }],
-            Selection: '0'
+            Selection: '0',
+            remark: '',
+            id: ''
         };
     },
     mounted: function mounted() {
@@ -1698,10 +1674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         handleTools: function handleTools(type, index, row) {
-            if (type == 'details') {
-                this.centerDialogVisible = true;
-                this.content = row.content;
-            } else if (type == 'edit') {
+            if (type == 'edit') {
                 this.remark = row.remark;
                 this.dialog = true;
                 //id挂载到全局
@@ -1721,7 +1694,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ok: function ok() {
             var _this2 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_2__api_contact__["a" /* contactEdit */])(this.id, { remark: this.remark }).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_2__api_contact__["b" /* orderEdit */])(this.id, { remark: this.remark }).then(function (response) {
                 _this2.$message.success(response.data.msg);
                 _this2.dialog = false;
                 _this2.handleRenderTable();
@@ -1732,7 +1705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 464:
+/***/ 469:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1753,7 +1726,7 @@ var render = function() {
                 "el-col",
                 { attrs: { span: 14 } },
                 [
-                  _vm._v("\n                过滤数据:  "),
+                  _vm._v("\n             过滤数据:  "),
                   _c(
                     "el-select",
                     {
@@ -1858,62 +1831,6 @@ var render = function() {
         "el-dialog",
         {
           attrs: {
-            title: "客户反馈",
-            visible: _vm.centerDialogVisible,
-            width: "30%",
-            center: ""
-          },
-          on: {
-            "update:visible": function($event) {
-              _vm.centerDialogVisible = $event
-            }
-          }
-        },
-        [
-          _c("span", [_vm._v(_vm._s(_vm.content))]),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "dialog-footer",
-              attrs: { slot: "footer" },
-              slot: "footer"
-            },
-            [
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.centerDialogVisible = false
-                    }
-                  }
-                },
-                [_vm._v("取 消")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  attrs: { type: "primary" },
-                  on: {
-                    click: function($event) {
-                      _vm.centerDialogVisible = false
-                    }
-                  }
-                },
-                [_vm._v("确 定")]
-              )
-            ],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          attrs: {
             title: "备注信息",
             visible: _vm.dialog,
             width: "50%",
@@ -1956,7 +1873,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-325e5d79", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-296035e7", module.exports)
   }
 }
 

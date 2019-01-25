@@ -38,6 +38,8 @@
     <input type="hidden" name="meal_stock" value="{{$goods['meals'][0]['meal_stock']}}">
     {{--付款方式 默认货到付款--}}
     <input type="hidden" name="paytype" value="huodao">
+    {{--默认订购数量 1--}}
+    <input type="hidden" name="num" value="1">
 
     <div class="bwtitle" id="buy">在线快速订购</div>
     <div class="main-bg">
@@ -80,14 +82,14 @@
                     </ul>
                 </dd>
             </dl>
-            <dl class="dl">
-                <dt>购买数量:</dt>
-                <dd class="ptop-6">
-                    <input class="goods_num_button" onclick="numdecr()" type="button" value="-">
-                    <input class="num" type="number" value="1" name="num">
-                    <input class="goods_num_button" onclick="numincr()" type="button" value="+">
-                </dd>
-            </dl>
+            {{--<dl class="dl">--}}
+                {{--<dt>购买数量:</dt>--}}
+                {{--<dd class="ptop-6">--}}
+                    {{--<input class="goods_num_button" onclick="numdecr()" type="button" value="-">--}}
+                    {{--<input class="num" type="number" value="1" name="num">--}}
+                    {{--<input class="goods_num_button" onclick="numincr()" type="button" value="+">--}}
+                {{--</dd>--}}
+            {{--</dl>--}}
             <dl class="dl">
                 <dt>&nbsp;</dt>
                 <dd class="ptop-6">

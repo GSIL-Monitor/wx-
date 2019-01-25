@@ -15,6 +15,11 @@ export default [
     {
         path: '/goods_order',name:'goods_order', component:resolve=>require(['@/view/order/order/list'],resolve)
     },
+    {
+        path: '/source_count',name:'source_count', component:resolve=>require(['@/view/order/order/sourceCount'],resolve)
+    },
+
+
 
 
 

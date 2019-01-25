@@ -9,6 +9,8 @@
 Route::group(['namespace'=>'Order'],function () {
     // 来源管理
     Route::prefix('source')->group(function (){
+        //来源统计
+        Route::get('/count','SourceController@sourceCount');
         Route::get('/extensionURL','SourceController@extensionURL');
         Route::get('/','SourceController@getList');
         Route::post('/','SourceController@add');
@@ -16,6 +18,7 @@ Route::group(['namespace'=>'Order'],function () {
         Route::get('/{id}','SourceController@get');
         Route::delete('/{id}','SourceController@delete');
         Route::post('/batchIdDelete','SourceController@batchIdDelete');
+
     });
     // 套餐管理
     Route::prefix('meal')->group(function (){
@@ -46,5 +49,11 @@ Route::group(['namespace'=>'Order'],function () {
     });
     Route::prefix('goodsOrder')->group(function() {
         Route::get('/','OrderController@getList');
+        Route::get('/ip_source/{id}','OrderController@ipAndPhoneRource');
+        Route::delete('/{id}','OrderController@delete');
+        Route::post('/batchDelete','OrderController@batchDelete');
+        Route::get('/{id}','OrderController@get');
+        Route::put('/{id}','OrderController@edit');
+        Route::put('/status/{id}','OrderController@editStatus');
     });
 });

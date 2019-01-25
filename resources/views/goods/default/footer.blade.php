@@ -34,7 +34,7 @@
                             @endphp
                             <li>
                                 {{date('Y-m-d')}} {{$province[$rand_province]}}的{{$falseName[$name]}}
-                                ** {{$falsePhone[$rand_phone]}}在{{$falseTime[$rand_Time]}}前订购了 {{$goods['meals'][0]['meal_name']}}
+                                ** ({{$falsePhone[$rand_phone]}})&nbsp;&nbsp;在{{$falseTime[$rand_Time]}}前订购了 {{$goods['meals'][0]['meal_name']}}
                                 <span style="color:green">√</span>已成功
                             </li>
                         @endfor

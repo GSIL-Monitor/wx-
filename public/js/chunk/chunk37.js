@@ -1,24 +1,20 @@
-webpackJsonp([11],{
+webpackJsonp([37],{
 
-/***/ 237:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(531)
-}
 var normalizeComponent = __webpack_require__(245)
 /* script */
-var __vue_script__ = __webpack_require__(533)
+var __vue_script__ = __webpack_require__(496)
 /* template */
-var __vue_template__ = __webpack_require__(534)
+var __vue_template__ = __webpack_require__(497)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-7afd4a88"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -29,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/order/order/list.vue"
+Component.options.__file = "resources/assets/js/view/order/goods/list.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +34,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7afd4a88", Component.options)
+    hotAPI.createRecord("data-v-548cc380", Component.options)
   } else {
-    hotAPI.reload("data-v-7afd4a88", Component.options)
+    hotAPI.reload("data-v-548cc380", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1923,49 +1919,7 @@ var getConfigKey = function getConfigKey(keyword, value) {
 
 /***/ }),
 
-/***/ 531:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(532);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(246)("56625620", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7afd4a88\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./list.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7afd4a88\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./list.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 532:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(79)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.myTable[data-v-7afd4a88] p{\n    padding: 0;\n    margin: 0;\n    font-size: 14px;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 533:
+/***/ 496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1975,10 +1929,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_list_page__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_sys_config__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_goods__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ipsource__ = __webpack_require__(559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ipsource___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__ipsource__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__show__ = __webpack_require__(564);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__show___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__show__);
 //
 //
 //
@@ -2001,27 +1951,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 
 
@@ -2029,141 +1958,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { Table: __WEBPACK_IMPORTED_MODULE_0__components_public_table___default.a, ipSourceShow: __WEBPACK_IMPORTED_MODULE_4__ipsource___default.a, show: __WEBPACK_IMPORTED_MODULE_5__show___default.a },
+    components: { Table: __WEBPACK_IMPORTED_MODULE_0__components_public_table___default.a },
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_list_page__["a" /* default */]],
     data: function data() {
         return {
-            ipSourceIsShow: false,
-            goodsOrderInfo: false,
-            url: 'goodsOrder',
+            url: 'goods',
             columns: [{
                 prop: 'id',
                 label: 'ID',
                 sort: true,
                 width: '80'
             }, {
-                prop: 'meal_name',
-                label: '购买产品+数量+套餐',
-                search: true,
-                width: 350,
+                prop: 'goods_title',
+                label: '商品标题(品名)',
+                search: true
+            }, {
+                prop: 'is_up',
+                label: '是否上架',
                 render: {
                     props: {
                         row: Object // 接受当前行参数
                     },
                     render: function render(createElement) {
-                        return createElement('div', {}, [createElement('p', {}, '订单号:' + this.row.order_num), createElement('p', {
+                        // 参考链接 https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM
+                        return createElement('span', {
                             style: {
-                                color: "green"
+                                color: this.row.is_up_name.color,
+                                fontSize: '30px',
+                                padding: '5px'
                             }
-                        }, "下单时间:" + this.row.created_at), createElement('p', {}, this.row.goods_name), createElement('p', {}, this.row.meal_name + "×" + this.row.num)]);
+                        }, this.row.is_up_name.status);
                     }
                 }
             }, {
-                prop: 'paytype',
-                label: '支付方式',
-                width: 100,
-                render: {
-                    props: {
-                        row: Object // 接受当前行参数
-                    },
-                    render: function render(createElement) {
-                        return createElement('div', {}, [createElement('el-tag', {
-                            attr: {
-                                type: "success"
-                            }
-                        }, this.row.paytype), createElement('p', {
-                            style: {
-                                color: "red"
-                            }
-                        }, "总额:" + this.row.order_total_price)]);
-                    }
-                }
+                prop: 'price',
+                label: '价格'
             }, {
-                prop: 'name',
-                label: '收货人',
-                search: true,
-                width: 115,
-                render: {
-                    props: {
-                        row: Object // 接受当前行参数
-                    },
-                    render: function render(createElement) {
-                        return createElement('div', {}, [createElement('p', {}, this.row.name), createElement('p', {}, this.row.phone)]);
-                    }
-                }
+                prop: 'template',
+                label: '使用模板'
             }, {
-                prop: 'address',
-                label: '地址',
-                search: true,
-                width: 360,
-                render: {
-                    props: {
-                        row: Object // 接受当前行参数
-                    },
-                    render: function render(createElement) {
-                        return createElement('div', {}, [createElement('p', {}, "地址:" + this.row.address), createElement('p', {}, "IP:" + this.row.ip)]);
-                    }
-                }
-            }, {
-                prop: 'message',
-                label: '客户留言'
-            }, {
-                prop: 'source',
-                label: '订单来源',
-                width: 110,
-                render: {
-                    props: {
-                        row: Object // 接受当前行参数
-                    },
-                    render: function render(createElement) {
-                        return createElement('div', {}, [createElement('el-tag', {
-                            attr: {
-                                type: "info"
-                            }
-                        }, this.row.source)]);
-                    }
-                }
-            }, {
-                prop: 'status',
-                label: '订单状态',
-                width: 120,
-                filter: { // 是否可筛选,不需要筛选则不填此属性
-                    multiple: false, // 是否可多选，默认为true
-                    data: [{
-                        value: '0',
-                        text: '未发货'
-                    }, {
-                        value: '1',
-                        text: '已发货'
-                    }, {
-                        value: '2',
-                        text: '无效信息'
-                    }]
-                },
-                render: {
-                    props: {
-                        row: Object // 接受当前行参数
-                    },
-                    render: function render(h) {
-                        var _this = this;
-
-                        return h('el-select', {
-                            props: {
-                                value: this.row.status,
-                                size: 'small',
-                                placeholder: '标记处理状态'
-                            },
-                            on: {
-                                'change': function change(event) {
-                                    _this.row.status = event;
-                                    Object(__WEBPACK_IMPORTED_MODULE_3__api_goods__["j" /* goodsOrderIdUpdateStatus */])(_this.row.id, { status: event }).then(function (response) {
-                                        _this.$message.success(response.data.msg);
-                                    });
-                                }
-                            }
-                        }, [h('el-option', { props: { value: 0, label: '未发货' } }), h('el-option', { props: { value: 1, label: '已发货' } }), h('el-option', { props: { value: 2, label: '无效信息' } })]);
-                    }
-                }
+                prop: 'created_at',
+                label: '发布时间'
             }, {
                 label: '操作',
                 width: '200',
@@ -2175,45 +2010,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         // 工具栏事件处理 type值为columns中tools的键值
         handleTools: function handleTools(type, index, row) {
-            var _this2 = this;
+            var _this = this;
 
-            if (type == 'search') {
-                this.id = row.id;
-                this.ipSourceIsShow = true;
+            if (type == 'edit') {
+                this.$router.push({
+                    path: '/edit_goods',
+                    name: "edit_goods",
+                    params: {
+                        id: row.id
+                    }
+                });
             } else if (type == 'delete') {
                 //删除数据
-                Object(__WEBPACK_IMPORTED_MODULE_3__api_goods__["g" /* goodsOrderDelete */])(row.id).then(function (response) {
+                Object(__WEBPACK_IMPORTED_MODULE_3__api_goods__["c" /* goodsIdDelete */])(row.id).then(function (response) {
                     //成功响应动态移除表格项
-                    _this2.handleDeleteRow(index);
+                    _this.handleDeleteRow(index);
                     //提示信息
-                    _this2.$message.success(response.data.msg);
+                    _this.$message.success(response.data.msg);
                 });
-            } else if (type == 'show') {
-                this.id = row.id;
-                this.goodsOrderInfo = true;
+            } else if (type == 'extension') {
+                this.$router.push({
+                    path: '/edit_goods',
+                    name: "edit_goods",
+                    params: {
+                        id: row.id,
+                        sub: 'fourth'
+                    }
+                });
             } else {
                 console.error('Tools Event:' + type + ' Not found');
             }
         },
-
+        handleAdd: function handleAdd() {
+            //弹出新增窗口
+            this.$router.push('/publish_goods');
+        },
 
         //tool栏按钮权限控制
         handleGetBtn: function handleGetBtn() {
             var conf = {
-                show: {
-                    type: 'success',
-                    icon: 'el-icon-view',
-                    text: "查看详情"
-                },
-                search: {
+                edit: {
                     type: 'primary',
-                    icon: 'el-icon-location-outline',
-                    text: "属地查询"
+                    icon: 'el-icon-edit'
                 },
                 delete: {
                     type: 'danger',
                     icon: 'el-icon-delete'
+                },
+                extension: {
+                    type: 'success',
+                    text: "推广链接",
+                    icon: 'el-icon-share'
                 }
+
             };
             var result = {};
             this.$store.state.user.auth.auth.forEach(function (item) {
@@ -2227,18 +2076,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         //批量删除
         handleSelect: function handleSelect() {
-            var _this3 = this;
+            var _this2 = this;
 
+            //禁用多选用户操作
             var ids = this.handleGetSelection('id');
             if (ids.length === 0) {
                 this.$message.error('请选择一个选项后再进行进行操作');
                 return false;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_3__api_goods__["f" /* goodsOrderBatchDelete */])({ id: ids }).then(function (response) {
+            Object(__WEBPACK_IMPORTED_MODULE_3__api_goods__["b" /* goodsBatchDelete */])({ id: ids }).then(function (response) {
                 //重载表格
-                _this3.handleRenderTable();
+                _this2.handleRenderTable();
                 //响应消息
-                _this3.$message.success(response.data.msg);
+                _this2.$message.success(response.data.msg);
             });
         }
     }
@@ -2246,7 +2096,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 534:
+/***/ 497:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2271,13 +2121,26 @@ var render = function() {
                     "el-button",
                     {
                       attrs: {
+                        type: "primary",
+                        size: "small",
+                        icon: "el-icon-plus"
+                      },
+                      on: { click: _vm.handleAdd }
+                    },
+                    [_vm._v("添加商品信息")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-button",
+                    {
+                      attrs: {
                         type: "danger",
                         size: "small",
                         icon: "el-icon-delete"
                       },
                       on: { click: _vm.handleSelect }
                     },
-                    [_vm._v("删除订单信息")]
+                    [_vm._v("删除商品信息")]
                   )
                 ],
                 1
@@ -2354,70 +2217,11 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "myTable" },
-        [
-          _c("Table", {
-            ref: "table",
-            attrs: { url: _vm.url, columns: _vm.columns },
-            on: { tools: _vm.handleTools }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          attrs: { title: "查看IP手机地理信息", visible: _vm.ipSourceIsShow },
-          on: {
-            "update:visible": function($event) {
-              _vm.ipSourceIsShow = $event
-            }
-          }
-        },
-        [
-          _vm.ipSourceIsShow
-            ? _c("ipSourceShow", {
-                ref: "editForm",
-                attrs: { id: _vm.id },
-                on: {
-                  close: function($event) {
-                    _vm.ipSourceIsShow = false
-                  }
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          attrs: { title: "订单详情", visible: _vm.goodsOrderInfo },
-          on: {
-            "update:visible": function($event) {
-              _vm.goodsOrderInfo = $event
-            }
-          }
-        },
-        [
-          _vm.goodsOrderInfo
-            ? _c("show", {
-                ref: "editForm",
-                attrs: { id: _vm.id },
-                on: {
-                  close: function($event) {
-                    _vm.goodsOrderInfo = false
-                  }
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      )
+      _c("Table", {
+        ref: "table",
+        attrs: { url: _vm.url, columns: _vm.columns },
+        on: { tools: _vm.handleTools }
+      })
     ],
     1
   )
@@ -2428,633 +2232,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7afd4a88", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 559:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(560)
-}
-var normalizeComponent = __webpack_require__(245)
-/* script */
-var __vue_script__ = __webpack_require__(562)
-/* template */
-var __vue_template__ = __webpack_require__(563)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-7c56ea28"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/view/order/order/ipsource.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7c56ea28", Component.options)
-  } else {
-    hotAPI.reload("data-v-7c56ea28", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 560:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(561);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(246)("7c451cce", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7c56ea28\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ipsource.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7c56ea28\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ipsource.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 561:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(79)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 562:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_goods__ = __webpack_require__(265);
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "ipsource",
-    data: function data() {
-        return {
-            ip: "",
-            phone: ""
-        };
-    },
-    created: function created() {
-        var _this = this;
-
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_goods__["l" /* ipSource */])(this.id).then(function (response) {
-            _this.ip = response.data.data.ip;
-            _this.phone = response.data.data.phone;
-        });
-    },
-
-    props: ['id']
-});
-
-/***/ }),
-
-/***/ 563:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", [_vm._v("Ip地址定位:" + _vm._s(_vm.ip))]),
-    _vm._v(" "),
-    _c("p", [_vm._v("手机号码定位:" + _vm._s(_vm.phone))])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7c56ea28", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 564:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(565)
-}
-var normalizeComponent = __webpack_require__(245)
-/* script */
-var __vue_script__ = __webpack_require__(567)
-/* template */
-var __vue_template__ = __webpack_require__(568)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-16962d67"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/view/order/order/show.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-16962d67", Component.options)
-  } else {
-    hotAPI.reload("data-v-16962d67", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 565:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(566);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(246)("4034665e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16962d67\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./show.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16962d67\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./show.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 566:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(79)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.table_head[data-v-16962d67] {\n    font-size: 16px;\n    font-weight: 600;\n    padding-right: 15px;\n}\n.table[data-v-16962d67] {\n    width: 100%;\n    max-width: 100%;\n    margin-bottom: 20px;\n    border-spacing: 0;\n    border-collapse: collapse;\n    background-color: transparent;\n}\n.table-bordered[data-v-16962d67] {\n    border: 1px solid #ddd;\n}\ntd[data-v-16962d67] {\n    border: 1px solid #ddd;\n    line-height: 40px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 567:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_goods__ = __webpack_require__(265);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "show",
-    data: function data() {
-        return {
-            goodsOrder: []
-        };
-    },
-    created: function created() {
-        var _this = this;
-
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_goods__["h" /* goodsOrderIdGet */])(this.id).then(function (response) {
-            _this.goodsOrder = response.data.data;
-        });
-    },
-
-    methods: {
-        edit: function edit() {
-            var _this2 = this;
-
-            var postData = {
-                name: this.goodsOrder.name,
-                phone: this.goodsOrder.phone,
-                address: this.goodsOrder.address
-            };
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_goods__["i" /* goodsOrderIdUpdate */])(this.id, postData).then(function (response) {
-                _this2.$message.success(response.data.msg);
-            });
-        }
-    },
-    props: ['id']
-});
-
-/***/ }),
-
-/***/ 568:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("table", { staticClass: "table table-bordered" }, [
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("订单号")
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.goodsOrder.order_num))])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("订购时间")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticStyle: { color: "green" } }, [
-          _vm._v(_vm._s(_vm.goodsOrder.created_at))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("订购产品")
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.goodsOrder.goods_name))])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("订购套餐")
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.goodsOrder.meal_name))])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("选择尺码")
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.goodsOrder.size_name))])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("订购数量")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("el-tag", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.goodsOrder.num) +
-                  "\n                "
-              )
-            ])
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("总金额")
-        ]),
-        _vm._v(" "),
-        _c("td", { staticStyle: { color: "red" } }, [
-          _vm._v("¥ " + _vm._s(_vm.goodsOrder.order_total_price))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("姓名")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("el-input", {
-              attrs: { placeholder: "请输入收货人姓名" },
-              model: {
-                value: _vm.goodsOrder.name,
-                callback: function($$v) {
-                  _vm.$set(_vm.goodsOrder, "name", $$v)
-                },
-                expression: "goodsOrder.name"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("手机号码")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("el-input", {
-              attrs: { placeholder: "请输入联系人手机号" },
-              model: {
-                value: _vm.goodsOrder.phone,
-                callback: function($$v) {
-                  _vm.$set(_vm.goodsOrder, "phone", $$v)
-                },
-                expression: "goodsOrder.phone"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("收货地址")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("el-input", {
-              attrs: { placeholder: "请输入收货地址" },
-              model: {
-                value: _vm.goodsOrder.address,
-                callback: function($$v) {
-                  _vm.$set(_vm.goodsOrder, "address", $$v)
-                },
-                expression: "goodsOrder.address"
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("付款方式")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("el-tag", { attrs: { type: "success" } }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.goodsOrder.paytype) +
-                  "\n                "
-              )
-            ])
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("顾客留言")
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.goodsOrder.message))])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("订单来源")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("el-tag", { attrs: { type: "success" } }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.goodsOrder.source) +
-                  "\n                "
-              )
-            ])
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("下单地址")
-        ]),
-        _vm._v(" "),
-        _c("td", [
-          _vm._v(
-            "\n                " +
-              _vm._s(_vm.goodsOrder.source_url) +
-              "\n            "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("td", { staticClass: "table_head", attrs: { align: "right" } }, [
-          _vm._v("保存修改")
-        ]),
-        _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c(
-              "el-button",
-              { attrs: { type: "primary" }, on: { click: _vm.edit } },
-              [_vm._v("点击修改")]
-            )
-          ],
-          1
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-16962d67", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-548cc380", module.exports)
   }
 }
 

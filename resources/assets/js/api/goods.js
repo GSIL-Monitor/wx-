@@ -226,6 +226,48 @@ export const goodsBatchDelete = (data) => {
     })
 };
 
+export const ipSource = (id) => {
+    return axios.request({
+        url: 'goodsOrder/ip_source/'+id,
+        method: 'get'
+    })
+};
+
+export const goodsOrderDelete = (id) => {
+    return axios.request({
+        url: 'goodsOrder/'+id,
+        method: 'delete'
+    })
+};
+export const goodsOrderBatchDelete = (data) => {
+    return axios.request({
+        url: 'goodsOrder/batchDelete',
+        data,
+        method: 'post'
+    })
+};
+export const goodsOrderIdGet = (id) => {
+    return axios.request({
+        url: 'goodsOrder/'+id,
+        method: 'get'
+    })
+};
+export const goodsOrderIdUpdate = (id, data) => {
+    return axios.request({
+        url: 'goodsOrder/'+id,
+        data,
+        method: 'put'
+    })
+};
+export const goodsOrderIdUpdateStatus = (id, data) => {
+    return axios.request({
+        url: 'goodsOrder/status/'+id,
+        data,
+        method: 'put'
+    })
+};
+
+
 
 
 
