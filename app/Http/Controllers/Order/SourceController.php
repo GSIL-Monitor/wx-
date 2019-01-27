@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\BaseController;
+use App\Models\GoodsOrder;
 use App\Models\Source;
+use App\Models\SourceUrl;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class SourceController extends BaseController
 {
@@ -61,7 +65,8 @@ class SourceController extends BaseController
      * @return \Illuminate\Http\JsonResponse
      * @throws \App\Exceptions\FromVerif
      */
-    public function batchIdDelete(Request $request){
+    public function batchIdDelete(Request $request)
+    {
         //验证表单字段
         $source = $this->formVerif($request, [
             'id' => 'required', //来源id
@@ -70,5 +75,64 @@ class SourceController extends BaseController
             ->whereIn('id', $source['id'])
             ->delete();
         return $this->returnMsg($res);
+    }
+
+    /**
+     * 返回指定Id商品的推广链接的列表
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function extensionURL(Request $request)
+    {
+        return $this->filter(SourceUrl::query()->where('goods_id', $request->get('goods_id')), $request);
+    }
+
+    public function sourceCount()
+    {
+        $result = [];
+        $todayStartTime = Carbon::parse(Carbon::today())->startOfDay()->format('Y-m-d H:i:s');
+        $todayEndTime = $endDate = Carbon::parse(Carbon::today())->endOfDay()->format('Y-m-d H:i:s');
+        $query = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(source) AS source_count')
+            ])->groupBy('source');
+        $result['today'] = $query
+            ->where('created_at', '>=', $todayStartTime)
+            ->where('created_at', '<=', $todayEndTime)
+            //->toSql();
+            ->get()->map(function ($item) {
+                $value['source'] = $item->source;
+                $value['order_total_price_count'] = $item->order_total_price_count;
+                $value['source_count'] = $item->source_count;
+                return $value;
+            });
+        dd($result['today']);
+
+        $YesterdayStartTime = (string)Carbon::yesterday();
+        $YesterdayEndTime = (string)Carbon::yesterday()->endOfDay();
+        $result['Yesterday'] = $query
+            ->whereTime('created_at', '>', $YesterdayStartTime)
+            ->whereTime('created_at', '<', $YesterdayEndTime)
+            ->get()->map(function ($item) {
+                $value['source'] = $item->source;
+                $value['order_total_price_count'] = $item->order_total_price_count;
+                $value['source_count'] = $item->source_count;
+                return $value;
+            });
+
+        $result['all'] = $query
+            ->get()->map(function ($item) {
+                $value['source'] = $item->source;
+                $value['order_total_price_count'] = $item->order_total_price_count;
+                $value['source_count'] = $item->source_count;
+                return $value;
+            });
+
+
+        dd($result);
     }
 }

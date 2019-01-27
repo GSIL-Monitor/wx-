@@ -34,7 +34,7 @@ class UploadController extends Controller
             echo json_encode(['error' => $file->getError(), 'msg' => '上传失败']);
         }
         //$path = $request->file('avatar')->store('avatars');
-        $path = Storage::url(Storage::putFile('public', $file));
+        $path = Storage::url(Storage::putFile('/', $file));
         return ['url'=>$path];
     }
 }
