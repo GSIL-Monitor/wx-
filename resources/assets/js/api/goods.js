@@ -267,6 +267,12 @@ export const goodsOrderIdUpdateStatus = (id, data) => {
     })
 };
 
+export const sourceCount = () => {
+    return axios.request({
+        url: 'source/count',
+        method: 'get'
+    })
+};
 
 
 

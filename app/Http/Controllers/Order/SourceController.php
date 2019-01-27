@@ -89,50 +89,66 @@ class SourceController extends BaseController
         return $this->filter(SourceUrl::query()->where('goods_id', $request->get('goods_id')), $request);
     }
 
+    /**
+     * 来源统计
+     */
     public function sourceCount()
     {
         $result = [];
         $todayStartTime = Carbon::parse(Carbon::today())->startOfDay()->format('Y-m-d H:i:s');
         $todayEndTime = $endDate = Carbon::parse(Carbon::today())->endOfDay()->format('Y-m-d H:i:s');
-        $query = GoodsOrder::query()
+        $result['today'] = GoodsOrder::query()
             ->select([
                 '*',
                 DB::raw('SUM(order_total_price) AS order_total_price_count'),
                 DB::raw('count(source) AS source_count')
-            ])->groupBy('source');
-        $result['today'] = $query
+            ])
+            ->groupBy('source')
             ->where('created_at', '>=', $todayStartTime)
             ->where('created_at', '<=', $todayEndTime)
-            //->toSql();
-            ->get()->map(function ($item) {
-                $value['source'] = $item->source;
-                $value['order_total_price_count'] = $item->order_total_price_count;
-                $value['source_count'] = $item->source_count;
-                return $value;
-            });
-        dd($result['today']);
-
-        $YesterdayStartTime = (string)Carbon::yesterday();
-        $YesterdayEndTime = (string)Carbon::yesterday()->endOfDay();
-        $result['Yesterday'] = $query
-            ->whereTime('created_at', '>', $YesterdayStartTime)
-            ->whereTime('created_at', '<', $YesterdayEndTime)
-            ->get()->map(function ($item) {
+            ->orderBy('source_count', 'desc')
+            ->get()
+            ->map(function ($item) {
                 $value['source'] = $item->source;
                 $value['order_total_price_count'] = $item->order_total_price_count;
                 $value['source_count'] = $item->source_count;
                 return $value;
             });
 
-        $result['all'] = $query
-            ->get()->map(function ($item) {
+        $YesterdayStartTime = Carbon::parse(Carbon::yesterday())->startOfDay()->format('Y-m-d H:i:s');
+        $YesterdayEndTime = Carbon::parse(Carbon::yesterday())->endOfDay()->format('Y-m-d H:i:s');
+        $result['Yesterday'] = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(source) AS source_count')
+            ])
+            ->groupBy('source')
+            ->where('created_at', '>=', $YesterdayStartTime)
+            ->where('created_at', '<=', $YesterdayEndTime)
+            ->orderBy('source_count', 'desc')
+            ->get()
+            ->map(function ($item) {
                 $value['source'] = $item->source;
                 $value['order_total_price_count'] = $item->order_total_price_count;
                 $value['source_count'] = $item->source_count;
                 return $value;
             });
-
-
-        dd($result);
+        $result['all'] = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(source) AS source_count')
+            ])
+            ->groupBy('source')
+            ->orderBy('source_count', 'desc')
+            ->get()
+            ->map(function ($item) {
+                $value['source'] = $item->source;
+                $value['order_total_price_count'] = $item->order_total_price_count;
+                $value['source_count'] = $item->source_count;
+                return $value;
+            });
+        return $this->returnData($result);
     }
 }
