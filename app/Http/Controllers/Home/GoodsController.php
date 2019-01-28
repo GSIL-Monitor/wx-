@@ -7,6 +7,7 @@ use App\Models\ArticleTemplate;
 use App\Models\Goods;
 use App\Models\GoodsOrder;
 use App\Models\Meals;
+use http\Url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -178,10 +179,10 @@ class GoodsController extends BaseController
         $field['status'] = 0;
         $field['address'] = $this->makeAddress();
         $field['province'] = request()->get('province');
-        GoodsOrder::query()->create($field);
+        $orderId = GoodsOrder::query()->create($field)->id;
         return response()->json([
             'code' => '0',
-            'url' => 'http://www.baidu.com'
+            'url' => url('buySuccess', $orderId)
         ]);
     }
 
@@ -259,5 +260,26 @@ class GoodsController extends BaseController
         $city = request()->get('city');
         $area = request()->get('area');
         return $province . '-' . $city . '-' . $area . '-' . $address;
+    }
+
+    /**
+     * 购买成功
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function buySuccess($id)
+    {
+        $goods = GoodsOrder::query()
+            ->where('id', $id)
+            ->first()
+            ->toArray();
+        //返回上一页链接
+        $url = \Illuminate\Support\Facades\URL::previous() ?? "";
+        return view('goods.buySuccess', [
+            'goods'=>$goods,
+            'url'=>$url,
+        ]);
     }
 }

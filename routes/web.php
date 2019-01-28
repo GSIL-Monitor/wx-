@@ -9,6 +9,7 @@ Route::get('admin', function () {
 Route::get('/report', function () {
     return view('goods.report');
 });
+Route::get('/buySuccess/{id}', 'Home\GoodsController@buySuccess');
 
 Route::get('/{code}', 'Home\GoodsController@show');
 
