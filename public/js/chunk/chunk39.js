@@ -1,18 +1,22 @@
-webpackJsonp([22],{
+webpackJsonp([39],{
 
-/***/ 244:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(445)
+}
 var normalizeComponent = __webpack_require__(246)
 /* script */
-var __vue_script__ = __webpack_require__(569)
+var __vue_script__ = __webpack_require__(447)
 /* template */
-var __vue_template__ = __webpack_require__(570)
+var __vue_template__ = __webpack_require__(448)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -25,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/error/401.vue"
+Component.options.__file = "resources/assets/js/view/article/category.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -34,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3e200a76", Component.options)
+    hotAPI.createRecord("data-v-56ffe4df", Component.options)
   } else {
-    hotAPI.reload("data-v-3e200a76", Component.options)
+    hotAPI.reload("data-v-56ffe4df", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -421,75 +425,63 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 281:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 277:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(282)
-}
-var normalizeComponent = __webpack_require__(246)
-/* script */
-var __vue_script__ = __webpack_require__(284)
-/* template */
-var __vue_template__ = __webpack_require__(288)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-a1aaa796"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/view/error/error-content.vue"
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return category_del; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return category_add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return category_edit; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a1aaa796", Component.options)
-  } else {
-    hotAPI.reload("data-v-a1aaa796", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
 
-module.exports = Component.exports
-
+var getList = function getList() {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/list',
+        method: 'get'
+    });
+};
+var category_del = function category_del(id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/del/' + id,
+        method: 'get'
+    });
+};
+var category_add = function category_add(data) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/add',
+        data: data,
+        method: 'post'
+    });
+};
+var category_edit = function category_edit(data, id) {
+    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
+        url: '/category/edit/' + id,
+        data: data,
+        method: 'post'
+    });
+};
 
 /***/ }),
 
-/***/ 282:
+/***/ 445:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(283);
+var content = __webpack_require__(446);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(247)("ac9b02e2", content, false, {});
+var update = __webpack_require__(247)("5a56e6b2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a1aaa796\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./error-content.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a1aaa796\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./error-content.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-56ffe4df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./category.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-56ffe4df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./category.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -500,7 +492,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 283:
+/***/ 446:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -508,20 +500,54 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.error-page[data-v-a1aaa796]{\n    width: 240px;\n    height: 160px;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%,-50%);\n            transform: translate(-50%,-50%);\n}\nh4[data-v-a1aaa796]{\n    font-size: 48px;\n    margin: 4px 0;\n}\nh5[data-v-a1aaa796]{\n    font-size: 24px;\n    margin: 0 0 10px;\n}\nh4[data-v-a1aaa796],h5[data-v-a1aaa796]{\n    font-family: 'Raleway', sans-serif;\n    font-weight: 100;\n    color:#909399;\n}\n", ""]);
+exports.push([module.i, "\n.custom-tree-node {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    font-size: 14px;\n    padding-right: 8px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 284:
+/***/ 447:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_btn__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_btn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__error_btn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_category__ = __webpack_require__(277);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -536,114 +562,140 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+var id = 1000;
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'error_content',
-    components: {
-        ErrorBtn: __WEBPACK_IMPORTED_MODULE_0__error_btn___default.a
-    },
-    props: {
-        code: String,
-        desc: String
-    }
-});
-
-/***/ }),
-
-/***/ 285:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(246)
-/* script */
-var __vue_script__ = __webpack_require__(286)
-/* template */
-var __vue_template__ = __webpack_require__(287)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/view/error/error-btn.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b9b482d0", Component.options)
-  } else {
-    hotAPI.reload("data-v-b9b482d0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 286:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'backBtnGroup',
     data: function data() {
         return {
-            second: 5,
-            timer: null
+            category: [{
+                id: 0,
+                label: '文章分类管理',
+                children: []
+            }],
+            title: '添加分类',
+            dialog: false,
+            name: null,
+            itemData: null,
+            isEdit: false,
+            categoryAuth: [{
+                add: false,
+                edit: false,
+                delete: false
+            }]
         };
     },
 
-    methods: {
-        backHome: function backHome() {
-            this.$router.replace({
-                name: 'home'
-            });
-        },
-        backPrev: function backPrev() {
-            this.$router.go(-1);
-        }
-    },
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
-        this.timer = setInterval(function () {
-            if (_this.second === 0) _this.backPrev();else _this.second--;
-        }, 1000);
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["d" /* getList */])().then(function (response) {
+            _this.category[0].children = response.data.data;
+        });
+        var category_Auth = this.$store.state.user.auth.article_category;
+        category_Auth.forEach(function (value) {
+            if (value === 'add') {
+                _this.categoryAuth.add = true;
+                return true;
+            }
+            if (value === 'edit') {
+                _this.categoryAuth.edit = true;
+                return true;
+            }
+            if (value === 'delete') {
+                _this.categoryAuth.delete = true;
+                return true;
+            }
+        });
     },
-    beforeDestroy: function beforeDestroy() {
-        clearInterval(this.timer);
+    methods: {
+        append: function append(data) {
+            this.title = '添加分类';
+            //先清空对话框里面的输入框的值
+            this.name = '';
+            //判断一下是否超过了2级
+            if (data.pid > 0) {
+                this.$message.error('当前层不允许在添加分类了!');
+                return false;
+            }
+            this.itemData = data;
+            this.dialog = true;
+        },
+        ok: function ok() {
+            if (this.isEdit) {
+                return this.handelEdit();
+            } else {
+                return this.handleAdd();
+            }
+        },
+        handleAdd: function handleAdd() {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["a" /* category_add */])({ name: this.name, pid: this.itemData.id }).then(function (response) {
+                if (response.data.code === 0) {
+                    //关闭对话框
+                    _this2.dialog = false;
+                    var newChild = response.data.data;
+                    if (!_this2.itemData.children) {
+                        _this2.$set(_this2.itemData, 'children', []);
+                    }
+                    _this2.itemData.children.push(newChild);
+                    _this2.$message.success('添加成功');
+                } else {
+                    _this2.$message.error('添加失败');
+                }
+            });
+        },
+        handelEdit: function handelEdit() {
+            var _this3 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["c" /* category_edit */])({ name: this.name }, this.itemData.id).then(function (response) {
+                if (response.data.code === 0) {
+                    //关闭对话框
+                    _this3.dialog = false;
+                    _this3.isEdit = false; //结束编辑状态
+                    _this3.itemData.name = _this3.name;
+                    _this3.itemData.label = _this3.name;
+                    _this3.$message.success('修改成功');
+                } else {
+                    _this3.$message.error('修改失败');
+                }
+            });
+        },
+        edit: function edit(node, data) {
+            this.title = '修改分类名称';
+            //先清空对话框里面的输入框的值
+            this.name = '';
+            this.isEdit = true; //当前是修改状态
+            this.name = data.name; //吧数据挂载到全局方便其他函数调用
+            this.itemData = data; //吧数据挂载到全局方便其他函数调用
+            this.dialog = true; //显示对话框
+        },
+        remove: function remove(node, data) {
+            var _this4 = this;
+
+            if (data.id == 0) {
+                return false;
+            }
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["b" /* category_del */])(data.id).then(function (response) {
+                if (response.data.code === 0) {
+                    _this4.$message.success(response.data.msg);
+                    var parent = node.parent;
+                    var children = parent.data.children || parent.data;
+                    var index = children.findIndex(function (d) {
+                        return d.id === data.id;
+                    });
+                    children.splice(index, 1);
+                } else {
+                    _this4.$message.error(response.data.msg);
+                    return false;
+                }
+            });
+        }
     }
 });
 
 /***/ }),
 
-/***/ 287:
+/***/ 448:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -654,18 +706,137 @@ var render = function() {
     "div",
     [
       _c(
-        "el-button",
-        {
-          attrs: { type: "primary", size: "small" },
-          on: { click: _vm.backHome }
-        },
-        [_vm._v("返回首页")]
+        "div",
+        { staticStyle: { width: "40%" } },
+        [
+          _c("el-tree", {
+            attrs: {
+              data: _vm.category,
+              "node-key": "id",
+              "default-expand-all": "",
+              "expand-on-click-node": false
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var node = ref.node
+                  var data = ref.data
+                  return _c("span", { staticClass: "custom-tree-node" }, [
+                    _c("span", [_vm._v(_vm._s(node.label))]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      [
+                        _vm.categoryAuth.add
+                          ? [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "text", size: "mini" },
+                                  on: {
+                                    click: function() {
+                                      return _vm.append(data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                添加分类\n              "
+                                  )
+                                ]
+                              )
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.categoryAuth.edit
+                          ? [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "text", size: "mini" },
+                                  on: {
+                                    click: function() {
+                                      return _vm.edit(node, data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                修改名称\n            "
+                                  )
+                                ]
+                              )
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.categoryAuth.delete
+                          ? [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "text", size: "mini" },
+                                  on: {
+                                    click: function() {
+                                      return _vm.remove(node, data)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                删除分类\n            "
+                                  )
+                                ]
+                              )
+                            ]
+                          : _vm._e()
+                      ],
+                      2
+                    )
+                  ])
+                }
+              }
+            ])
+          })
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
-        "el-button",
-        { attrs: { size: "small" }, on: { click: _vm.backPrev } },
-        [_vm._v("返回上一页(" + _vm._s(_vm.second) + "s)")]
+        "el-dialog",
+        {
+          attrs: {
+            title: _vm.title,
+            visible: _vm.dialog,
+            width: "20%",
+            center: ""
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialog = $event
+            }
+          }
+        },
+        [
+          _c("el-input", {
+            staticStyle: { width: "70%" },
+            attrs: { placeholder: "输入分类名称" },
+            model: {
+              value: _vm.name,
+              callback: function($$v) {
+                _vm.name = $$v
+              },
+              expression: "name"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "el-button",
+            { attrs: { type: "primary" }, on: { click: _vm.ok } },
+            [_vm._v("确 定")]
+          )
+        ],
+        1
       )
     ],
     1
@@ -677,88 +848,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b9b482d0", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 288:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "error-page" },
-    [
-      _c("div", { staticClass: "content-con" }, [
-        _c("div", { staticClass: "text-con" }, [
-          _c("h4", [_vm._v(_vm._s(_vm.code))]),
-          _vm._v(" "),
-          _c("h5", [_vm._v(_vm._s(_vm.desc))])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("ErrorBtn")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a1aaa796", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 569:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_content_vue__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_content_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__error_content_vue__);
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'error_404',
-    components: {
-        errorContent: __WEBPACK_IMPORTED_MODULE_0__error_content_vue___default.a
-    }
-});
-
-/***/ }),
-
-/***/ 570:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("error-content", {
-    attrs: { code: "401", desc: "Oh~~您没有浏览这个页面的权限~" }
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3e200a76", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-56ffe4df", module.exports)
   }
 }
 

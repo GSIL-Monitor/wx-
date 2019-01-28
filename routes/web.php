@@ -2,7 +2,13 @@
 
 
 //后台控制器
-Route::get('admin',function (){
-   return view('admin');
+Route::get('admin', function () {
+    return view('admin');
 });
-Route::get('/{code}','Home\GoodsController@show');
+
+Route::get('/report', function () {
+    return view('goods.report');
+});
+
+Route::get('/{code}', 'Home\GoodsController@show');
+

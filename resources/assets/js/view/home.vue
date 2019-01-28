@@ -1,14 +1,14 @@
 <template>
     <el-container style="height: 100%;">
         <el-header>
-            <div class="logo">WeChat 推广</div>
+            <div class="logo">WeChat 推广&nbsp;<span style="font-size: 12px">V1.0</span></div>
             <!--<el-switch v-model="isCollapse"></el-switch>-->
             <el-dropdown trigger="hover" style="float: right;color: #fff;" @command="handleCommand">
                 <span class="el-dropdown-link">
                     {{this.$store.state.user.userName}}<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="clear">清除缓存</el-dropdown-item>
+                    <!--<el-dropdown-item command="clear">清除缓存</el-dropdown-item>-->
                     <el-dropdown-item command="logout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
@@ -152,7 +152,7 @@
         line-height: 60px;
     }
     .logo{
-        width: 150px;
+        width: 180px;
         float: left;
         color: #fff;
         font-size: 20px;

@@ -11,6 +11,8 @@ Route::group(['namespace'=>'Order'],function () {
     Route::prefix('source')->group(function (){
         //来源统计
         Route::get('/count','SourceController@sourceCount');
+        Route::get('/zhcount','SourceController@zhCount');
+        Route::get('/peoplecount','SourceController@peopleCount');
         Route::get('/extensionURL','SourceController@extensionURL');
         Route::get('/','SourceController@getList');
         Route::post('/','SourceController@add');

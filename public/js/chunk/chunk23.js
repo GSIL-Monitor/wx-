@@ -1,18 +1,18 @@
 webpackJsonp([23],{
 
-/***/ 227:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(441)
+  __webpack_require__(475)
 }
-var normalizeComponent = __webpack_require__(242)
+var normalizeComponent = __webpack_require__(246)
 /* script */
-var __vue_script__ = __webpack_require__(443)
+var __vue_script__ = __webpack_require__(477)
 /* template */
-var __vue_template__ = __webpack_require__(444)
+var __vue_template__ = __webpack_require__(478)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/view/article/category.vue"
+Component.options.__file = "resources/assets/js/view/company/henhen.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-56ffe4df", Component.options)
+    hotAPI.createRecord("data-v-f60d34cc", Component.options)
   } else {
-    hotAPI.reload("data-v-56ffe4df", Component.options)
+    hotAPI.reload("data-v-f60d34cc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 242:
+/***/ 246:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -162,7 +162,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 243:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -181,7 +181,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(244)
+var listToStyles = __webpack_require__(248)
 
 /*
 type StyleObject = {
@@ -391,7 +391,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 248:
 /***/ (function(module, exports) {
 
 /**
@@ -426,62 +426,352 @@ module.exports = function listToStyles (parentId, list) {
 /***/ }),
 
 /***/ 269:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return category_del; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return category_add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return category_edit; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
-
-
-var getList = function getList() {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/list',
-        method: 'get'
-    });
-};
-var category_del = function category_del(id) {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/del/' + id,
-        method: 'get'
-    });
-};
-var category_add = function category_add(data) {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/add',
-        data: data,
-        method: 'post'
-    });
-};
-var category_edit = function category_edit(data, id) {
-    return __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].request({
-        url: '/category/edit/' + id,
-        data: data,
-        method: 'post'
-    });
-};
+module.exports=__webpack_require__(274)
 
 /***/ }),
 
-/***/ 441:
+/***/ 274:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(246)
+/* script */
+var __vue_script__ = __webpack_require__(275)
+/* template */
+var __vue_template__ = __webpack_require__(276)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue-ueditor-wrap/lib/index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a64a0188", Component.options)
+  } else {
+    hotAPI.reload("data-v-a64a0188", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 275:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+//
+//
+//
+//
+
+// 一个简单的事件订阅发布的实现,取代原始Event对象,提升IE下的兼容性
+var LoadEvent = function () {
+  function LoadEvent() {
+    _classCallCheck(this, LoadEvent);
+
+    this.listeners = {};
+  }
+
+  _createClass(LoadEvent, [{
+    key: 'on',
+    value: function on(eventName, callback) {
+      this.listeners[eventName] === undefined ? this.listeners[eventName] = [] : '';
+      this.listeners[eventName].push(callback);
+    }
+  }, {
+    key: 'emit',
+    value: function emit(eventName) {
+      this.listeners[eventName] && this.listeners[eventName].forEach(function (callback) {
+        return callback();
+      });
+    }
+  }]);
+
+  return LoadEvent;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'VueUeditorWrap',
+  data: function data() {
+    return {
+      id: 'editor' + Math.random().toString().slice(-10),
+      editor: null,
+      status: 0,
+      initValue: '',
+      defaultConfig: {
+        UEDITOR_HOME_URL: './static/UEditor/',
+        enableAutoSave: false
+      }
+    };
+  },
+
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    config: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    init: {
+      type: Function,
+      default: function _default() {
+        return function () {};
+      }
+    },
+    destroy: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    mixedConfig: function mixedConfig() {
+      return Object.assign({}, this.defaultConfig, this.config);
+    }
+  },
+  methods: {
+    // 添加自定义按钮
+    registerButton: function registerButton(_ref) {
+      var name = _ref.name,
+          icon = _ref.icon,
+          tip = _ref.tip,
+          handler = _ref.handler,
+          _ref$UE = _ref.UE,
+          UE = _ref$UE === undefined ? window.UE : _ref$UE;
+
+      UE.registerUI(name, function (editor, name) {
+        editor.registerCommand(name, {
+          execCommand: function execCommand() {
+            handler(editor, name);
+          }
+        });
+        var btn = new UE.ui.Button({
+          name: name,
+          title: tip,
+          cssRules: 'background-image: url(' + icon + ') !important;background-size: cover;',
+          onclick: function onclick() {
+            editor.execCommand(name);
+          }
+        });
+        editor.addListener('selectionchange', function () {
+          var state = editor.queryCommandState(name);
+          if (state === -1) {
+            btn.setDisabled(true);
+            btn.setChecked(false);
+          } else {
+            btn.setDisabled(false);
+            btn.setChecked(state);
+          }
+        });
+        return btn;
+      });
+    },
+    // 实例化编辑器
+    _initEditor: function _initEditor() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.init();
+        _this.editor = window.UE.getEditor(_this.id, _this.mixedConfig);
+        _this.editor.addListener('ready', function () {
+          _this.status = 2;
+          _this.editor.setContent(_this.initValue);
+          _this.$emit('ready', _this.editor);
+          _this.editor.addListener('contentChange', function () {
+            _this.$emit('input', _this.editor.getContent());
+          });
+        });
+      });
+    },
+
+    // 检测依赖,确保 UEditor 资源文件已加载完毕
+    _checkDependencies: function _checkDependencies() {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        // 判断ueditor.config.js和ueditor.all.js是否均已加载(仅加载完ueditor.config.js时UE对象和UEDITOR_CONFIG对象存在,仅加载完ueditor.all.js时UEDITOR_CONFIG对象存在,但为空对象)
+        var scriptsLoaded = !!window.UE && !!window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0 && !!window.UE.getEditor;
+        if (scriptsLoaded) {
+          resolve();
+        } else if (window.loadEnv) {
+          // 利用订阅发布，确保同时渲染多个组件时，不会重复创建script标签
+          window.loadEnv.on('scriptsLoaded', function () {
+            resolve();
+          });
+        } else {
+          window.loadEnv = new LoadEvent();
+          // 如果在其他地方只引用ueditor.all.min.js，在加载ueditor.config.js之后仍需要重新加载ueditor.all.min.js，所以必须确保ueditor.config.js已加载
+          _this2._loadConfig().then(function () {
+            return _this2._loadCore();
+          }).then(function () {
+            resolve();
+            window.loadEnv.emit('scriptsLoaded');
+          });
+        }
+      });
+    },
+    _loadConfig: function _loadConfig() {
+      var _this3 = this;
+
+      return new Promise(function (resolve, reject) {
+        if (window.UE && window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0) {
+          resolve();
+          return;
+        }
+        var configScript = document.createElement('script');
+        configScript.type = 'text/javascript';
+        configScript.src = _this3.mixedConfig.UEDITOR_HOME_URL + 'ueditor.config.js';
+        document.getElementsByTagName('head')[0].appendChild(configScript);
+        configScript.onload = function () {
+          if (window.UE && window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0) {
+            resolve();
+          } else {
+            console.error('加载ueditor.config.js失败,请检查您的配置地址UEDITOR_HOME_URL填写是否正确!\n', configScript.src);
+          }
+        };
+      });
+    },
+    _loadCore: function _loadCore() {
+      var _this4 = this;
+
+      return new Promise(function (resolve, reject) {
+        if (window.UE && window.UE.getEditor) {
+          resolve();
+          return;
+        }
+        var coreScript = document.createElement('script');
+        coreScript.type = 'text/javascript';
+        coreScript.src = _this4.mixedConfig.UEDITOR_HOME_URL + 'ueditor.all.min.js';
+        document.getElementsByTagName('head')[0].appendChild(coreScript);
+        coreScript.onload = function () {
+          if (window.UE && window.UE.getEditor) {
+            resolve();
+          } else {
+            console.error('加载ueditor.all.min.js失败,请检查您的配置地址UEDITOR_HOME_URL填写是否正确!\n', coreScript.src);
+          }
+        };
+      });
+    },
+
+    // 设置内容
+    _setContent: function _setContent(value) {
+      value === this.editor.getContent() || this.editor.setContent(value);
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.destroy && this.editor && this.editor.destroy) this.editor.destroy();
+  },
+
+  // v-model语法糖实现
+  watch: {
+    value: {
+      handler: function handler(value) {
+        var _this5 = this;
+
+        // 0: 尚未初始化 1: 开始初始化但尚未ready 2 初始化完成并已ready
+        switch (this.status) {
+          case 0:
+            this.status = 1;
+            this.initValue = value;
+            this._checkDependencies().then(function () {
+              return _this5._initEditor();
+            });
+            break;
+          case 1:
+            this.initValue = value;
+            break;
+          case 2:
+            this._setContent(value);
+            break;
+          default:
+            break;
+        }
+      },
+
+      immediate: true
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 276:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("script", {
+    attrs: { id: _vm.id, name: _vm.name, type: "text/plain" }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a64a0188", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 475:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(442);
+var content = __webpack_require__(476);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(243)("5a56e6b2", content, false, {});
+var update = __webpack_require__(247)("07d1b6b1", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-56ffe4df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./category.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-56ffe4df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./category.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f60d34cc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./henhen.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f60d34cc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./henhen.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -492,7 +782,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 442:
+/***/ 476:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(79)(false);
@@ -500,40 +790,21 @@ exports = module.exports = __webpack_require__(79)(false);
 
 
 // module
-exports.push([module.i, "\n.custom-tree-node {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    font-size: 14px;\n    padding-right: 8px;\n}\n", ""]);
+exports.push([module.i, "\n.edui-editor{\n    width: 100%!important;\n}\n.edui-editor-iframeholder {\n    width: 100%!important;\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 443:
+/***/ 477:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_category__ = __webpack_require__(269);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_axios__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_ueditor_wrap__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_ueditor_wrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_ueditor_wrap__);
 //
 //
 //
@@ -562,140 +833,85 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-var id = 1000;
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        VueUeditorWrap: __WEBPACK_IMPORTED_MODULE_1_vue_ueditor_wrap___default.a
+    },
     data: function data() {
         return {
-            category: [{
-                id: 0,
-                label: '文章分类管理',
-                children: []
-            }],
-            title: '添加分类',
-            dialog: false,
-            name: null,
-            itemData: null,
-            isEdit: false,
-            categoryAuth: [{
-                add: false,
-                edit: false,
-                delete: false
-            }]
+            index: 1,
+            formDynamic: {
+                english: '',
+                title: '',
+                content: '',
+                desc: '',
+                keyword: 'henhen'
+            },
+            configID: 0,
+            operation: "",
+            Ueconfig: {
+                serverUrl: '/static/UEditor/php/controller.php'
+            }
         };
     },
 
     created: function created() {
         var _this = this;
 
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["d" /* getList */])().then(function (response) {
-            _this.category[0].children = response.data.data;
-        });
-        var category_Auth = this.$store.state.user.auth.article_category;
-        category_Auth.forEach(function (value) {
-            if (value === 'add') {
-                _this.categoryAuth.add = true;
-                return true;
-            }
-            if (value === 'edit') {
-                _this.categoryAuth.edit = true;
-                return true;
-            }
-            if (value === 'delete') {
-                _this.categoryAuth.delete = true;
-                return true;
+        __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].get('/config', { params: { keyword: 'henhen' } }).then(function (response) {
+            if (response.data.status) {
+                _this.formDynamic = response.data.data;
+                //有数据走修改逻辑
+                _this.operation = 'edit';
+                _this.configID = response.data.data.id;
+            } else {
+                //没数据走添加逻辑
+                _this.operation = 'add';
             }
         });
     },
     methods: {
-        append: function append(data) {
-            this.title = '添加分类';
-            //先清空对话框里面的输入框的值
-            this.name = '';
-            //判断一下是否超过了2级
-            if (data.pid > 0) {
-                this.$message.error('当前层不允许在添加分类了!');
-                return false;
-            }
-            this.itemData = data;
-            this.dialog = true;
-        },
-        ok: function ok() {
-            if (this.isEdit) {
-                return this.handelEdit();
-            } else {
-                return this.handleAdd();
-            }
-        },
         handleAdd: function handleAdd() {
+            this.index = this.formDynamic.items.length + 1;
+            this.formDynamic.items.push({
+                address: '',
+                tel: '',
+                index: this.index,
+                status: 1
+            });
+        },
+        handleRemove: function handleRemove(index) {
+            this.formDynamic.items[index].status = 0;
+            this.formDynamic.items.splice(index, 1);
+        },
+        handleSubmit: function handleSubmit(name) {
             var _this2 = this;
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["a" /* category_add */])({ name: this.name, pid: this.itemData.id }).then(function (response) {
-                if (response.data.code === 0) {
-                    //关闭对话框
-                    _this2.dialog = false;
-                    var newChild = response.data.data;
-                    if (!_this2.itemData.children) {
-                        _this2.$set(_this2.itemData, 'children', []);
-                    }
-                    _this2.itemData.children.push(newChild);
-                    _this2.$message.success('添加成功');
-                } else {
-                    _this2.$message.error('添加失败');
-                }
-            });
-        },
-        handelEdit: function handelEdit() {
-            var _this3 = this;
-
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["c" /* category_edit */])({ name: this.name }, this.itemData.id).then(function (response) {
-                if (response.data.code === 0) {
-                    //关闭对话框
-                    _this3.dialog = false;
-                    _this3.isEdit = false; //结束编辑状态
-                    _this3.itemData.name = _this3.name;
-                    _this3.itemData.label = _this3.name;
-                    _this3.$message.success('修改成功');
-                } else {
-                    _this3.$message.error('修改失败');
-                }
-            });
-        },
-        edit: function edit(node, data) {
-            this.title = '修改分类名称';
-            //先清空对话框里面的输入框的值
-            this.name = '';
-            this.isEdit = true; //当前是修改状态
-            this.name = data.name; //吧数据挂载到全局方便其他函数调用
-            this.itemData = data; //吧数据挂载到全局方便其他函数调用
-            this.dialog = true; //显示对话框
-        },
-        remove: function remove(node, data) {
-            var _this4 = this;
-
-            if (data.id == 0) {
-                return false;
+            if (this.operation === 'edit') {
+                __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].patch('/config/' + this.configID, {
+                    keyword: this.formDynamic.keyword,
+                    value: this.formDynamic,
+                    type: 'json'
+                }).then(function (response) {
+                    _this2.$message.info(response.data.message);
+                });
+            } else {
+                __WEBPACK_IMPORTED_MODULE_0__libs_axios__["a" /* default */].post('/config', {
+                    keyword: this.formDynamic.keyword,
+                    value: this.formDynamic,
+                    type: 'json'
+                }).then(function (response) {
+                    _this2.$message.info(response.data.message);
+                });
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_category__["b" /* category_del */])(data.id).then(function (response) {
-                if (response.data.code === 0) {
-                    _this4.$message.success(response.data.msg);
-                    var parent = node.parent;
-                    var children = parent.data.children || parent.data;
-                    var index = children.findIndex(function (d) {
-                        return d.id === data.id;
-                    });
-                    children.splice(index, 1);
-                } else {
-                    _this4.$message.error(response.data.msg);
-                    return false;
-                }
-            });
         }
     }
 });
 
 /***/ }),
 
-/***/ 444:
+/***/ 478:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -704,136 +920,104 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { width: "70%" } },
     [
       _c(
-        "div",
-        { staticStyle: { width: "40%" } },
-        [
-          _c("el-tree", {
-            attrs: {
-              data: _vm.category,
-              "node-key": "id",
-              "default-expand-all": "",
-              "expand-on-click-node": false
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(ref) {
-                  var node = ref.node
-                  var data = ref.data
-                  return _c("span", { staticClass: "custom-tree-node" }, [
-                    _c("span", [_vm._v(_vm._s(node.label))]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      [
-                        _vm.categoryAuth.add
-                          ? [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: { type: "text", size: "mini" },
-                                  on: {
-                                    click: function() {
-                                      return _vm.append(data)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                添加分类\n              "
-                                  )
-                                ]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.categoryAuth.edit
-                          ? [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: { type: "text", size: "mini" },
-                                  on: {
-                                    click: function() {
-                                      return _vm.edit(node, data)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                修改名称\n            "
-                                  )
-                                ]
-                              )
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.categoryAuth.delete
-                          ? [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: { type: "text", size: "mini" },
-                                  on: {
-                                    click: function() {
-                                      return _vm.remove(node, data)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                删除分类\n            "
-                                  )
-                                ]
-                              )
-                            ]
-                          : _vm._e()
-                      ],
-                      2
-                    )
-                  ])
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
+        "el-form",
         {
-          attrs: {
-            title: _vm.title,
-            visible: _vm.dialog,
-            width: "20%",
-            center: ""
-          },
-          on: {
-            "update:visible": function($event) {
-              _vm.dialog = $event
-            }
-          }
+          ref: "formDynamic",
+          attrs: { model: _vm.formDynamic, "label-width": "100px" }
         },
         [
-          _c("el-input", {
-            staticStyle: { width: "70%" },
-            attrs: { placeholder: "输入分类名称" },
-            model: {
-              value: _vm.name,
-              callback: function($$v) {
-                _vm.name = $$v
-              },
-              expression: "name"
-            }
-          }),
+          _c(
+            "el-form-item",
+            { attrs: { label: "英文标头:", prop: "english" } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "输入英文标头" },
+                model: {
+                  value: _vm.formDynamic.english,
+                  callback: function($$v) {
+                    _vm.$set(_vm.formDynamic, "english", $$v)
+                  },
+                  expression: "formDynamic.english"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
-            "el-button",
-            { attrs: { type: "primary" }, on: { click: _vm.ok } },
-            [_vm._v("确 定")]
+            "el-form-item",
+            { attrs: { label: "标题:", prop: "title" } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "标题" },
+                model: {
+                  value: _vm.formDynamic.title,
+                  callback: function($$v) {
+                    _vm.$set(_vm.formDynamic, "title", $$v)
+                  },
+                  expression: "formDynamic.title"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "描述:", prop: "desc" } },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "描述(首页展示)" },
+                model: {
+                  value: _vm.formDynamic.desc,
+                  callback: function($$v) {
+                    _vm.$set(_vm.formDynamic, "desc", $$v)
+                  },
+                  expression: "formDynamic.desc"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "正文:", prop: "content" } },
+            [
+              _c("vue-ueditor-wrap", {
+                attrs: { config: _vm.Ueconfig },
+                model: {
+                  value: _vm.formDynamic.content,
+                  callback: function($$v) {
+                    _vm.$set(_vm.formDynamic, "content", $$v)
+                  },
+                  expression: "formDynamic.content"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.handleSubmit("formValidate")
+                    }
+                  }
+                },
+                [_vm._v("保存")]
+              )
+            ],
+            1
           )
         ],
         1
@@ -848,7 +1032,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-56ffe4df", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-f60d34cc", module.exports)
   }
 }
 

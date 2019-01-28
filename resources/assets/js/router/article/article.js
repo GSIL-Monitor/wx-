@@ -18,4 +18,8 @@ export default [
     {
         path: '/template',name:'template', component:resolve=>require(['@/view/article/ArticleTemplate/template'],resolve)
     },
+    {
+        path: '/url',name:'url', component:resolve=>require(['@/view/article/url/list'],resolve)
+
+    },
 ]

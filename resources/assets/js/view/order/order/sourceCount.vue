@@ -7,14 +7,14 @@
                 <tr>
                     <th align="center">购买来源</th>
                     <th align="center">购买数量</th>
-                    <th align="center">购买总额</th>
+                    <th align="center">购买总额(元)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(item, index) in OrderCount.Yesterday" :key="index">
                     <td align="center">{{item.source}}</td>
                     <td align="center">{{item.source_count}}</td>
-                    <td align="center">{{item.order_total_price_count}}</td>
+                    <td align="center">¥ {{item.order_total_price_count}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -26,14 +26,14 @@
                 <tr>
                     <th align="center">购买来源</th>
                     <th align="center">购买数量</th>
-                    <th align="center">购买总额</th>
+                    <th align="center">购买总额(元)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(item, index) in OrderCount.today" :key="index">
                     <td align="center">{{item.source}}</td>
                     <td align="center">{{item.source_count}}</td>
-                    <td align="center">{{item.order_total_price_count}}</td>
+                    <td align="center">¥ {{item.order_total_price_count}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -45,14 +45,14 @@
                 <tr>
                     <th align="center">购买来源</th>
                     <th align="center">购买数量</th>
-                    <th align="center">购买总额</th>
+                    <th align="center">购买总额(元)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(item, index) in OrderCount.all" :key="index">
                     <td align="center">{{item.source}}</td>
                     <td align="center">{{item.source_count}}</td>
-                    <td align="center">{{item.order_total_price_count}}</td>
+                    <td align="center">¥ {{item.order_total_price_count}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -111,5 +111,8 @@
     .container {
         float: left;
         margin-right:15px
+    }
+    td:last-child {
+        color: green;
     }
 </style>

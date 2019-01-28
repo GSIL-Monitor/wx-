@@ -42,6 +42,27 @@
                         prop: 'title',
                         label: '文章标题',
                         search: true,
+                        render: {
+                            props: {
+                                row: Object         // 接受当前行参数
+                            },
+                            render: function (createElement) {
+                                return createElement('a', {
+                                    attrs:{
+                                        href: this.row.url_home,
+                                        target: '_blank'
+                                    },
+                                    style:{
+                                        textDecoration:'none'
+                                    }
+                                }, this.row.title)
+                            }
+                        }
+                    },
+                    {
+                        prop: 'author',
+                        label: '文章作者',
+                        width: '180',
                     },
                     {
                         prop: 'category',
@@ -50,34 +71,34 @@
                     },
                     {
                         prop: 'status',
-                        label: '简介/关键字/封面',
+                        label: 'appId/音乐/封面',
                         width: '120',
-                        render:{
+                        render: {
                             props: {
                                 row: Object         // 接受当前行参数
                             },
                             render: function (createElement) {
                                 // 参考链接 https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM
                                 return createElement('div', [
-                                    createElement('span',{
+                                    createElement('span', {
                                         style: {
-                                            color: this.row.status.desc.color,
+                                            color: this.row.status.appid.color,
                                             fontSize: '30px',
-                                            padding:'5px'
+                                            padding: '5px'
                                         },
-                                    }, this.row.status.desc.status),
-                                    createElement('span',{
+                                    }, this.row.status.appid.status),
+                                    createElement('span', {
                                         style: {
-                                            color: this.row.status.keywords.color,
+                                            color: this.row.status.music.color,
                                             fontSize: '30px',
-                                            padding:'5px'
+                                            padding: '5px'
                                         },
-                                    }, this.row.status.keywords.status),
-                                    createElement('span',{
+                                    }, this.row.status.music.status),
+                                    createElement('span', {
                                         style: {
                                             color: this.row.status.photo.color,
                                             fontSize: '30px',
-                                            padding:'5px'
+                                            padding: '5px'
                                         },
                                     }, this.row.status.photo.status),
                                 ])
@@ -86,36 +107,36 @@
                     },
                     {
                         prop: 'other',
-                        label: '置顶/开放评论/推荐',
-                        width: '140',
-                        render:{
+                        label: '箭头返回/按键返回/立即跳转',
+                        width: '180',
+                        render: {
                             props: {
                                 row: Object         // 接受当前行参数
                             },
                             render: function (createElement) {
                                 // 参考链接 https://cn.vuejs.org/v2/guide/render-function.html#%E8%99%9A%E6%8B%9F-DOM
                                 return createElement('div', [
-                                    createElement('span',{
+                                    createElement('span', {
                                         style: {
-                                            color: this.row.other.top.color,
+                                            color: this.row.other.arrow.color,
                                             fontSize: '30px',
-                                            padding:'5px'
+                                            paddingLeft: '20px',
                                         },
-                                    }, this.row.other.top.status),
-                                    createElement('span',{
+                                    }, this.row.other.arrow.status),
+                                    createElement('span', {
                                         style: {
-                                            color: this.row.other.discuss.color,
+                                            color: this.row.other.physics.color,
                                             fontSize: '30px',
-                                            padding:'5px'
+                                            paddingLeft: '20px',
                                         },
-                                    }, this.row.other.discuss.status),
-                                    createElement('span',{
+                                    }, this.row.other.physics.status),
+                                    createElement('span', {
                                         style: {
-                                            color: this.row.other.recommend.color,
+                                            color: this.row.other.right_now.color,
                                             fontSize: '30px',
-                                            padding:'5px'
+                                            paddingLeft: '20px',
                                         },
-                                    }, this.row.other.recommend.status),
+                                    }, this.row.other.right_now.status),
                                 ])
                             }
                         }

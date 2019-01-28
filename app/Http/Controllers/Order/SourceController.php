@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\GoodsOrder;
 use App\Models\Source;
 use App\Models\SourceUrl;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -91,6 +92,8 @@ class SourceController extends BaseController
 
     /**
      * 来源统计
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function sourceCount()
     {
@@ -150,5 +153,95 @@ class SourceController extends BaseController
                 return $value;
             });
         return $this->returnData($result);
+    }
+
+    /**
+     * 综合统计
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function zhCount()
+    {
+        //1-12月的销售统计
+        for ($i = 1; $i <= 12; $i++) {
+            $monthCount[$i] = GoodsOrder::query()
+                ->select([
+                    '*',
+                    DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                    DB::raw('count(*) AS order_count')
+                ])
+                ->whereMonth('created_at', $i)
+                ->first();
+        }
+        //当前天数 递减12天的销售统计
+        for ($i = 0; $i < 12; $i++) {
+            $dayTime[$i]['day'] = Carbon::today()->modify("-{$i} days")->format('d');
+            $dayTime[$i]['data'] = GoodsOrder::query()
+                ->select([
+                    '*',
+                    DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                    DB::raw('count(*) AS order_count')
+                ])
+                ->whereDay('created_at', $dayTime[$i]['day'])
+                ->first();
+        }
+
+        $goodsNameCount = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(goods_name) AS goods_name_count')
+            ])
+            ->groupBy('goods_name')
+            ->get();
+
+        $provinceCount = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(*) AS order_count')
+            ])
+            ->groupBy('province')
+            ->get();
+        return $this->returnData([
+            'monthCount'=>$monthCount,
+            'dayCount'=>$dayTime,
+            'goodsNameCount'=>$goodsNameCount ,
+            'provinceCount'=>$provinceCount ,
+        ]);
+    }
+
+    /**
+     * 员工统计
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function peopleCount()
+    {
+        $userNames = User::query()
+            ->get(['username','sex','type','state'])
+            ->pluck('username')
+            ->toArray();
+        $peopleCount['total'] = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(*) AS order_count')
+            ])
+            ->whereIn('source', $userNames)
+            ->get();
+        $todayStartTime = Carbon::parse(Carbon::today())->startOfDay()->format('Y-m-d H:i:s');
+        $todayEndTime = $endDate = Carbon::parse(Carbon::today())->endOfDay()->format('Y-m-d H:i:s');
+        $peopleCount['today'] = GoodsOrder::query()
+            ->select([
+                '*',
+                DB::raw('SUM(order_total_price) AS order_total_price_count'),
+                DB::raw('count(*) AS order_count')
+            ])
+            ->where('created_at', '>=', $todayStartTime)
+            ->where('created_at', '<=', $todayEndTime)
+            ->whereIn('source', $userNames)
+            ->get();
+        return $this->returnData($peopleCount);
     }
 }

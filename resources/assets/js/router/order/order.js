@@ -18,6 +18,12 @@ export default [
     {
         path: '/source_count',name:'source_count', component:resolve=>require(['@/view/order/order/sourceCount'],resolve)
     },
+    {
+        path: '/zh_count',name:'zh_count', component:resolve=>require(['@/view/order/order/zhCount'],resolve)
+    },
+    {
+        path: '/staff_count',name:'staff_count', component:resolve=>require(['@/view/order/order/peopleCount'],resolve)
+    },
 
 
 

@@ -177,6 +177,7 @@ class GoodsController extends BaseController
         $field['goods_name'] = $this->makeGoodsName(request()->get('goods_id'));
         $field['status'] = 0;
         $field['address'] = $this->makeAddress();
+        $field['province'] = request()->get('province');
         GoodsOrder::query()->create($field);
         return response()->json([
             'code' => '0',

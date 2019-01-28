@@ -274,6 +274,21 @@ export const sourceCount = () => {
     })
 };
 
+export const zhCount = () => {
+    return axios.request({
+        url: 'source/zhcount',
+        method: 'get'
+    })
+};
+export const peopleCount = () => {
+    return axios.request({
+        url: 'source/peoplecount',
+        method: 'get'
+    })
+};
+
+
+
 
 
 

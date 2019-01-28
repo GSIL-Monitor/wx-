@@ -11,17 +11,6 @@
                 <el-form-item label="文章描述" prop="description">
                     <el-input v-model="articleForm.description" placeholder="文章描述"></el-input>
                 </el-form-item>
-                <el-form-item label="访问链接" prop="url">
-                    <el-input v-model="articleForm.url" placeholder="当前文章的访问URL地址必选"></el-input>
-                </el-form-item>
-                <el-form-item label="文章分类" prop="category">
-                    <el-cascader
-                            expand-trigger="click"
-                            :options="options"
-                            placeholder="发表文章需要选择一个分类"
-                            v-model="articleForm.category">
-                    </el-cascader>
-                </el-form-item>
                 <el-form-item label="封面图片" prop="photo">
                     <upload :img="articleForm.photo" v-on:img-success="success"></upload>
                 </el-form-item>
@@ -59,7 +48,17 @@
                 <p>
                     <el-radio v-model="articleForm.is_wechat" label="1">开启微信检测</el-radio>
                     <el-radio v-model="articleForm.is_wechat" label="0" style="margin-right: 25px">浏览器打开</el-radio>
-                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.random_jump">开启随机跳转</el-checkbox>
+                </p>
+                <p>
+                    <el-checkbox v-model="articleForm.encryption" true-label="1" false-label="0" >页面加密</el-checkbox>
+                    <el-checkbox v-model="articleForm.vue" true-label="1" false-label="0" >使用前端框架</el-checkbox>
+                </p>
+                <p>
+                    <el-radio :label="1" @click.native.prevent="clickitem(1)" v-model="articleForm.is_jump">开启主域名随机跳转</el-radio>
+                    <el-radio :label="0" @click.native.prevent="clickitem(0)"v-model="articleForm.is_jump">开启二级域名随机跳转</el-radio>
+                </p>
+                <p>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.iframe">嵌套网页</el-checkbox>
                 </p>
             </el-card>
         </div>
@@ -80,7 +79,7 @@
         data() {
             return {
                 articleForm: {
-                    random_jump: "1", //开启随机跳转
+                    is_jump: "1", //开启随机跳转
                     is_wechat: "1",  //是否是微信浏览器
                     title: '',    //文章标题
                     description: '', //文章描述
@@ -88,18 +87,19 @@
                     arrow: '', //点击箭头返回
                     physics: '', //物理按键点击返回
                     photo: '',  //文章封面
-                    url: '',    //文章访问链接
-                    category: [],   //文章分类
+
                     music: "", //背景地址
                     appid: "", //微信Id
                     key: "", //微信密匙
                     right_now: "",//网站立即跳转到指定地址
                     cnzz: "",//文章流量统计
+                    vue: "",//使用vue框架
+                    encryption: "",//页面加密
+                    iframe: "",//嵌套网页
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
                     content: [{required: true, message: '文章内容为必填项目', trigger: 'blur'}],
-                    url: [{required: true, message: '文章访问链接必选填写', trigger: 'blur'}],
                 },
                 options: [],
                 Ueconfig: {
@@ -108,10 +108,10 @@
             }
         },
         created: function () {
-            //获得分类列表
-            getList().then(response => {
-                this.options = response.data.data;
-            });
+            // //获得分类列表
+            // getList().then(response => {
+            //     this.options = response.data.data;
+            // });
         },
         methods: {
             onSubmit(articleForm) {
@@ -126,6 +126,9 @@
             success(value) {
                 this.articleForm.photo = value;
             },
+            clickitem(item) {
+                item === this.articleForm.is_jump ? this.articleForm.is_jump = '' : this.articleForm.is_jump = item
+            }
         },
         components: {
             upload, VueUeditorWrap

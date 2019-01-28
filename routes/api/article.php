@@ -30,4 +30,16 @@ Route::group(['namespace'=>'Article'],function (){
         Route::get('/{id}','ArticleTemplate@get');
         Route::get('del/{id}','ArticleTemplate@delete');
     });
+
+    /**
+     * url管理
+     */
+    Route::prefix('url')->group(function () {
+        Route::post('/batchDel', 'UrlController@batchDel');
+        Route::get('/','UrlController@getList');
+        Route::post('/','UrlController@add');
+        Route::put('/{id}','UrlController@edit');
+        Route::get('/{id}','UrlController@get');
+        Route::delete('/{id}','UrlController@delete');
+    });
 });

@@ -224,6 +224,10 @@
                 ],
             }
         },
+        mounted() {
+            this.handleSetFilter('where', {status: 0});
+            this.handleSetFilter('orderBy', 'created_at,desc');
+        },
         methods: {
             // 工具栏事件处理 type值为columns中tools的键值
             handleTools(type, index, row) {

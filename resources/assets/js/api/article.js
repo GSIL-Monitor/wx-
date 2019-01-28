@@ -41,4 +41,33 @@ export const article_del = (id) => {
     })
 };
 
+export const urlDel = (id) => {
+    return axios.request({
+        url: '/url/'+id,
+        method: 'delete'
+    })
+};
+export const urlAdd = (data) => {
+    return axios.request({
+        url: '/url',
+        data,
+        method: 'post'
+    })
+};
+export const urlEdit = (id, data) => {
+    return axios.request({
+        url: '/url/'+id,
+        data,
+        method: 'put'
+    })
+};
+export const urlBatchDel = (data) => {
+    return axios.request({
+        url: '/url/batchDel',
+        data,
+        method: 'post'
+    })
+};
+
+
 

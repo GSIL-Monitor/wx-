@@ -15,9 +15,9 @@
                             v-model="selectedOptions"
                             @change="handleChange">
                     </el-cascader>
-                    <el-button type="warning" size="small" icon="el-icon-setting" @click="cleanCache">
-                        清除{{page_name}}缓存
-                    </el-button>
+                    <!--<el-button type="warning" size="small" icon="el-icon-setting" @click="cleanCache">-->
+                        <!--清除{{page_name}}缓存-->
+                    <!--</el-button>-->
                 </el-col>
                 <el-col :span="10">
                     <el-input placeholder="请输入要搜索的内容..." size="small" v-model="search.value" class="input-with-select">
