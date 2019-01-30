@@ -210,5 +210,28 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    'sms' => [
+        'default' => 'aldy',
+        'drive' => [
+            //'aldy' => \App\Services\SMS\Drive\ALDYSendSMS::class
+            'aldy' => [ //阿里大鱼
+                'drive' => \App\Services\SMS\Drive\ALDYSendSMS::class,
+                'SignName' => '张光萧', //模板签名
+                'TemplateCode' => 'SMS_140570031', //模板代码
+                'accessKeyId' => 'LTAIqY9jIEbBJN2f',   //tokenId
+                'accessKeySecret' => 'nSYK9VX7inn4JmtN650pSU10Rk6r9s',   //密匙
+                'domain' => "dysmsapi.aliyuncs.com"  //短信请求地址
+            ],
+            'lz' => [ //凌众短信   文档地址:http://www.mb345.com/download_help4.aspx
+                'drive' => \App\Services\SMS\Drive\LZSendSMS::class,
+                'CorpID' => 'LKSDK0003860', //账号
+                'Pwd' => '123321lk@', //密码
+                'domain' => "http://mb345.com:999/ws/BatchSend2.aspx",  //短信请求地址
+                'SignName' => '58知产网', //模板签名
+            ],
+        ],
+        'length' => '6', //验证码长度
+        'EXPIRE' => 60 * 10 * 20,   //验证码过期时间
+    ],
 
 ];

@@ -76,7 +76,9 @@ class ArticleTemplate extends BaseController
         if ($id == 1) {
             return $this->returnMsg(false,'默认模板不允许删除,删除');
         }
-        $result = Article::where('template_id',$id)->get()->isEmpty();
+        $result = Article::where('template_id', $id)
+            ->get()
+            ->isEmpty();
         if (!$result) {
             //当前要删除的模板关联到的文章设置为默认模板
             Article::where('template_id',$id)->update(['template_id'=>1]);

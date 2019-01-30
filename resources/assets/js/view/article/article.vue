@@ -4,20 +4,8 @@
             <el-row>
                 <el-col :span="14">
                     <template v-if=" this.articleAuth.add">
-                        <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">添加{{page_name}}
-                        </el-button>
+                        <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">添加{{page_name}}</el-button>
                     </template>
-                    <el-cascader
-                            :options="options"
-                            clearable
-                            placeholder="过滤文章类型"
-
-                            v-model="selectedOptions"
-                            @change="handleChange">
-                    </el-cascader>
-                    <!--<el-button type="warning" size="small" icon="el-icon-setting" @click="cleanCache">-->
-                        <!--清除{{page_name}}缓存-->
-                    <!--</el-button>-->
                 </el-col>
                 <el-col :span="10">
                     <el-input placeholder="请输入要搜索的内容..." size="small" v-model="search.value" class="input-with-select">
@@ -45,9 +33,7 @@
     import Add from "./publish";
     import Edit from "./edit";
     import list_page from "../../mixins/list_page";
-    import {getConfigArray} from "../../config/sys_config";
-    import {article_del, clean} from "@/api/article"
-    import {getList} from "@/api/category"
+    import {article_del} from "@/api/article"
 
     export default {
         components: {Table, Add, Edit},
@@ -90,11 +76,6 @@
                         prop: 'author',
                         label: '文章作者',
                         width: '180',
-                    },
-                    {
-                        prop: 'category',
-                        label: '分类',
-                        width: '180'
                     },
                     {
                         prop: 'status',
@@ -203,9 +184,6 @@
                     return true;
                 }
             });
-            getList().then(response => {
-                this.options = response.data.data;
-            })
         },
         methods: {
             // 工具栏事件处理 type值为columns中tools的键值
@@ -224,11 +202,6 @@
                 } else {
                     console.error('Tools Event:' + type + ' Not found');
                 }
-            },
-            cleanCache(value) {
-                clean().then(response => {
-                    this.$message.success(response.data.msg);
-                })
             },
             handleAdd() {
                 //跳转到发布文章页面

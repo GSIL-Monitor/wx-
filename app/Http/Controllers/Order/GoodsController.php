@@ -29,7 +29,6 @@ class GoodsController extends BaseController
         $field = $this->formVerif($request, [
             "goods_title" => "required",
             "goods_desc" => "nullable",
-            "params" => "nullable",
             "goods_content" => "required",
             "wheel_photo" => "nullable",
             "photo" => "required",
@@ -68,7 +67,6 @@ class GoodsController extends BaseController
         $field = $this->formVerif($request, [
             "goods_title" => "required",
             "goods_desc" => "nullable",
-            "params" => "nullable",
             "goods_content" => "required",
             "wheel_photo" => "nullable",
             "photo" => "required",

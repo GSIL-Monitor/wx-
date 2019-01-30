@@ -22,7 +22,6 @@
     import Table from "../../components/public/table";
     import list_page from "../../mixins/list_page";
     import {recovery_list,recovery_article,recovery_del} from "@/api/recovery"
-    import {getList} from "@/api/category"
 
     export default {
         components: {Table},
@@ -167,11 +166,6 @@
                 options: [],
                 selectedOptions: [],
             }
-        },
-        created:function() {
-            getList().then(response=>{
-                this.options = response.data.data;
-            })
         },
         methods: {
             // 工具栏事件处理 type值为columns中tools的键值

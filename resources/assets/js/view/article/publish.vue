@@ -46,8 +46,8 @@
                     <el-input v-model="articleForm.physics" placeholder="物理按键点击返回"></el-input>
                 </p>
                 <p>
-                    <el-radio v-model="articleForm.is_wechat" label="1">开启微信检测</el-radio>
-                    <el-radio v-model="articleForm.is_wechat" label="0" style="margin-right: 25px">浏览器打开</el-radio>
+                    <el-radio  @click.native.prevent="isWechat(1)" v-model="articleForm.is_wechat" :label="1">开启微信检测</el-radio>
+                    <el-radio  @click.native.prevent="isWechat(0)" v-model="articleForm.is_wechat" :label="0" style="margin-right: 25px">浏览器打开</el-radio>
                 </p>
                 <p>
                     <el-checkbox v-model="articleForm.encryption" true-label="1" false-label="0" >页面加密</el-checkbox>
@@ -87,7 +87,6 @@
                     arrow: '', //点击箭头返回
                     physics: '', //物理按键点击返回
                     photo: '',  //文章封面
-
                     music: "", //背景地址
                     appid: "", //微信Id
                     key: "", //微信密匙
@@ -128,6 +127,11 @@
             },
             clickitem(item) {
                 item === this.articleForm.is_jump ? this.articleForm.is_jump = '' : this.articleForm.is_jump = item
+            },
+            isWechat(item){
+                console.log(item);
+                item === this.articleForm.is_wechat ? this.articleForm.is_wechat = '' : this.articleForm.is_wechat = item
+                console.log(item);
             }
         },
         components: {

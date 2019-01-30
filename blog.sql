@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2019-01-25 17:17:58
+Date: 2019-01-30 11:39:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,14 +40,15 @@ CREATE TABLE `articles` (
   `right_now` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '网站立即跳转到指定地址',
   `cnzz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '文章流量统计',
   `deleted_at` timestamp NULL DEFAULT NULL,
+  `template_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of articles
 -- ----------------------------
-INSERT INTO `articles` VALUES ('1', '123', '行业动态', '123', 'http://www.wx.com/storage/public/6Fmv0c1jy4B6vtN4mXgjraEZcCsMSioqNyCBL55B.png', '1', '2019-01-22 01:38:56', 'ALG', '<p>123</p>', '1', '1', '123', '123', '123', '123', '123', '123', '123', '123', null);
-INSERT INTO `articles` VALUES ('2', '123', '本地资讯', '123', 'http://www.wx.com/storage/public/zIa28zlmbo5IvRrTsDRZHTuhjkkQIvIySwxv2xU8.png', '0', '2019-01-22 01:45:27', 'ALG', '<p>123</p>', '1', '1', null, null, '123', '123', null, null, null, '123', null);
+INSERT INTO `articles` VALUES ('1', '123', '行业动态', '123', 'http://www.wx.com/storage/public/6Fmv0c1jy4B6vtN4mXgjraEZcCsMSioqNyCBL55B.png', '1', '2019-01-22 01:38:56', 'ALG', '<p>123</p>', '1', '1', '123', '123', '123', '123', '123', '123', '123', '123', null, '1');
+INSERT INTO `articles` VALUES ('2', '123', '本地资讯', '123', 'http://www.wx.com/storage/public/zIa28zlmbo5IvRrTsDRZHTuhjkkQIvIySwxv2xU8.png', '0', '2019-01-22 01:45:27', 'ALG', '<p>123</p>', '1', '1', null, null, '123', '123', null, null, null, '123', null, '1');
 
 -- ----------------------------
 -- Table structure for authorities
@@ -228,19 +229,21 @@ CREATE TABLE `goods_orders` (
   `paytype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '付款方法',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of goods_orders
 -- ----------------------------
-INSERT INTO `goods_orders` VALUES ('8', '1', '3套餐', '4', '136868400812019012409031421770', '13686840083', '北京市-和平区-冻结-阿萨德', '阿萨德', '新浪微博', '张光萧', '352.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:03:14', '2019-01-25 03:40:08');
-INSERT INTO `goods_orders` VALUES ('10', '2', '3套餐', '3', '136868400832019012409063337614', '13686840083', '黑龙江省---胜多负少', '阿萨德', 'ALG', '真搞笑', '264.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:06:33', '2019-01-25 03:40:21');
-INSERT INTO `goods_orders` VALUES ('11', '1', '123', '6', '136868400812019012409070587960', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:05', '2019-01-25 03:40:23');
-INSERT INTO `goods_orders` VALUES ('12', '0', '123', '6', '136868400812019012409074090965', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:40', '2019-01-24 09:07:40');
-INSERT INTO `goods_orders` VALUES ('13', '0', '123', '6', '136868400812019012409074640597', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:46', '2019-01-24 09:07:46');
-INSERT INTO `goods_orders` VALUES ('14', '0', '123', '3', '136868400812019012409080691921', '13686840081', '天津市-市辖区-和平区-阿萨德', '阿萨德', '新浪微博', '真搞笑', '369.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:08:06', '2019-01-24 09:08:06');
-INSERT INTO `goods_orders` VALUES ('15', '0', '3套餐', '1', '136868400812019012409101881214', '13686840081', '天津市-市辖区-和平区-13686840081', '阿萨德', '新浪微博', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:10:18', '2019-01-24 09:10:18');
+INSERT INTO `goods_orders` VALUES ('8', '1', '3套餐', '4', '136868400812019012409031421770', '13686840083', '北京市-和平区-冻结-阿萨德', '阿萨德', '新浪微博', '张光萧', '352.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-28 09:03:14', '2019-01-25 03:40:08', '吉林省');
+INSERT INTO `goods_orders` VALUES ('10', '2', '3套餐', '3', '136868400832019012409063337614', '13686840083', '黑龙江省---胜多负少', '阿萨德', 'ALG', '真搞笑', '264.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-28 09:06:33', '2019-01-25 03:40:21', '吉林省');
+INSERT INTO `goods_orders` VALUES ('11', '1', '123', '6', '136868400812019012409070587960', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', 'ALG', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-24 09:07:05', '2019-01-25 03:40:23', '吉林省');
+INSERT INTO `goods_orders` VALUES ('12', '0', '123', '6', '136868400812019012409074090965', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-27 09:07:40', '2019-01-24 09:07:40', '吉林省');
+INSERT INTO `goods_orders` VALUES ('13', '0', '123', '6', '136868400812019012409074640597', '13686840081', '吉林省-长春市-市辖区-啊实打实', '高大上', '新浪微博', '真搞笑', '738.00', '45645', '127.0.0.1', '123', '货到付款', '2019-01-27 09:07:46', '2019-01-24 09:07:46', '江苏省');
+INSERT INTO `goods_orders` VALUES ('14', '0', '123', '3', '136868400812019012409080691921', '13686840081', '天津市-市辖区-和平区-阿萨德', '阿萨德', '新浪微博', '真搞笑', '369.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:08:06', '2019-01-24 09:08:06', '吉林省');
+INSERT INTO `goods_orders` VALUES ('15', '0', '3套餐', '1', '136868400812019012409101881214', '13686840081', '天津市-市辖区-和平区-13686840081', '阿萨德', '新浪微博', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-24 09:10:18', '2019-01-24 09:10:18', '浙江省');
+INSERT INTO `goods_orders` VALUES ('16', '0', '3套餐', '1', '136868400832019012802573388555', '13686840083', '河北省-石家庄市-市辖区-和平大街2268号16楼701室', '请尽快送货', '新浪微博', '真搞笑', '88.00', '45778', '127.0.0.1', '123', '货到付款', '2019-01-28 02:57:33', '2019-01-28 02:57:33', '河北省');
 
 -- ----------------------------
 -- Table structure for html_templates
@@ -251,13 +254,12 @@ CREATE TABLE `html_templates` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '模板名称',
   `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '模板路径',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of html_templates
 -- ----------------------------
 INSERT INTO `html_templates` VALUES ('1', '默认模板', 'goods/default/view');
-INSERT INTO `html_templates` VALUES ('2', '嘻嘻嘻', '嘻嘻嘻');
 
 -- ----------------------------
 -- Table structure for meals
@@ -294,7 +296,7 @@ CREATE TABLE `menus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of menus
@@ -308,11 +310,7 @@ INSERT INTO `menus` VALUES ('6', '3', '权限管理', null, '/auth', '1000', '1'
 INSERT INTO `menus` VALUES ('7', '0', '内容管理', 'el-icon-location', null, '1000', '1', '2018-11-26 09:42:57', '2018-11-26 09:42:57');
 INSERT INTO `menus` VALUES ('8', '7', '文章列表', null, '/article_list', '1000', '1', '2018-11-26 09:42:57', '2018-11-26 09:42:57');
 INSERT INTO `menus` VALUES ('9', '7', '回收站', null, '/recovery', '1000', '1', '2018-11-26 09:42:57', '2018-11-26 09:42:57');
-INSERT INTO `menus` VALUES ('10', '7', '文章分类', null, '/article_category', '1000', '1', '2018-11-26 09:42:57', '2018-11-26 09:42:57');
 INSERT INTO `menus` VALUES ('11', '7', '发布文章', null, '/publish_article', '1000', '1', '2018-11-26 09:42:57', '2018-11-26 09:42:57');
-INSERT INTO `menus` VALUES ('16', '0', '网站留言', 'el-icon-phone-outline', null, '1000', '1', null, null);
-INSERT INTO `menus` VALUES ('17', '16', '预约体验', null, '/order', '1000', '1', null, null);
-INSERT INTO `menus` VALUES ('18', '16', '联系我们', null, '/contact', '1000', '1', null, null);
 INSERT INTO `menus` VALUES ('19', '0', '订单管理', 'el-icon-goods', null, '1000', '1', '2019-01-22 03:22:18', '2019-01-22 03:22:18');
 INSERT INTO `menus` VALUES ('20', '19', '来源统计', null, '/source_count', '1000', '1', '2019-01-22 03:23:15', '2019-01-22 03:31:01');
 INSERT INTO `menus` VALUES ('21', '19', '订单列表', null, '/goods_order', '1000', '1', '2019-01-22 03:23:52', '2019-01-22 03:31:08');
@@ -323,6 +321,9 @@ INSERT INTO `menus` VALUES ('26', '25', '产品列表', null, '/goods_list', '10
 INSERT INTO `menus` VALUES ('27', '25', '发布产品', null, '/publish_goods', '1000', '1', '2019-01-22 03:29:37', '2019-01-22 03:30:46');
 INSERT INTO `menus` VALUES ('28', '25', '模板管理', null, '/template', '1000', '1', '2019-01-22 03:30:14', '2019-01-22 03:30:14');
 INSERT INTO `menus` VALUES ('29', '19', '来源管理', null, '/source', '1000', '1', '2019-01-22 03:40:06', '2019-01-22 03:40:15');
+INSERT INTO `menus` VALUES ('30', '7', '域名管理', null, '/url', '1000', '1', '2019-01-28 04:32:13', '2019-01-28 04:32:13');
+INSERT INTO `menus` VALUES ('31', '1', '访问日志', null, '/visit', '1000', '1', '2019-01-29 03:30:08', '2019-01-29 03:30:08');
+INSERT INTO `menus` VALUES ('32', '1', '系统配置', null, '/config', '1000', '1', '2019-01-30 01:53:27', '2019-01-30 01:53:27');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -333,7 +334,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of migrations
@@ -367,6 +368,8 @@ INSERT INTO `migrations` VALUES ('27', '2019_01_23_035128_create_sizes_table', '
 INSERT INTO `migrations` VALUES ('28', '2019_01_23_055519_create_source_urls_table', '14');
 INSERT INTO `migrations` VALUES ('29', '2019_01_23_061532_create_goods_table', '15');
 INSERT INTO `migrations` VALUES ('30', '2019_01_24_080311_create_goods_orders_table', '16');
+INSERT INTO `migrations` VALUES ('31', '2019_01_28_034251_create_urls_table', '17');
+INSERT INTO `migrations` VALUES ('32', '2019_01_30_004042_create_visit_logs_table', '18');
 
 -- ----------------------------
 -- Table structure for navs
@@ -430,6 +433,7 @@ INSERT INTO `oauth_access_tokens` VALUES ('24329d57b458f9b9e01d5e7dadf0ad3af5f60
 INSERT INTO `oauth_access_tokens` VALUES ('245470c02c969c1bd12f500ce6f42238ede9e578b2e3582de1d53183fd01fca135b4bf1fe0f3b9ef', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 03:03:43', '2018-11-21 03:03:43', '2019-11-21 03:03:43');
 INSERT INTO `oauth_access_tokens` VALUES ('25d5a4d32fe78da20cc184259b6cd1f8a4ded1da8a0bbcce54b52a089bc04fdb7c541708e3b18167', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:34:12', '2018-11-21 02:34:12', '2019-11-21 02:34:12');
 INSERT INTO `oauth_access_tokens` VALUES ('268c7bac3e5cd17a97f58f6bca9224ba7ca07fa801d6871ce992341f6eecd0057587f150160f1431', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 09:09:39', '2018-11-21 09:09:39', '2019-11-21 09:09:39');
+INSERT INTO `oauth_access_tokens` VALUES ('268ed9ce643cb6926b14032642c33c1f8b26be024d91493631b14e5beb4f48c200fffa7e7293002f', '1', '1', 'JzrXZH', '[]', '0', '2019-01-29 01:59:04', '2019-01-29 01:59:04', '2020-01-29 01:59:04');
 INSERT INTO `oauth_access_tokens` VALUES ('26db1d9ddb4b86bc9c87eaf3f2f85edcf658cc67f2a42a7735cc40f0cf04254c5e1c403b8b737f16', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:10:15', '2018-11-21 02:10:15', '2019-11-21 02:10:15');
 INSERT INTO `oauth_access_tokens` VALUES ('28a802840ceca977fc26eef36fdb73e6797f71402dcc1951b295dede9dad75b475ca7d661d9e8ccf', '1', '1', 'JzrXZH', '[]', '0', '2018-11-22 00:50:42', '2018-11-22 00:50:42', '2019-11-22 00:50:42');
 INSERT INTO `oauth_access_tokens` VALUES ('2c8b7cb7ebc3be1fa3f1ce1e851f30b93bacdb84300bf21a303c4a90a60f34630b871218c4841776', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 03:16:58', '2018-11-21 03:16:58', '2019-11-21 03:16:58');
@@ -444,6 +448,7 @@ INSERT INTO `oauth_access_tokens` VALUES ('3f43d26cf650e11ca3122dc0311799fac0c30
 INSERT INTO `oauth_access_tokens` VALUES ('41ba75bc1c323c0013abdfbb7d59fc7f18483a5d244ad3f121a581691395785c73463035073bfc7e', '1', '1', 'JzrXZH', '[]', '0', '2018-11-22 01:25:31', '2018-11-22 01:25:31', '2019-11-22 01:25:31');
 INSERT INTO `oauth_access_tokens` VALUES ('4207da6b089022310dab6e3916f8f86b529e3795d4867189dca2d63d54f69cb494d4ff295c7d3258', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:16:57', '2018-11-21 02:16:57', '2019-11-21 02:16:57');
 INSERT INTO `oauth_access_tokens` VALUES ('4774591ce28facec043c2a1ee4a877dfd73e973ac0f60599aaa80c15560daa4c6a4098747fd9734f', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:33:36', '2018-11-21 02:33:36', '2019-11-21 02:33:36');
+INSERT INTO `oauth_access_tokens` VALUES ('4b4252e3e29869eab55fb0ac850e47a247a9d16eab9c99b4760e24aadd463f6122007b90b2b34360', '1', '1', 'JzrXZH', '[]', '0', '2019-01-30 02:00:06', '2019-01-30 02:00:06', '2020-01-30 02:00:06');
 INSERT INTO `oauth_access_tokens` VALUES ('4bcc3d28114d2beafacb8463961672f925d61417b8c6c22045fc026dbfa5b0d32a772ad6e2cade48', '1', '1', 'JzrXZH', '[]', '0', '2018-12-05 07:56:00', '2018-12-05 07:56:00', '2019-12-05 07:56:00');
 INSERT INTO `oauth_access_tokens` VALUES ('4d2e972fc1a97dd206922d489b64a5d17b8250681f519e0482fb5a632dbd0f95480181c76d4ad392', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:33:20', '2018-11-21 02:33:20', '2019-11-21 02:33:20');
 INSERT INTO `oauth_access_tokens` VALUES ('5003ed950be7936a2654003e7acb6902c6b52f55912b06f04f8d58ece2a22fdc236ca4e63fa2b5a4', '1', '1', 'JzrXZH', '[]', '0', '2018-11-22 00:57:25', '2018-11-22 00:57:25', '2019-11-22 00:57:25');
@@ -468,6 +473,7 @@ INSERT INTO `oauth_access_tokens` VALUES ('75f43fb7b5723ac5f1713f12eec22b85a25ca
 INSERT INTO `oauth_access_tokens` VALUES ('76d6ce6051275c0f184099508167c23c02bdd2f2597d1d0c857e2ae63404b8f4a5ec781981f46059', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:24:04', '2018-11-21 02:24:04', '2019-11-21 02:24:04');
 INSERT INTO `oauth_access_tokens` VALUES ('7a088f7fd3fadecd934d94c8fc29c8f44a5d556b0fdae9f5b657604b71820107b50a3a2130b74ffc', '1', '1', 'JzrXZH', '[]', '0', '2018-12-13 09:43:35', '2018-12-13 09:43:35', '2019-12-13 09:43:35');
 INSERT INTO `oauth_access_tokens` VALUES ('7b4a08fb7a1d37c1fa64e1e1486d366e324028fdb3a2ac9958c09e0fe7ac9d59bb6d9555c7ef0cdd', '1', '1', 'JzrXZH', '[]', '0', '2019-01-21 11:28:33', '2019-01-21 11:28:33', '2020-01-21 11:28:33');
+INSERT INTO `oauth_access_tokens` VALUES ('7bdeca820b8cc3991e120b4f08e344b8d34805bcbc30f5eac9575750c07aa86a305be9e1426ac55e', '1', '1', 'JzrXZH', '[]', '0', '2019-01-29 01:59:01', '2019-01-29 01:59:01', '2020-01-29 01:59:01');
 INSERT INTO `oauth_access_tokens` VALUES ('7e190c72dd9760a36eb4ebe5d3a20596eab88dfdc65b3cca5790a474c86f7dc30877faf692be478e', '1', '1', 'JzrXZH', '[]', '0', '2018-12-12 07:06:47', '2018-12-12 07:06:47', '2019-12-12 07:06:47');
 INSERT INTO `oauth_access_tokens` VALUES ('80160ef0aa02b6e3eb945627b6874156c6deaab6b2abb1c8f68b3ca08eb92a9deff4e960bf807f84', '1', '1', 'JzrXZH', '[]', '0', '2018-11-20 05:59:42', '2018-11-20 05:59:42', '2019-11-20 05:59:42');
 INSERT INTO `oauth_access_tokens` VALUES ('81c0e2e6bbddc77139d4bfbe26f7aa2bf4565ea42eda8423eba8df7a022b65de599134ecf72a48b7', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 03:11:07', '2018-11-21 03:11:07', '2019-11-21 03:11:07');
@@ -518,6 +524,7 @@ INSERT INTO `oauth_access_tokens` VALUES ('f0f90fee6c7e6ce3664438360a83c7fb7abf5
 INSERT INTO `oauth_access_tokens` VALUES ('f39cd4ed6a9add4d21e8efea6e227b6a690754eeed261de4ffc8e31a1b1f2a427bf091b319d00634', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 09:28:29', '2018-11-21 09:28:29', '2019-11-21 09:28:29');
 INSERT INTO `oauth_access_tokens` VALUES ('f8d82bd50c4f867e2a87430704653c743e02002515f5efbb14cffc98cd4b783b404796f06af59dd3', '1', '1', 'JzrXZH', '[]', '0', '2018-12-12 01:54:14', '2018-12-12 01:54:14', '2019-12-12 01:54:14');
 INSERT INTO `oauth_access_tokens` VALUES ('fa86e2b8206bc8047d76db169accf84a8b0687b866dfe2ff16e7d871ae69c5c3b81be617d5e2bfc2', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:10:29', '2018-11-21 02:10:29', '2019-11-21 02:10:29');
+INSERT INTO `oauth_access_tokens` VALUES ('fbd6bae7a6435339f337e25d7901cc431dd5ce64992100f739b82c159b0a9e64c211db44da29e431', '1', '1', 'JzrXZH', '[]', '0', '2019-01-28 01:06:08', '2019-01-28 01:06:08', '2020-01-28 01:06:08');
 INSERT INTO `oauth_access_tokens` VALUES ('fd088e1ef86fe9dc3c8237e6f70e3318ce6b212a4a5908376e8aee8b5bc909ffa8c1350635b4697a', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 03:01:04', '2018-11-21 03:01:04', '2019-11-21 03:01:04');
 INSERT INTO `oauth_access_tokens` VALUES ('fdba687b76d360cf9eeff486a0b4e5b2e7ce9126a2e8506aa3498a43c25dd44a1f7bd2eff85a1e01', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:25:39', '2018-11-21 02:25:39', '2019-11-21 02:25:39');
 INSERT INTO `oauth_access_tokens` VALUES ('fdca040e06cb4b3df8ebc9e589a90e176f0eb39af4396d9b9a12a8373da233618aaa3df5845bb261', '1', '1', 'JzrXZH', '[]', '0', '2018-11-21 02:23:50', '2018-11-21 02:23:50', '2019-11-21 02:23:50');
@@ -730,7 +737,7 @@ CREATE TABLE `role_and_auth` (
   `page` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '该权限是属于哪个菜单页面的',
   `state` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=187 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of role_and_auth
@@ -756,6 +763,9 @@ INSERT INTO `role_and_auth` VALUES ('180', '1', '20', '[\"add\",\"edit\",\"delet
 INSERT INTO `role_and_auth` VALUES ('181', '1', '21', '[\"add\",\"edit\",\"delete\"]', null, null, 'template', '1');
 INSERT INTO `role_and_auth` VALUES ('182', '1', '21', '[\"add\",\"edit\",\"delete\"]', null, null, 'article_edit', '1');
 INSERT INTO `role_and_auth` VALUES ('183', '1', '21', '[\"add\",\"edit\",\"delete\"]', null, null, 'edit_goods', '1');
+INSERT INTO `role_and_auth` VALUES ('184', '1', '21', '[\"add\",\"edit\",\"delete\"]', null, null, 'url', '1');
+INSERT INTO `role_and_auth` VALUES ('185', '1', '21', '[\"add\",\"edit\",\"delete\"]', '2019-01-29 11:30:49', null, 'visit', '1');
+INSERT INTO `role_and_auth` VALUES ('186', '1', '21', '[\"add\",\"edit\",\"delete\"]', null, null, 'config', '1');
 
 -- ----------------------------
 -- Table structure for sizes
@@ -847,6 +857,23 @@ INSERT INTO `s_e_os` VALUES ('1', '建筑咨询企业 OA管理系统', '建筑�
 INSERT INTO `s_e_os` VALUES ('2', null, null, '哼哼办公-建筑咨询企业管理系统,OA管理系统', null);
 
 -- ----------------------------
+-- Table structure for urls
+-- ----------------------------
+DROP TABLE IF EXISTS `urls`;
+CREATE TABLE `urls` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL COMMENT '谁添加的',
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'url链接',
+  `type` tinyint(4) NOT NULL COMMENT '类型 0 A链接 1 B链接',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of urls
+-- ----------------------------
+INSERT INTO `urls` VALUES ('26', '1', 'baidu.com', '1');
+
+-- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
@@ -892,3 +919,22 @@ CREATE TABLE `user_and_role` (
 -- Records of user_and_role
 -- ----------------------------
 INSERT INTO `user_and_role` VALUES ('1', '1', '1', null, '2018-11-26 09:42:57', '2018-11-26 09:42:57');
+
+-- ----------------------------
+-- Table structure for visit_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `visit_logs`;
+CREATE TABLE `visit_logs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ip地址',
+  `system_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '系统及其型号',
+  `event` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '触发事件',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of visit_logs
+-- ----------------------------
+INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', 'vivo 安卓7', '下拉', '2019-01-30 08:56:45', '2019-01-30 08:56:47');

@@ -1,11 +1,7 @@
 import system from './system/system'
 import rbac from './system/rbac'
 import user from './system/user'
-import seo from './system/seo'
-import nav from './system/nav'
 import article from './article/article'
-import contact from './contact/contact'
-import company from './company/company'
 import order from './order/order'
 
 export default [
@@ -19,10 +15,6 @@ export default [
             ...rbac,
             ...user,
             ...article,
-            ...contact,
-            ...seo,
-            ...nav,
-            ...company,
             ...order,
         ]
     },

@@ -111,6 +111,7 @@
         border: 1px solid #000000;
         line-height: 40px;
         text-align: center;
+        background-color: #f9f9f9;
     }
     table {
         width: 300px;

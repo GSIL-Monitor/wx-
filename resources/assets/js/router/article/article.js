@@ -7,9 +7,6 @@ export default [
         path: '/recovery',name:'recovery', component:resolve=>require(['@/view/article/recovery'],resolve)
     },
     {
-        path: '/article_category',name:'article_category', component:resolve=>require(['@/view/article/category'],resolve)
-    },
-    {
         path: '/publish_article',name:'publish_article', component:resolve=>require(['@/view/article/publish'],resolve)
     },
     {

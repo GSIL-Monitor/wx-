@@ -31,9 +31,11 @@
                 </thead>
                 <tbody>
                 <tr v-for="(item, index) in count.today" :key="index">
-                    <td>{{item.source}}</td>
+                    <td v-if="item.source">{{item.source}}</td>
+                    <td v-else>今日暂无记录</td>
                     <td>{{item.order_count}}</td>
-                    <td>¥{{item.order_total_price_count}}</td>
+                    <td v-if="item.order_total_price_count">¥{{item.order_total_price_count}}</td>
+                    <td v-else>¥ 0</td>
                 </tr>
                 </tbody>
             </table>
@@ -70,6 +72,7 @@
         border: 1px solid #000000;
         line-height: 40px;
         text-align: center;
+        background-color: #f9f9f9;
     }
     .table {
         width: 300px;

@@ -9,11 +9,11 @@
                     <el-form-item label="商品简述:">
                         <el-input placeholder="商品简述" v-model="goods.goods_desc"></el-input>
                     </el-form-item>
-                    <el-form-item label="商品参数:">
-                        <el-input type="textarea" autosize
-                                  placeholder="产品参数格式 面料:纯棉 风格:圆领" v-model="goods.params">
-                        </el-input>
-                    </el-form-item>
+                    <!--<el-form-item label="商品参数:">-->
+                        <!--<el-input type="textarea" autosize-->
+                                  <!--placeholder="产品参数格式 面料:纯棉 风格:圆领" v-model="goods.params">-->
+                        <!--</el-input>-->
+                    <!--</el-form-item>-->
                     <el-form-item label="详细描述:">
                         <vue-ueditor-wrap :config="Ueconfig" v-model="goods.goods_content"></vue-ueditor-wrap>
                     </el-form-item>
@@ -70,7 +70,7 @@
                 goods: {
                     goods_title: "",
                     goods_desc: "",
-                    params: "",
+                    // params: "",
                     goods_content: "",
                     wheel_photo: [],
                     photo: "",
