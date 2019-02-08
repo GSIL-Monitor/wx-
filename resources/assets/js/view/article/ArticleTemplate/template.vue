@@ -82,7 +82,6 @@
             template_Auth.forEach((value) => {
                 if (value === 'add') {
                     this.templateAuth.add = true;
-                    return true;
                 }
             });
         },

@@ -7,6 +7,7 @@ use App\Models\GoodsOrder;
 use App\Models\Source;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use QL\QueryList;
 
 class OrderController extends BaseController
@@ -120,5 +121,14 @@ class OrderController extends BaseController
             ->where('id', $id)
             ->update($field);
         return $this->returnMsg($res);
+    }
+
+    public function getList(Request $request)
+    {
+        $query = $this->model::orderBy('created_at', 'desc');
+        if (isSuperManager()) {
+            $query = $query->where('user_id', Auth::id());
+        }
+        return $this->filter($query, $request);
     }
 }

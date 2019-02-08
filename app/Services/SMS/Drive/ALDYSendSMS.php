@@ -42,16 +42,10 @@ class ALDYSendSMS implements SMS
         $params["TemplateCode"] = config('app.sms.drive.aldy.TemplateCode');
 
         //fixme 可选: 设置模板参数, 假如模板中存在变量需要替换则为必填项
-        $number = $this->getRandCode();
-
-        $params['TemplateParam'] = Array(
-            "code" => $number,
-            //   "product" => "阿里通信"
-        );
-        Redis::set($tel, $number);
-        //设置验证码过期时间
-        Redis::EXPIRE($tel, config('app.sms.EXPIRE'));
-
+//        $params['TemplateParam'] = Array(
+//            "code" => config('app.sms.message'),
+//            //   "product" => "阿里通信"
+//        );
         // *** 需用户填写部分结束, 以下代码若无必要无需更改 ***
         if (!empty($params["TemplateParam"]) && is_array($params["TemplateParam"])) {
             $params["TemplateParam"] = json_encode($params["TemplateParam"], JSON_UNESCAPED_UNICODE);
@@ -75,7 +69,7 @@ class ALDYSendSMS implements SMS
     /**
      * 验证手机号码和填写的验证码是否对应
      *
-     * @param string $tel  手机号码
+     * @param string $tel 手机号码
      * @param string $code 验证码
      *
      * @return bool

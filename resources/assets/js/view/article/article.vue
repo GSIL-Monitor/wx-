@@ -170,6 +170,8 @@
                 articleAuth: [
                     {
                         add: false,
+                        edit: false,
+                        delete: false,
                     },
                 ],
                 options: [],
@@ -181,6 +183,14 @@
             article_Auth.forEach((value) => {
                 if (value === 'add') {
                     this.articleAuth.add = true;
+                    return true;
+                }
+                if (value === 'edit') {
+                    this.articleAuth.edit = true;
+                    return true;
+                }
+                if (value === 'delete') {
+                    this.articleAuth.delete = true;
                     return true;
                 }
             });
@@ -228,7 +238,6 @@
                         type: 'primary',
                         icon: 'el-icon-edit',
                     },
-
                     delete: {
                         type: 'danger',
                         icon: 'el-icon-delete',

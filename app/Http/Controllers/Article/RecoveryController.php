@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * 文章回收站
@@ -29,7 +30,11 @@ class RecoveryController extends BaseController
      */
     public function getList(Request $request)
     {
-        $article = Article::onlyTrashed()->get();
+        $query = Article::onlyTrashed();
+        if (isSuperManager()) {
+            $query = $query->where('user_id', Auth::id());
+        }
+        $article = $query->get();
         return $this->returnData($article);
     }
 

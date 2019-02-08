@@ -30,7 +30,7 @@ class Article extends Model
 
     const ALLOW = 1;
 
-    /**
+        /**
      * 该表所有字段允许赋值
      *
      * @var array
@@ -50,8 +50,11 @@ class Article extends Model
      * @var array
      */
     protected $casts = [
-        'is_wechat' => 'string',
-        'random_jump' => 'string',
+      'iframe'=>'string',
+      'vue'=>'string',
+      'random_jump'=>'string',
+      'source_check'=>'string',
+      'ajax'=>'string',
     ];
 
     /**

@@ -40,7 +40,10 @@ class User extends Authenticatable
     ## region 模型关联
     // 用户拥有的权限
     public function HasAuth(){
-        return $this->hasManyThrough('App\Models\RoleAndAuth','App\Models\UserAndRole','user_id','role_id');
+        return $this->hasManyThrough(RoleAndAuth::class,
+            UserAndRole::class,
+            'user_id',
+            'role_id');
     }
 
     //用户拥有的角色

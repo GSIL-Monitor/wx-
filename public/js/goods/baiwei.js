@@ -59,6 +59,12 @@ $("document").ready(function () {
                 return false;
             }
         }
+        if ($('input[name="size_name"]').val() == '')  {
+            layer.msg('没有选择尺码信息', {icon: 2, time: 2000}, function () {
+                console.log('提交订单失败')
+            });
+            return false;
+        }
 
         //开启遮罩层
         layer.load(1, {shade: [0.5, '#000']});
@@ -68,6 +74,11 @@ $("document").ready(function () {
                 if (data.code == 0) {
                     layer.msg('提交订单成功！', {icon: 1, time: 2000}, function () {
                         window.location.href = data.url; //订单提交成功跳转到 下单成功页面
+                    });
+                }
+                if (data.code == -1) {
+                    layer.msg('提交订单失败！今日购买次数已超过最大限制', {icon: 2, time: 2000}, function () {
+                        console.log('提交订单失败')
                     });
                 }
             }, 1000);

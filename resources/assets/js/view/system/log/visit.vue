@@ -10,19 +10,21 @@
                 <el-button size="small" slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
             </el-input>
         </div>
-
-
-        <Table ref="table" :url="url" :columns="columns" :checkbox="false"></Table>
+        <Table ref="table" :url="url" :columns="columns" :checkbox="false" v-on:tools="handleTools"></Table>
+        <el-dialog title="访问详情" :visible.sync="show">
+            <show ref="RoleGiveAuth"  :showData="showData" v-if="show" v-on:close="show = false"></show>
+        </el-dialog>
     </div>
 </template>
 
 <script>
     import Table from "@/components/public/table";
     import list_page from "@/mixins/list_page";
+    import show from './show'
 
     export default {
         name: "visit",
-        components: {Table},
+        components: {Table, show},
         mixins: [list_page],
         data() {
             return {
@@ -45,16 +47,33 @@
                         search: true,
                     },
                     {
-                        prop: 'system_type',
-                        label: '系统及型号',
-                        search: true,
+                        label: '操作',
+                        width: '200',
+                        tools: this.handleGetBtn()
                     },
-                    {
-                        prop: 'event',
-                        label: '触发事件',
-                        search: true,
+                ],
+                show:false,
+                showData:[],
+            }
+        },
+        methods:{
+            // 工具栏事件处理 type值为columns中tools的键值
+            handleTools(type, index, row) {
+                if (type == 'show') {
+                    this.show = true;
+                    this.showData = row;
+                }
+                else{
+                    console.error('Tools Event:'+type+' Not found');
+                }
+            },
+            handleGetBtn(){
+                return {
+                    show: {
+                        type: 'primary',
+                        icon: 'el-icon-view',
                     },
-                ]
+                };
             }
         }
     }

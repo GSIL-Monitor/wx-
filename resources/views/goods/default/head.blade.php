@@ -33,8 +33,6 @@
     <link rel="stylesheet" type="text/css" href="/css/goods/swiper-3.3.1.min.css">
     <link rel="stylesheet" type="text/css" href="/css/goods/liMarquee.css">
 
-
-
     <script type="text/javascript">
         var temp = new Array('name', 'phone', 'area', 'address','username');
         var post_order = "{{url('/api/buyGoods')}}";

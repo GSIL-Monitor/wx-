@@ -80,48 +80,48 @@
                         label: '描述',
                         search: true,
                     },
-                    {
-                        prop: 'state',
-                        convert: true,
-                        label: '角色状态',
-                        filter:{
-                            data:getConfigArray('role_state')
-                        },
-                        render:{
-                            props: {
-                                row: Object         // 接受当前行参数
-                            },
-                            render: function (createElement) {
-                                if (this.$store.state.user.auth.role.indexOf('disable') > -1){
-                                    return createElement('el-switch',{
-                                        attrs:{
-                                            value:this.row.state
-                                        },
-                                        props: {
-                                            "active-color":"#13ce66",
-                                            "inactive-color":"#ff4949",
-                                            "active-value":1,
-                                            "inactive-value":0,
-                                            "inactive-text":"禁用",
-                                            "active-text":"正常",
-                                        },
-                                        nativeOn: {
-                                            click:()=>{
-                                                if (this.row.state === 0){
-                                                    this.row.state = 1;
-                                                } else{
-                                                    this.row.state = 0;
-                                                }
-                                                editRole(this.row,this.row.id)
-                                            }
-                                        },
-                                    })
-                                } else {
-                                    return createElement('span','无此操作权限')
-                                    }
-                                }
-                            }
-                    },
+                    // {
+                    //     prop: 'state',
+                    //     convert: true,
+                    //     label: '角色状态',
+                    //     filter:{
+                    //         data:getConfigArray('role_state')
+                    //     },
+                    //     render:{
+                    //         props: {
+                    //             row: Object         // 接受当前行参数
+                    //         },
+                    //         render: function (createElement) {
+                    //             if (this.$store.state.user.auth.role.indexOf('disable') > -1){
+                    //                 return createElement('el-switch',{
+                    //                     attrs:{
+                    //                         value:this.row.state
+                    //                     },
+                    //                     props: {
+                    //                         "active-color":"#13ce66",
+                    //                         "inactive-color":"#ff4949",
+                    //                         "active-value":1,
+                    //                         "inactive-value":0,
+                    //                         "inactive-text":"禁用",
+                    //                         "active-text":"正常",
+                    //                     },
+                    //                     nativeOn: {
+                    //                         click:()=>{
+                    //                             if (this.row.state === 0){
+                    //                                 this.row.state = 1;
+                    //                             } else{
+                    //                                 this.row.state = 0;
+                    //                             }
+                    //                             editRole(this.row,this.row.id)
+                    //                         }
+                    //                     },
+                    //                 })
+                    //             } else {
+                    //                 return createElement('span','无此操作权限')
+                    //                 }
+                    //             }
+                    //         }
+                    // },
                     {
                         prop: 'sort',
                         label: '排序',

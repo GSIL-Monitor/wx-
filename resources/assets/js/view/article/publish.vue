@@ -50,8 +50,9 @@
                     <el-radio  @click.native.prevent="isWechat(0)" v-model="articleForm.is_wechat" :label="0" style="margin-right: 25px">浏览器打开</el-radio>
                 </p>
                 <p>
-                    <el-checkbox v-model="articleForm.encryption" true-label="1" false-label="0" >页面加密</el-checkbox>
-                    <el-checkbox v-model="articleForm.vue" true-label="1" false-label="0" >使用前端框架</el-checkbox>
+                    <el-radio @click.native.prevent="is_encryption(1)" v-model="articleForm.is_encryption" :label="1">页面加密</el-radio>
+                    <el-radio @click.native.prevent="is_encryption(0)" v-model="articleForm.is_encryption" :label="0" >使用前端框架</el-radio>
+                    <el-radio @click.native.prevent="is_encryption(2)" v-model="articleForm.is_encryption" :label="2">异步加载</el-radio>
                 </p>
                 <p>
                     <el-radio :label="1" @click.native.prevent="clickitem(1)" v-model="articleForm.is_jump">开启主域名随机跳转</el-radio>
@@ -59,6 +60,7 @@
                 </p>
                 <p>
                     <el-checkbox true-label="1" false-label="0" v-model="articleForm.iframe">嵌套网页</el-checkbox>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.source_check">来源检测</el-checkbox>
                 </p>
             </el-card>
         </div>
@@ -79,8 +81,8 @@
         data() {
             return {
                 articleForm: {
-                    is_jump: "1", //开启随机跳转
-                    is_wechat: "1",  //是否是微信浏览器
+                    is_jump: 1, //开启随机跳转
+                    is_wechat: 1,  //是否是微信浏览器
                     title: '',    //文章标题
                     description: '', //文章描述
                     content: '',    //文章内容
@@ -92,9 +94,10 @@
                     key: "", //微信密匙
                     right_now: "",//网站立即跳转到指定地址
                     cnzz: "",//文章流量统计
-                    vue: "",//使用vue框架
-                    encryption: "",//页面加密
-                    iframe: "",//嵌套网页
+                    is_encryption: "",//页面加密
+                    iframe: "0",//嵌套网页
+                    source_check:"1",//来源检测
+                    ajax:""//异步加载文章
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
@@ -106,14 +109,9 @@
                 },
             }
         },
-        created: function () {
-            // //获得分类列表
-            // getList().then(response => {
-            //     this.options = response.data.data;
-            // });
-        },
         methods: {
             onSubmit(articleForm) {
+                console.log(this.articleForm);
                 if (this.handleValid(articleForm)) {
                     article_add(this.articleForm)
                         .then(response => {
@@ -126,12 +124,13 @@
                 this.articleForm.photo = value;
             },
             clickitem(item) {
-                item === this.articleForm.is_jump ? this.articleForm.is_jump = '' : this.articleForm.is_jump = item
+                item === this.articleForm.is_jump ? this.articleForm.is_jump = null : this.articleForm.is_jump = item
             },
             isWechat(item){
-                console.log(item);
-                item === this.articleForm.is_wechat ? this.articleForm.is_wechat = '' : this.articleForm.is_wechat = item
-                console.log(item);
+                item === this.articleForm.is_wechat ? this.articleForm.is_wechat = null : this.articleForm.is_wechat = item
+            },
+            is_encryption(item) {
+                item === this.articleForm.is_encryption ? this.articleForm.is_encryption = null : this.articleForm.is_encryption = item
             }
         },
         components: {

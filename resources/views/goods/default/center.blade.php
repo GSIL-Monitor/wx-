@@ -31,7 +31,7 @@
     {{--客户来源--}}
     <input type="hidden" name="source" value="{{$source}}">
     {{--尺码信息 默认1--}}
-    <input type="hidden" name="size_name" value="{{$goods['size'][0]['size_name'] ?? ""}}">
+    <input type="hidden" name="size_name" value="">
     {{--单个单价 默认1--}}
     <input type="hidden" name="meal_price" value="{{$goods['meals'][0]['meal_price']}}">
     {{--商品库存 默认1--}}
@@ -69,15 +69,9 @@
                 <dd>
                     <ul class="size">
                         @foreach($goods['size'] as $size)
-                            @if($loop->first)
-                                <li class="ul-no" onclick="sizety(this,' {{$size['size_name']}}')">
-                                    {{$size['size_name']}}
-                                </li>
-                            @else
-                                <li onclick="sizety(this,' {{$size['size_name']}}')">
-                                    {{$size['size_name']}}
-                                </li>
-                            @endif
+                            <li onclick="sizety(this,' {{$size['size_name']}}')">
+                                {{$size['size_name']}}
+                            </li>
                         @endforeach
                     </ul>
                 </dd>

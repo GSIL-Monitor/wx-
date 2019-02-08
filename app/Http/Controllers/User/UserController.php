@@ -5,11 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\BaseController;
 use App\Models\Role;
 use App\Models\RoleAndAuth;
+use App\Models\Source;
 use App\Models\User;
 use App\Models\UserAndRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends BaseController
 {
@@ -52,12 +54,19 @@ class UserController extends BaseController
      *
      * @return array
      */
-    public function getAuth($id){
-        //用户的所有权限
-        $auth =  User::with('HasAuth')->where('id',$id)
-            ->first()
-            ->HasAuth
+    public function getAuth($id) {
+
+        $roleId = UserAndRole::query()
+            ->where('user_id', $id)
+            ->get()
+            ->pluck('role_id')
             ->toArray();
+
+        $auth = RoleAndAuth::query()
+            ->whereIn('role_id', $roleId)
+            ->get()
+            ->toArray();
+
         $result = [];
         foreach ($auth as $item) {
             //返回没有被禁用的权限
@@ -89,8 +98,11 @@ class UserController extends BaseController
                 'options' => 'nullable',
             ]
         );
-        //todo  同时生成一条 source来源信息
+        $validatedData['password'] = Hash::make($validatedData['password']);
         $res = $this->model::create($validatedData);
+        Source::query()->create([
+            'name'=> $validatedData['username']
+        ]);
         return $this->returnMsg($res);
     }
 

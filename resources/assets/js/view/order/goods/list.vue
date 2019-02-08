@@ -82,7 +82,24 @@
                         tools: this.handleGetBtn()
                     }
                 ],
+                goodsListAuth:[
+                    {
+                        add:false,
+                        delete:false,
+                    }
+                ]
             }
+        },
+        created: function () {
+            let goodsListAuth = this.$store.state.user.auth.goods_list;
+            goodsListAuth.forEach((value) => {
+                if (value === 'delete') {
+                    this.goodsListAuth.delete = true;
+                }
+                if (value === 'add') {
+                    this.goodsListAuth.add = true;
+                }
+            });
         },
         methods: {
             // 工具栏事件处理 type值为columns中tools的键值
@@ -141,12 +158,12 @@
 
                 };
                 let result = {};
-                this.$store.state.user.auth.auth.forEach(item=>{
+                this.$store.state.user.auth.goods_list.forEach(item=>{
                     if (item in conf) {
                         result[item] = conf[item];
                     }
                 });
-                return conf;
+                return result;
             },
 
             //批量删除

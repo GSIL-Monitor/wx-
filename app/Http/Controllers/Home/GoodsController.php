@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\BaseController;
 use App\Models\ArticleTemplate;
+use App\Models\ConfigModel;
 use App\Models\Goods;
 use App\Models\GoodsOrder;
 use App\Models\Meals;
-use http\Url;
+use App\Models\User;
+use App\Services\SMS\SmsService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+
 
 class GoodsController extends BaseController
 {
@@ -168,10 +172,11 @@ class GoodsController extends BaseController
             'name' => 'required',
             'paytype' => 'required',
             'message' => 'nullable',
-            'size_name' => 'required',
+//            'size_name' => 'required',
             'source' => 'required',
         ]);
         $field['order_num'] = $this->makeOrderNum($field['phone']);
+        $field['size_name'] = $request->get('size_name', null);
         $field['paytype'] = $this->payType($field['paytype']);
         $field['order_total_price'] = $this->makeTotalPrice($field['meal_name'], $field['num']);//todo 算出总价
         $field['ip'] = $request->getClientIp();
@@ -179,6 +184,17 @@ class GoodsController extends BaseController
         $field['status'] = 0;
         $field['address'] = $this->makeAddress();
         $field['province'] = request()->get('province');
+        $field['user_id'] = Goods::query()->where('id', request()->get('goods_id'))
+            ->first()->user_id;
+
+        //是否启动防刷配置
+        $result = $this->isBeyond($field['ip'], $field['phone']);
+        if ($result === true) {
+            return response()->json([
+                'code' => '-1',
+            ]);
+        }
+
         $orderId = GoodsOrder::query()->create($field)->id;
         return response()->json([
             'code' => '0',
@@ -197,7 +213,7 @@ class GoodsController extends BaseController
     {
         $time = date('YmdHis', time());
         $randNum = rand(10000, 99999);
-        return $phone . $time . $randNum;
+        return $time . $randNum;
     }
 
     /**
@@ -266,8 +282,8 @@ class GoodsController extends BaseController
      * 购买成功
      *
      * @param $id
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function buySuccess($id)
     {
@@ -275,11 +291,116 @@ class GoodsController extends BaseController
             ->where('id', $id)
             ->first()
             ->toArray();
+        //是否进行通知
+        $this->isNotify($goods);
         //返回上一页链接
         $url = \Illuminate\Support\Facades\URL::previous() ?? "";
         return view('goods.buySuccess', [
             'goods'=>$goods,
             'url'=>$url,
         ]);
+    }
+
+    /**
+     * 通知管理员
+     *
+     * @param $goods
+     * @throws \Exception
+     */
+    public function isNotify($goods)
+    {
+        $userId = $goods['user_id'];
+        $config = ConfigModel::query()
+            ->where('user_id', $userId)
+            ->where('keyword', 'emailNotify')
+            ->orWhere('keyword', 'phoneNotify')
+            ->get()
+            ->pluck('value')
+            ->toArray();
+        $email = $config[0]->status;
+        $phone = $config[1]->status;
+        if ($email == 1) {
+            //todo  邮件通知
+            $this->sendMail($config[0], $userId);
+        }
+        if ($phone == 1) {
+            //todo 短信通知
+            $this->sendMsg($config[1], $userId);
+        }
+
+    }
+
+    /**
+     * 发送邮件
+     *
+     * @param $config
+     * @param $userId
+     */
+    public function sendMail($config, $userId)
+    {
+        config(['mail.host'=>$config->smtp_server]);
+        config(['mail.port'=>$config->smtp_port]);
+        config(['mail.username'=>$config->smtp_user]);
+        config(['mail.password'=>$config->smtp_password]);
+        config(['mail.from.address'=>$config->smtp_user]);
+        config(['mail.from.name'=>'订单系统']);
+        config(['mail.encryption'=>'ssl']);
+        $message = $config->email_title;
+        $user = User::query()->where('id', $userId)->first();
+        try{
+            Mail::raw($message, function($msg) use($message, $user) {
+                $msg->to($user->email)
+                    ->subject($message);
+            });
+        }catch (\Swift_TransportException $exception) {
+            //nothing
+        }
+    }
+
+    /**
+     * 发送短信
+     *
+     * @param $config
+     * @param $userId
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function sendMsg($config, $userId)
+    {
+        $service = new SmsService();
+        $user = User::query()->where('id', $userId)->first();
+        config(["app.sms.drive.{$config->provider}.SignName"=>$config->sing_anme]);
+        config(["app.sms.drive.{$config->provider}.accessKeyId"=>$config->access_key_id]);
+        config(["app.sms.drive.{$config->provider}.accessKeySecret"=>$config->secret]);
+        config(['app.sms.message'=>$config->content]);
+        $service::drive($config->provider)
+            ->send($user->mobile);
+    }
+
+    /**
+     * 同一手机号一天是否下单超过指定次数
+     *
+     * @param $ip
+     * @param $phone
+     * @return bool
+     */
+    public function isBeyond($ip, $phone)
+    {
+        $config = ConfigModel::query()
+            ->where('keyword', 'batchOrder')
+            ->first()
+            ->value;
+        if ($config->status == 1) {
+            $count = GoodsOrder::query()
+                ->where('created_at', (string)Carbon::today()->startOfDay())
+                ->where('created_at', (string)Carbon::today()->endOfDay())
+                ->where('phone', $phone)
+                ->where('id', $ip)
+                ->count();
+            if ($count > $config->number) {
+                return true;
+            }
+        }
+        return false;
     }
 }

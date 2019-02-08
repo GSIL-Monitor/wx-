@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UrlController extends BaseController
 {
@@ -26,6 +27,7 @@ class UrlController extends BaseController
     {
         $field = $this->formVerif($request, [
             'type' => 'required',
+            'status' => 'required', //主域名还是备用域名
         ]);
         $urls = $this->formVerif($request, [
             'urls' => 'required',
@@ -59,4 +61,20 @@ class UrlController extends BaseController
             ->update($field);
         return $this->returnMsg($res);
     }
+
+    /**
+     * 返回用户连接
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getList(Request $request)
+    {
+        $query = $this->model::orderBy('id', 'desc');
+        if (isSuperManager()) {
+            $query = $query->where('user_id', Auth::id());
+        }
+        return $this->filter($query, $request);
+    }
+
 }

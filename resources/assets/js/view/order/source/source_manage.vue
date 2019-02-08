@@ -3,8 +3,12 @@
         <div style="margin: 8px 0">
             <el-row>
                 <el-col :span="14">
-                    <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">添加来源</el-button>
-                    <el-button type="danger" size="small" icon="el-icon-plus" @click="handleDel">删除来源</el-button>
+                    <template v-if=" this.source_manageAuth.add">
+                        <el-button type="primary" size="small" icon="el-icon-plus" @click="handleAdd">添加来源</el-button>
+                    </template>
+                    <template v-if=" this.source_manageAuth.delete">
+                        <el-button type="danger" size="small" icon="el-icon-plus" @click="handleDel">删除来源</el-button>
+                    </template>
                 </el-col>
             </el-row>
         </div>
@@ -56,19 +60,40 @@
                     {
                         prop: 'name',
                         label: '来源名称',
-                        width:"200"
+                        width: "200"
                     },
                     {
                         label: '操作',
                         tools: this.handleGetBtn()
                     }
                 ],
+                source_manageAuth: [
+                    {
+                        add: false,
+                        edit: false,
+                        delete: false,
+                    }
+                ]
             }
+        },
+        created: function () {
+            let article_Auth = this.$store.state.user.auth.source;
+            article_Auth.forEach((value) => {
+                if (value === 'add') {
+                    this.source_manageAuth.add = true;
+                }
+                if (value === 'edit') {
+                    this.source_manageAuth.edit = true;
+                }
+                if (value === 'delete') {
+                    this.source_manageAuth.delete = true;
+                }
+            });
         },
         methods: {
             //tool栏按钮权限控制
             handleGetBtn() {
-                let  conf= {
+                let conf = {
                     edit: {
                         type: 'primary',
                         icon: 'el-icon-edit',
@@ -78,7 +103,13 @@
                         icon: 'el-icon-delete',
                     }
                 };
-                return conf;
+                let result = {};
+                this.$store.state.user.auth.source.forEach(item => {
+                    if (item in conf) {
+                        result[item] = conf[item];
+                    }
+                });
+                return result;
             },
             // 工具栏事件处理 type值为columns中tools的键值
             handleTools(type, index, row) {
@@ -111,8 +142,8 @@
             },
             //删除来源
             handleDel() {
-               let ids = this.handleGetSelection('id');
-                sourceBatchIdDelete({id:ids}).then((response)=>{
+                let ids = this.handleGetSelection('id');
+                sourceBatchIdDelete({id: ids}).then((response) => {
                     this.$message.success('成功删除');
                     this.handleRenderTable()
                 })
@@ -124,8 +155,8 @@
 </script>
 
 <style scoped>
-.chart-left >>> .el-pagination {
-    float: left!important;
-}
+    .chart-left >>> .el-pagination {
+        float: left !important;
+    }
 
 </style>

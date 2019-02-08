@@ -1,12 +1,12 @@
 <template>
     <el-tabs v-model="activeName">
-        <el-tab-pane label="微信配置" name="first">
+        <el-tab-pane :lazy="true" label="微信配置" name="first">
             <wx></wx>
         </el-tab-pane>
-        <el-tab-pane label="防刷配置" name="second">
+        <el-tab-pane :lazy="true"  label="防刷配置" name="second">
             <batchOrder></batchOrder>
         </el-tab-pane>
-        <el-tab-pane label="通知配置" name="third">
+        <el-tab-pane :lazy="true"  label="通知配置" name="third">
             <notify></notify>
         </el-tab-pane>
     </el-tabs>

@@ -47,14 +47,13 @@
 
 <footer>
     <p style="text-align:center">
-        <img src=""
-             style="max-width:750px;width:100%">
+        {{--<img src="" style="max-width:750px;width:100%">--}}
     </p>
     <br>
     在线快速订购
     <br>
     <p>
-        <a href="http://www.ffdvta.cn/jubao.html">举报</a>
+        <a href="{{url('report')}}">举报</a>
     </p>
 </footer>
 

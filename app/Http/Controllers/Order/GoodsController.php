@@ -8,6 +8,7 @@ use App\Models\Source;
 use App\Models\SourceUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GoodsController extends BaseController
 {
@@ -36,6 +37,7 @@ class GoodsController extends BaseController
             "is_up" => "required",
             "template_id" => "required",
         ]);
+        $field['user_id'] = Auth::id();
         if (isset($field['wheel_photo'])) {
             $field['wheel_photo'] = json_encode($field['wheel_photo']);
         }
@@ -100,5 +102,13 @@ class GoodsController extends BaseController
         return $this->returnMsg($res);
     }
 
+    public function getList(Request $request)
+    {
+        $query = $this->model::orderBy('created_at', 'desc');
+        if (isSuperManager()) {
+            $query = $query->where('user_id', Auth::id());
+        }
+        return $this->filter($query, $request);
+    }
 
 }

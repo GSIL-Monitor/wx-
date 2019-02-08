@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Article;
 
-use App\Exceptions\FromVerif;
 use App\Http\Controllers\BaseController;
 use App\Models\Article;
-use App\Models\Auth;
-use App\Models\Categroy;
-use App\Models\Nav;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Validator;
-
 
 class ArticleController extends BaseController
 {
@@ -37,10 +32,9 @@ class ArticleController extends BaseController
         $article = $this->formVerif($request, [
             'title' => 'required', //文章标题
             'content' => 'required', //文章内容
-            'category' => 'required', //文章分类类型
             'photo' => 'nullable', //文章封面
             'description' => 'nullable', //文章描述
-            'random_jump' => 'nullable', //随机跳转
+            'is_jump' => 'nullable', //随机跳转
             'is_wechat' => 'nullable', //是否检测微信
             'arrow' => 'nullable',    //文章箭头返回地址
             'physics' => 'nullable', //物理按键返回地址
@@ -50,13 +44,14 @@ class ArticleController extends BaseController
             'key' => 'nullable',  //微信密匙
             'right_now' => 'nullable',    //文章立即跳转
             'cnzz' => 'nullable', //第三方流量统计
+            'is_encryption' => 'nullable', //页面加密
+            'iframe' => 'nullable', //嵌套网页
+            'source_check' => 'nullable', //来源检测
         ]);
 
         $article['publish_time'] = date('Y-m-d H:i:s'); //发布时间默认当前时间
         $article['author'] = \Illuminate\Support\Facades\Auth::user()->username; //作者默认当前登录人员
-        $categoryID = array_pop($article['category']); //前端传递数据处理
-        $article['category'] = Categroy::where('id', $categoryID)->first()->name;
-
+        $article['user_id'] = \Illuminate\Support\Facades\Auth::id(); //用户默认当前用户Id
         $res = Article::create($article);
         return $this->returnMsg($res);
     }
@@ -71,11 +66,6 @@ class ArticleController extends BaseController
     public function get($id)
     {
         $data = $this->model::find($id);
-
-        $category = Categroy::where('name', $data->category)->first();
-        $pid = $this->getPid($category->id);
-
-        $data->category_id = [$pid, $category->id];
         //临时隐藏一些字段方便后续调用
         return $this->returnData($data->makeHidden(['status', 'other'])->toArray());
     }
@@ -92,8 +82,12 @@ class ArticleController extends BaseController
 
     public function getList(Request $request)
     {
-        $data = $this->filter($this->model::orderBy('publish_time', 'desc')
-            ->where('author', \Illuminate\Support\Facades\Auth::user()->username), $request, 'array');
+
+        $query = $this->model::orderBy('publish_time', 'desc');
+        if (isSuperManager()) {
+            $query = $query->where('author', \Illuminate\Support\Facades\Auth::user()->username);
+        }
+        $data = $this->filter($query,  $request, 'array');
         return response()->json($data);
     }
 
@@ -112,10 +106,9 @@ class ArticleController extends BaseController
         $filedValue = $this->formVerif($request, [
             'title' => 'required', //文章标题
             'content' => 'required', //文章内容
-            'category' => 'required', //文章分类类型
             'photo' => 'nullable', //文章封面
             'description' => 'nullable', //文章描述
-            'random_jump' => 'nullable', //随机跳转
+            'is_jump' => 'nullable', //随机跳转
             'is_wechat' => 'nullable', //是否检测微信
             'arrow' => 'nullable',    //文章箭头返回地址
             'physics' => 'nullable', //物理按键返回地址
@@ -125,9 +118,10 @@ class ArticleController extends BaseController
             'key' => 'nullable',  //微信密匙
             'right_now' => 'nullable',    //文章立即跳转
             'cnzz' => 'nullable', //第三方流量统计
+            'is_encryption' => 'nullable', //页面加密
+            'iframe' => 'nullable', //嵌套网页
+            'source_check' => 'nullable', //来源检测
         ]);
-        $categoryID = array_pop($filedValue['category']); //前端传递数据处理
-        $filedValue['category'] = Categroy::where('id', $categoryID)->first()->name;
         $res = Article::find($id)->update($filedValue);
         return $this->returnMsg($res);
     }

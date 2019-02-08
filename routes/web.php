@@ -5,6 +5,7 @@
 Route::get('admin', function () {
     return view('admin');
 });
+Route::get('t','t@index');
 
 Route::get('/report', function () {
     return view('goods.report');

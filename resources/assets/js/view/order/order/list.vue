@@ -3,7 +3,9 @@
         <div style="margin: 8px 0">
             <el-row>
                 <el-col :span="14">
-                    <el-button type="danger" size="small" icon="el-icon-delete" @click="handleSelect">删除订单信息</el-button>
+                    <template v-if=" this.orderListAuth.delete">
+                        <el-button type="danger" size="small" icon="el-icon-delete" @click="handleSelect">删除订单信息</el-button>
+                    </template>
                 </el-col>
                 <el-col :span="10">
                     <el-input placeholder="请输入要搜索的内容..." size="small" v-model="search.value" class="input-with-select">
@@ -222,7 +224,20 @@
                         tools: this.handleGetBtn()
                     }
                 ],
+                orderListAuth: [
+                    {
+                        delete: false,
+                    },
+                ],
             }
+        },
+        created: function () {
+            let goods_Order_Auth = this.$store.state.user.auth.goods_order;
+            goods_Order_Auth.forEach((value) => {
+                if (value === 'delete') {
+                    this.orderListAuth.delete = true;
+                }
+            });
         },
         mounted() {
             this.handleSetFilter('where', {status: 0});
@@ -270,12 +285,12 @@
                     }
                 };
                 let result = {};
-                this.$store.state.user.auth.auth.forEach(item => {
+                this.$store.state.user.auth.goods_order.forEach(item => {
                     if (item in conf) {
                         result[item] = conf[item];
                     }
                 });
-                return conf;
+                return result;
             },
 
             //批量删除

@@ -11,17 +11,6 @@
                 <el-form-item label="文章描述" prop="description">
                     <el-input v-model="articleForm.description" placeholder="文章描述"></el-input>
                 </el-form-item>
-                <el-form-item label="访问链接" prop="url">
-                    <el-input v-model="articleForm.url" placeholder="当前文章的访问URL地址必选"></el-input>
-                </el-form-item>
-                <el-form-item label="文章分类" prop="category">
-                    <el-cascader
-                            expand-trigger="click"
-                            :options="options"
-                            placeholder="发表文章需要选择一个分类"
-                            v-model="articleForm.category">
-                    </el-cascader>
-                </el-form-item>
                 <el-form-item label="封面图片" prop="photo">
                     <upload :img="articleForm.photo" v-on:img-success="success"></upload>
                 </el-form-item>
@@ -57,9 +46,22 @@
                     <el-input v-model="articleForm.physics" placeholder="物理按键点击返回"></el-input>
                 </p>
                 <p>
-                    <el-radio v-model="articleForm.is_wechat" label="1">开启微信检测</el-radio>
-                    <el-radio v-model="articleForm.is_wechat" label="0" style="margin-right: 25px">浏览器打开</el-radio>
-                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.random_jump">开启随机跳转</el-checkbox>
+                    <el-radio  @click.native.prevent="isWechat(1)" v-model="articleForm.is_wechat" :label="1">开启微信检测</el-radio>
+                    <el-radio  @click.native.prevent="isWechat(0)" v-model="articleForm.is_wechat" :label="0" style="margin-right: 25px">浏览器打开</el-radio>
+                </p>
+                <p>
+                    <el-radio @click.native.prevent="is_encryption(1)" v-model="articleForm.is_encryption" :label="1">页面加密</el-radio>
+                    <el-radio @click.native.prevent="is_encryption(0)" v-model="articleForm.is_encryption" :label="0" >使用前端框架</el-radio>
+                    <el-radio @click.native.prevent="is_encryption(2)" v-model="articleForm.is_encryption" :label="2">异步加载</el-radio>
+                </p>
+                <p>
+                    <el-radio :label="1" @click.native.prevent="clickitem(1)" v-model="articleForm.is_jump">开启主域名随机跳转</el-radio>
+                    <el-radio :label="0" @click.native.prevent="clickitem(0)"v-model="articleForm.is_jump">开启二级域名随机跳转</el-radio>
+                </p>
+                <p>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.iframe">嵌套网页</el-checkbox>
+                    <el-checkbox true-label="1" false-label="0" v-model="articleForm.source_check">来源检测</el-checkbox>
+
                 </p>
             </el-card>
         </div>
@@ -79,26 +81,27 @@
         data() {
             return {
                 articleForm: {
-                    random_jump: "1", //开启随机跳转
-                    is_wechat: "1",  //是否是微信浏览器
+                    is_jump: 1, //开启随机跳转
+                    is_wechat: 1,  //是否是微信浏览器
                     title: '',    //文章标题
                     description: '', //文章描述
                     content: '',    //文章内容
                     arrow: '', //点击箭头返回
                     physics: '', //物理按键点击返回
                     photo: '',  //文章封面
-                    url: '',    //文章访问链接
-                    category: [],   //文章分类
                     music: "", //背景地址
                     appid: "", //微信Id
                     key: "", //微信密匙
                     right_now: "",//网站立即跳转到指定地址
                     cnzz: "",//文章流量统计
+                    is_encryption: "",//页面加密
+                    iframe: "0",//嵌套网页
+                    source_check:"1",//来源检测
+                    ajax:"", //异步加载文章
                 },
                 rules: {
                     title: [{required: true, message: '文章标题为必填项目', trigger: 'blur'},],
                     content: [{required: true, message: '文章内容为必填项目', trigger: 'blur'}],
-                    url: [{required: true, message: '文章访问链接必选填写', trigger: 'blur'}],
                 },
                 options: [],
                 Ueconfig:{
@@ -123,20 +126,24 @@
                 //图片上传成功 和form表单的元素做一个绑定 回显图片数据
                 this.articleForm.photo = value;
             },
+
+            clickitem(item) {
+                item === this.articleForm.is_jump ? this.articleForm.is_jump = null : this.articleForm.is_jump = item
+            },
+            isWechat(item){
+                item === this.articleForm.is_wechat ? this.articleForm.is_wechat = null : this.articleForm.is_wechat = item
+            },
+            is_encryption(item) {
+                item === this.articleForm.is_encryption ? this.articleForm.is_encryption = null : this.articleForm.is_encryption = item
+            }
         },
         components:{
             upload,VueUeditorWrap
         },
         created:function () {
-            //获得分类列表
-            getList().then(response=>{
-                this.options = response.data.data;
-            });
             //文章数据
             article_get(this.$route.params.id).then(response=>{
                 this.articleForm = response.data.data;
-                this.articleForm.template_id = response.data.data.template_id;
-                this.articleForm.category = response.data.data.category_id;
             });
         }
 

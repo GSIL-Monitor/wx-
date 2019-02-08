@@ -2,7 +2,7 @@
     <div>
         <el-checkbox-group v-model="checkList">
             <template>
-                <el-checkbox v-for="item in checkOption"  v-if="item.state === 1" :key="item.id" :label="item.name"></el-checkbox>
+                <el-checkbox v-for="item in checkOption"  :key="item.id" :label="item.name"></el-checkbox>
             </template>
         </el-checkbox-group>
         <div style="margin-top: 15px">

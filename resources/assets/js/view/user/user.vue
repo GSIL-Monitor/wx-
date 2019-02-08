@@ -181,6 +181,7 @@
         created:function(){
             let menu_Auth = this.$store.state.user.auth.user;
             menu_Auth.forEach((value)=> {
+                console.log(value);
                 if(value === 'add') {
                     this.userAuth.add = true
                 }else if(value === 'edit') {
@@ -189,8 +190,8 @@
                     this.userAuth.delete = true
                 }else if(value === 'userGiveRole') {
                     this.userAuth.userGiveRole = true
-                }else if(value === 'editRole') {
-                    this.userAuth.editRole = true
+                }else if(value === 'editUserRole') {
+                    this.userAuth.editUserRole = true
                 }else if(value === 'disable') {
                     this.userAuth.disable = true
                 }
@@ -203,7 +204,7 @@
                 if (type == 'edit') {
                     this.edit_id = row.id;
                     this.editFormVisible = true;
-                } else if (type == 'editRole') {
+                } else if (type == 'editUserRole') {
                     this.user_id = row.id;
                     this.userGiveRoleEditVisible = true;
                 } else if (type == 'delete') {
@@ -247,7 +248,7 @@
                         type: 'primary',
                         icon: 'el-icon-edit',
                     },
-                    editRole: {
+                    editUserRole: {
                         type: 'warning',
                         icon: 'el-icon-edit',
                         text: '修改用户组'

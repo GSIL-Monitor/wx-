@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use phpseclib\System\SSH\Agent\Identity;
 
 /**
@@ -154,7 +155,6 @@ class MenuController extends BaseController
     public function userTree()
     {
         $userid = Auth::user()->id;
-
         $user = User::find($userid);
         $data = $user->roles()->get()->toArray();
         $roleID = [];
@@ -163,7 +163,10 @@ class MenuController extends BaseController
             $roleID[] = $role['pivot']['role_id'];
         }
         //查询角色可以访问的菜单
-        $menu_url = RoleAndAuth::where('state','<>','0')->get(['page'])->pluck('page')->map(function ($value){
+        $menu_url = RoleAndAuth::where('state','<>','0')->whereIn('role_id', $roleID)
+            ->get(['page'])
+            ->pluck('page')
+            ->map(function ($value){
             return '/'.$value;
         })->toArray();
         $menu_id = Menu::whereIn('url',$menu_url)->pluck('id')->toArray();
@@ -175,13 +178,16 @@ class MenuController extends BaseController
         }
         //查询出菜单内容
         $query = Menu::with(
-                ['subMenu.subMenu'=>function($query) use($uniq_menu_id)
+                ['subMenu'=>function($query) use($uniq_menu_id)
             {
-                $query->whereIn('id',$uniq_menu_id);
+                $query->with(['subMenu'=>function($subQuery) use($uniq_menu_id) {
+                    $subQuery->whereIn('id',$uniq_menu_id)->where('state', 1);
+                }])->whereIn('id',$uniq_menu_id)->where('state', 1);
             }]
-        )->whereIn('id',$pids)->get()->toArray();
-       //$query = Menu::with('subMenu.subMenu')->whereIn('id',$pids)->get()->toArray();
-
+        )->whereIn('id',$pids)
+            ->where('state', 1)
+            ->get()
+            ->toArray();
         return $query;
     }
 

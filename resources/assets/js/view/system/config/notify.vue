@@ -6,7 +6,7 @@
                 <tr>
                     <td>邮件发送开关:</td>
                     <td>
-                        <el-select v-model="email.status" placeholder="请选择">
+                        <el-select v-model="email.value.status" placeholder="请选择">
                             <el-option
                                     v-for="item in option"
                                     :key="item.value"
@@ -25,7 +25,7 @@
                 <tr>
                     <td>SMTP服务器:</td>
                     <td>
-                        <el-input class="longInput" v-model="email.smtp_server" placeholder="请输入邮箱服务器地址"></el-input>
+                        <el-input class="longInput" v-model="email.value.smtp_server" placeholder="请输入邮箱服务器地址"></el-input>
                     </td>
                     <td>
                          <span>
@@ -37,7 +37,7 @@
                 <tr>
                     <td>SMTP服务器端口:</td>
                     <td>
-                        <el-input class="longInput" v-model="email.smtp_port" placeholder="请输入邮箱服务器地址"></el-input>
+                        <el-input class="longInput" v-model="email.value.smtp_port" placeholder="请输入邮箱服务器地址"></el-input>
                     </td>
                     <td>
                          <span>
@@ -49,7 +49,7 @@
                 <tr>
                     <td>SMTP账户:</td>
                     <td>
-                        <el-input class="longInput" v-model="email.smtp_user" placeholder="请输入邮箱账号"></el-input>
+                        <el-input class="longInput" v-model="email.value.smtp_user" placeholder="请输入邮箱账号"></el-input>
                     </td>
                     <td>
                          <span>
@@ -61,7 +61,7 @@
                 <tr>
                     <td>登录授权码:</td>
                     <td>
-                        <el-input class="longInput" v-model="email.smtp_password" placeholder="第三方授权密码"></el-input>
+                        <el-input class="longInput" v-model="email.value.smtp_password" placeholder="第三方授权密码"></el-input>
                     </td>
                     <td>
                          <span>
@@ -73,7 +73,7 @@
                 <tr>
                     <td>邮件标题:</td>
                     <td>
-                        <el-input class="longInput" v-model="email.email_title" placeholder="请输入邮箱服务器地址"></el-input>
+                        <el-input class="longInput" v-model="email.value.email_title" placeholder="请输入邮箱服务器地址"></el-input>
                     </td>
                     <td>
                          <span>
@@ -87,10 +87,10 @@
                         操作:
                     </td>
                     <td>
-                        <el-button type="primary">保存配置</el-button>
+                        <el-button type="primary" @click="emailSubmit">保存配置</el-button>
                     </td>
                     <td>
-                        <el-button type="success">测试发送</el-button>
+                        <el-button type="success" @click="emailTest">测试发送</el-button>
                     </td>
                 </tr>
             </table>
@@ -101,7 +101,7 @@
                 <tr>
                     <td>短信发送开关:</td>
                     <td>
-                        <el-select v-model="phone.status" placeholder="请选择">
+                        <el-select v-model="phone.value.status" placeholder="请选择">
                             <el-option
                                     v-for="item in option"
                                     :key="item.value"
@@ -120,7 +120,7 @@
                 <tr>
                     <td>选择服务商:</td>
                     <td>
-                        <el-select v-model="phone.provider" placeholder="请选择">
+                        <el-select v-model="phone.value.provider" placeholder="请选择">
                             <el-option
                                     v-for="item in provider"
                                     :key="item.value"
@@ -139,7 +139,7 @@
                 <tr>
                     <td>accessKeyId:</td>
                     <td>
-                        <el-input class="longInput" v-model="phone.access_key_id" placeholder="请输入授权Id"></el-input>
+                        <el-input class="longInput" v-model="phone.value.access_key_id" placeholder="请输入授权Id"></el-input>
                     </td>
                     <td>
                           <span>
@@ -151,7 +151,7 @@
                 <tr>
                     <td>Secret密匙:</td>
                     <td>
-                        <el-input class="longInput" v-model="phone.secret" placeholder="填写授权密匙"></el-input>
+                        <el-input class="longInput" v-model="phone.value.secret" placeholder="填写授权密匙"></el-input>
                     </td>
                     <td>
                           <span>
@@ -163,7 +163,7 @@
                 <tr>
                     <td>短信签名:</td>
                     <td>
-                        <el-input class="longInput" v-model="phone.sing_anme" placeholder="请输入短信的签名"></el-input>
+                        <el-input class="longInput" v-model="phone.value.sing_anme" placeholder="请输入短信的签名"></el-input>
                     </td>
                     <td>
                           <span>
@@ -175,7 +175,7 @@
                 <tr>
                     <td>短信内容:</td>
                     <td>
-                        <el-input class="longInput" v-model="phone.content" placeholder="请填写短信通知内容"></el-input>
+                        <el-input class="longInput" v-model="phone.value.content" placeholder="请填写短信通知内容"></el-input>
                     </td>
                     <td>
                           <span>
@@ -189,10 +189,10 @@
                         操作:
                     </td>
                     <td>
-                        <el-button type="primary">保存配置</el-button>
+                        <el-button type="primary" @click="phoneSubmit">保存配置</el-button>
                     </td>
                     <td>
-                        <el-button type="success">测试发送</el-button>
+                        <el-button type="success" @click="phoneTest">测试发送</el-button>
                     </td>
                 </tr>
             </table>
@@ -202,6 +202,7 @@
 </template>
 
 <script>
+    import {config_get, config_add, config_update,emailTest,phoneTest} from '@/api/system'
     export default {
         name: "notify",
         data() {
@@ -219,29 +220,97 @@
                 provider: [
                     {
                         label: '阿里大鱼',
-                        value: '0'
+                        value: 'aldy'
                     },
-                    {
-                        label: '凌众短信',
-                        value: '1'
-                    }
                 ],
                 email: {
-                    status: '0',
-                    smtp_server: 'smtp.163.com',
-                    smtp_port: '25',
-                    smtp_user: '',
-                    smtp_password: '',
-                    email_title: '测试通知信息'
+                    value:{
+                        status: '0',
+                        smtp_server: 'smtp.163.com',
+                        smtp_port: '25',
+                        smtp_user: '',
+                        smtp_password: '',
+                        email_title: '测试通知信息'
+                    },
+                    keyword: 'emailNotify',
+                    type: 'json',
+                    desc: '邮件消息通知配置',
+                    pid: 0
                 },
                 phone: {
-                    status: '0',
-                    provider: '',
-                    access_key_id: '',
-                    secret: '',
-                    content: '测试通知信息',
-                    sing_anme: '',
+                    keyword: 'phoneNotify',
+                    value:{
+                        status: '0',
+                        provider: 'aldy',
+                        access_key_id: '',
+                        secret: '',
+                        content: '测试通知信息',
+                        sing_anme: '',
+                    },
+                    type: 'json',
+                    desc: '手机短信通知配置',
+                    pid: 0
+
+                },
+                phoneStatus:'add',
+                emailStatus:'add'
+            }
+        },
+        created(){
+            config_get('emailNotify').then((response)=>{
+                if (response.data.status != false) {
+                    this.email.value = response.data.data;
+                    this.emailStatus = 'update'
+                } else {
+                    this.$message.info('没有配置过邮件通知信息')
                 }
+            });
+            config_get('phoneNotify').then((response)=>{
+                if (response.data.status != false) {
+                    this.phone.value = response.data.data;
+                    this.phoneStatus = 'update'
+                } else {
+                    this.$message.info('没有配置过短信通知信息')
+                }
+            });
+        },
+        methods:{
+            phoneSubmit() {
+                if (this.phoneStatus == 'add') {
+                    config_add(this.phone).then((response)=>{
+                        this.$message.success(response.data.message);
+                    })
+                }
+                if (this.phoneStatus == 'update') {
+                    config_update(1, this.phone).then((response) => {
+                        this.$message.success(response.data.message);
+                    });
+                }
+            },
+            emailSubmit() {
+                if (this.emailStatus == 'add') {
+                    config_add(this.email).then((response)=>{
+                        this.$message.success(response.data.message);
+                    })
+                }
+                if (this.emailStatus == 'update') {
+                    config_update(1, this.email).then((response) => {
+                        this.$message.success(response.data.message);
+                    });
+                }
+            },
+            phoneTest() {
+                phoneTest(this.phone.value).then((response)=>{
+
+                })
+            },
+            emailTest() {
+                emailTest(this.email.value).then((response)=>{
+                    if (response.data.code == -1) {
+                        this.$message.error(response.data.msg)
+                    }
+                    this.$message.success(response.data.msg)
+                })
             }
         }
     }
